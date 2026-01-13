@@ -1,0 +1,318 @@
+.gmd-carousel-and-ats {
+    .quiz-section {
+        display: none;
+    }
+
+    // section.shopify-section-group-header-group {
+    //     display: none;
+    // }
+
+    .shopify-section {
+        .banner {
+            display: none;
+        }
+
+        .carousel-section {
+            position: relative;
+
+            .carousel-text-wrapper {
+                position: absolute;
+                left: 50%;
+                top: 15.5%;
+                transform: translateX(-50%);
+                z-index: 11;
+                max-width: 1320px;
+                width: 100%;
+                padding: 0 20px;
+                margin: 0 auto;
+                font-family: Poppins;
+                pointer-events: none;
+
+                h2 {
+                    font-family: inherit;
+                    color: #000;
+                    font-size: 40px;
+                    font-weight: 600;
+                    line-height: 26px;
+                    text-transform: capitalize;
+                    letter-spacing: 0.3px;
+                    // pointer-events: none;
+                }
+
+                .hero-btn {
+                    border-radius: 8px;
+                    background: #000;
+                    padding: 10px 16px;
+                    color: #FFF;
+                    text-decoration: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 26px;
+                    text-transform: capitalize;
+                    display: inline-block;
+                    margin-top: 30px;
+                    letter-spacing: 0.2px;
+                    pointer-events: auto;
+                }
+            }
+        }
+
+        .splide {
+            .swiper-slide {
+                min-height: 460px;
+                height: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: top right;
+            }
+
+            .splide__pagination {
+                bottom: 6.75em;
+                gap: 8px;
+
+                &__page {
+                    border-radius: 20px;
+                    background: #BABABA;
+                    height: 9px;
+                    width: 9px;
+                    margin: 0;
+
+                    &.is-active {
+                        width: 27px;
+                        transform: none;
+                        background: #2897DF;
+
+                    }
+                }
+            }
+        }
+    }
+
+    #MainContent {
+        position: relative;
+
+        .sticky-ats-wrapper {
+            display: none;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            z-index: 11;
+            border-top: 1px solid #BABABA;
+            background: #FFF;
+            box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.10);
+
+            &.active {
+                display: block;
+            }
+
+            .text-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 64px;
+                font-family: Poppins;
+                max-width: 930px;
+                width: 100%;
+                padding: 6px 20px 11px;
+                margin: 0 auto;
+
+                .product-info-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 20px;
+                    max-width: 583px;
+                    width: 100%;
+
+                    .product-name {
+                        color: #000;
+                        font-size: 18px;
+                        font-weight: 600;
+                        line-height: 18px;
+                        letter-spacing: 1px;
+                        text-transform: capitalize;
+                    }
+
+                    .price {
+                        color: #000;
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 26.3px;
+                        text-transform: uppercase;
+
+                        .badge {
+                            display: none;
+                        }
+                    }
+                }
+
+                .btn-wrapper {
+                    max-width: 243px;
+                    width: 100%;
+
+                    .buy-now-btn {
+                        border-radius: 4px;
+                        background: #000;
+                        color: #FFF;
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 26.3px;
+                        text-transform: uppercase;
+                        border: none;
+                        padding: 3px 20px;
+                        width: 100%;
+                        cursor: pointer;
+                        position: relative;
+
+                        &:hover {
+                            // box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset)) rgba(var(--color-button-text), var(--border-opacity)), 0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
+                            box-shadow: 0 0 0 1px #000;
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer__content-bottom {
+            padding-bottom: 50px;
+        }
+    }
+
+    footer {
+        &.footer-section {
+            padding-bottom: 80px;
+        }
+    }
+
+    .drawer {
+        .total-wrapper {
+            display: flex;
+            align-items: center;
+
+            h2 {
+                font-family: Poppins;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 26px;
+                text-transform: capitalize;
+                margin: 0;
+            }
+
+            .shipping-tag {
+                color: #1A4A1C;
+                font-family: Poppins;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 26px;
+                text-transform: uppercase;
+                border-radius: 4px;
+                background: #B6F3B9;
+                padding: 0 8px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    #launcher-wrapper {
+        &.on-product-page {
+            bottom: 80px;
+        }
+    }
+}
+
+@media (max-width: 990px) {
+    .gmd-carousel-and-ats {
+        #MainContent {
+            .sticky-ats-wrapper {
+                .text-wrapper {
+                    .product-info-wrapper {
+                        gap: 64px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .gmd-carousel-and-ats {
+        .shopify-section {
+            .carousel-section {
+                .carousel-text-wrapper {
+                    top: 8.1%;
+                    padding: 0 40px;
+
+                    h2 {
+                        font-size: 32px;
+                        line-height: 32px;
+                        margin-bottom: 24px;
+                    }
+
+                    .hero-btn {
+                        width: 100%;
+                        max-width: 300px;
+                        text-align: center;
+                        margin-top: 0;
+                    }
+                }
+
+                .splide {
+                    .swiper-slide {
+                        min-height: 308px;
+                    }
+
+                    .splide__pagination {
+                        bottom: 3.2em;
+                    }
+                }
+            }
+        }
+
+        #MainContent {
+            .sticky-ats-wrapper {
+                .text-wrapper {
+                    gap: 10px;
+
+                    .product-info-wrapper {
+                        flex-direction: column;
+                        gap: 0;
+                        align-items: flex-start;
+
+                        .product-name {
+                            font-size: 16px;
+                            line-height: 18px;
+                        }
+
+                        .price {
+                            font-size: 14px;
+                            line-height: 26.3px;
+                        }
+                    }
+
+                    .btn-wrapper {
+                        max-width: 137px;
+                        width: 100%;
+                        text-align: right;
+
+                        .buy-now-btn {
+                            width: 100%;
+                            padding: 16px 8px;
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            &.footer-section {
+                padding-bottom: 120px;
+            }
+        }
+
+        #launcher-wrapper {
+            &.on-product-page {
+                bottom: 100px;
+            }
+        }
+    }
+}

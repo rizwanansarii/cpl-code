@@ -1,0 +1,150 @@
+.gmd-sticky-ats {
+    #MainContent {
+        position: relative;
+
+        .sticky-ats-wrapper {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            z-index: 11;
+            border-top: 1px solid #BABABA;
+            background: #FFF;
+            box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.10);
+
+            .text-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 64px;
+                font-family: Poppins;
+                max-width: 930px;
+                width: 100%;
+                padding: 6px 20px 11px;
+                margin: 0 auto;
+
+                .product-info-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 168px;
+
+                    .product-name {
+                        color: #000;
+                        font-size: 18px;
+                        font-weight: 600;
+                        line-height: 18px;
+                        letter-spacing: 1px;
+                        text-transform: capitalize;
+                    }
+
+                    .price {
+                        color: #000;
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 26.3px;
+                        text-transform: uppercase;
+                    }
+                }
+
+
+                .buy-now-btn {
+                    border-radius: 4px;
+                    background: #000;
+                    color: #FFF;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 26.3px;
+                    text-transform: uppercase;
+                    border: none;
+                    padding: 3px 83px;
+                }
+            }
+        }
+
+        .footer__content-bottom {
+            padding-bottom: 50px;
+        }
+    }
+
+    .drawer {
+        .total-wrapper {
+            display: flex;
+            align-items: center;
+
+            h2 {
+                font-family: Poppins;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 26px;
+                text-transform: capitalize;
+                margin: 0;
+            }
+
+            .shipping-tag {
+                color: #1A4A1C;
+                font-family: Poppins;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 26px;
+                text-transform: uppercase;
+                border-radius: 4px;
+                background: #B6F3B9;
+                padding: 0 8px;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 990px) {
+    .gmd-sticky-ats {
+        #MainContent {
+            .sticky-ats-wrapper {
+                .text-wrapper {
+                    .product-info-wrapper {
+                        gap: 64px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .gmd-sticky-ats {
+        #MainContent {
+            .sticky-ats-wrapper {
+                .text-wrapper {
+                    gap: 10px;
+
+                    .product-info-wrapper {
+                        flex-direction: column;
+                        gap: 0;
+                        align-items: flex-start;
+
+                        .product-name {
+                            font-size: 16px;
+                            line-height: 18px;
+                        }
+
+                        .price {
+                            font-size: 14px;
+                            line-height: 26.3px;
+                        }
+                    }
+
+                    .btn-wrapper {
+                        max-width: 137px;
+                        width: 100%;
+                        text-align: right;
+
+                        .buy-now-btn {
+                            width: 100%;
+                            padding: 16px 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
