@@ -188,7 +188,17 @@
                         gap: 10px;
                         position: relative;
 
-                        &.loading {
+                        &.added {
+                            &::after {
+                                font-family: WooCommerce;
+                                content: "\e017";
+                                margin-left: .53em;
+                                vertical-align: bottom;
+                            }
+                        }
+
+                        &.loading,
+                        &.added.loading {
                             opacity: 0.25;
 
                             &::after {
@@ -200,15 +210,6 @@
                                 top: .618em;
                                 right: 1em;
                                 animation: spin 2s linear infinite;
-                            }
-                        }
-
-                        &.added {
-                            &::after {
-                                font-family: WooCommerce;
-                                content: "\e017";
-                                margin-left: .53em;
-                                vertical-align: bottom;
                             }
                         }
                     }
