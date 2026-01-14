@@ -116,9 +116,9 @@
         })
 
         const topInput = document.querySelector('.input-text.qty');
-        const bottomInput = document.querySelector('.input-quantity-wrapper input');
+        const atsInput = document.querySelector('.input-quantity-wrapper input');
 
-        if (topInput && bottomInput) {
+        if (topInput && atsInput) {
 
             function sync(from, to) {
                 if (to.value !== from.value) {
@@ -128,17 +128,14 @@
                 }
             }
 
-            // USER typing → sync both ways
-            topInput.addEventListener("input", () => sync(topInput, bottomInput));
-            bottomInput.addEventListener("input", () => sync(bottomInput, topInput));
+            topInput.addEventListener("input", () => sync(topInput, atsInput));
+            atsInput.addEventListener("input", () => sync(atsInput, topInput));
 
-            // DYNAMIC changes → detect via MutationObserver on parent container
             const observer = new MutationObserver(() => {
-                sync(topInput, bottomInput);
-                sync(bottomInput, topInput);
+                sync(topInput, atsInput);
+                sync(atsInput, topInput);
             });
 
-            // Observe entire quantity section
             const observeTarget = topInput.closest('.product-options-wrapper') || document.body;
 
             observer.observe(observeTarget, {
