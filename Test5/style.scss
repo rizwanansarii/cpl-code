@@ -1,0 +1,346 @@
+.gmd-progress-bar {
+
+    .free-shipping-progress {
+        width: 100%;
+
+        .fsp-text {
+            color: #333;
+            font-family: "Source Sans Pro";
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+
+            &.zero-shipping {
+                color: #00A24D;
+                // font-size: 14px;
+                // font-weight: 400;
+                // line-height: 21px;
+            }
+
+            .fsp-remaining {
+                font-weight: 700;
+                color: #00a24d;
+            }
+        }
+
+        .fsp-bar {
+            position: relative;
+            width: 100%;
+            max-width: 394px;
+            height: 8px;
+            background: #e5e5e5;
+            border-radius: 8px;
+            margin: 25px 0 12px;
+
+            .fsp-bar-fill {
+                height: 100%;
+                width: 0%;
+                border-radius: 8px;
+                background: linear-gradient(90deg, #00A24D 0%, #00E96F 100%);
+                transition: width 0.5s cubic-bezier(.4, 0, .2, 1);
+            }
+
+            .fsp-bar-dot {
+                width: 24px;
+                height: 24px;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="%2300EC70"/><path d="M15.5509 8.08999C15.378 7.90704 15.1404 7.79903 14.8889 7.78911H14.4075V7.18735C14.4117 7.06769 14.3912 6.94843 14.3474 6.83702C14.3035 6.72561 14.2372 6.62441 14.1525 6.53974C14.0678 6.45507 13.9666 6.38874 13.8552 6.34486C13.7438 6.30099 13.6246 6.28051 13.5049 6.28472H6.28379C6.16412 6.28051 6.04487 6.30099 5.93345 6.34486C5.82204 6.38874 5.72085 6.45507 5.63618 6.53974C5.55151 6.62441 5.48517 6.72561 5.4413 6.83702C5.39742 6.94843 5.37695 7.06769 5.38115 7.18735V15.3111C5.37695 15.4308 5.39742 15.55 5.4413 15.6614C5.48517 15.7728 5.55151 15.874 5.63618 15.9587C5.72085 16.0434 5.82204 16.1097 5.93345 16.1536C6.04487 16.1975 6.16412 16.2179 6.28379 16.2137H6.97581C7.10675 16.6464 7.37344 17.0255 7.73648 17.295C8.09951 17.5644 8.5396 17.7099 8.9917 17.7099C9.44379 17.7099 9.88389 17.5644 10.2469 17.295C10.61 17.0255 10.8767 16.6464 11.0076 16.2137H12.9934C13.1243 16.6464 13.391 17.0255 13.7541 17.295C14.1171 17.5644 14.5572 17.7099 15.0093 17.7099C15.4614 17.7099 15.9015 17.5644 16.2645 17.295C16.6275 17.0255 16.8942 16.6464 17.0252 16.2137H17.7172C17.8369 16.2179 17.9561 16.1975 18.0675 16.1536C18.1789 16.1097 18.2801 16.0434 18.3648 15.9587C18.4495 15.874 18.5158 15.7728 18.5597 15.6614C18.6036 15.55 18.624 15.4308 18.6198 15.3111V11.4598L15.5509 8.08999ZM14.7385 8.99263L16.9349 11.3997H14.4075V8.99263H14.7385ZM8.9917 16.5146C8.81317 16.5146 8.63866 16.4617 8.49022 16.3625C8.34178 16.2633 8.22609 16.1223 8.15777 15.9574C8.08945 15.7925 8.07158 15.611 8.10641 15.4359C8.14124 15.2608 8.2272 15.0999 8.35344 14.9737C8.47968 14.8475 8.64051 14.7615 8.8156 14.7267C8.9907 14.6918 9.17219 14.7097 9.33712 14.778C9.50206 14.8464 9.64303 14.962 9.74221 15.1105C9.8414 15.2589 9.89434 15.4334 9.89434 15.612C9.89854 15.7316 9.87807 15.8509 9.83419 15.9623C9.79032 16.0737 9.72398 16.1749 9.63931 16.2596C9.55464 16.3442 9.45345 16.4106 9.34203 16.4545C9.23062 16.4983 9.11137 16.5188 8.9917 16.5146ZM15.0093 16.5146C14.8308 16.5146 14.6562 16.4617 14.5078 16.3625C14.3594 16.2633 14.2437 16.1223 14.1753 15.9574C14.107 15.7925 14.0892 15.611 14.124 15.4359C14.1588 15.2608 14.2448 15.0999 14.371 14.9737C14.4973 14.8475 14.6581 14.7615 14.8332 14.7267C15.0083 14.6918 15.1898 14.7097 15.3547 14.778C15.5196 14.8464 15.6606 14.962 15.7598 15.1105C15.859 15.2589 15.9119 15.4334 15.9119 15.612C15.9161 15.7316 15.8956 15.8509 15.8518 15.9623C15.8079 16.0737 15.7416 16.1749 15.6569 16.2596C15.5722 16.3442 15.471 16.4106 15.3596 16.4545C15.2482 16.4983 15.1289 16.5188 15.0093 16.5146Z" fill="%23223243"/></svg>');
+                background-size: contain;
+                position: absolute;
+                top: 50%;
+                left: 0%;
+                transform: translate(-50%, -50%);
+                transition: left 0.5s cubic-bezier(.4, 0, .2, 1);
+            }
+        }
+    }
+
+    .left-block {
+        align-items: flex-start;
+    }
+
+    .summary-mobile-wrapper {
+        display: none;
+    }
+
+    .summary-box,
+    .summary-mobile-wrapper {
+
+        background: #fff;
+        padding: 34px 13px 27px 24px;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 376px; // same width as screenshot
+        margin-left: auto;
+        font-family: "Source Sans Pro";
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h3 {
+                margin: 0;
+                color: #343A40;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 24px;
+            }
+
+        }
+
+        .edit-link {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 22.4px;
+            text-decoration: underline;
+        }
+
+        .summary-items {
+            max-height: 280px; // matches scroll area in screenshot
+            overflow-y: auto;
+            margin-top: 10px;
+            padding-right: 10px;
+
+            &::-webkit-scrollbar {
+                border-radius: 9px;
+                background: #FFF;
+                width: 3.295px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 9px;
+                background: #686868;
+                width: 3.295px;
+                height: 152.938px;
+            }
+
+            .summary-item {
+                display: flex;
+                gap: 14px;
+                padding: 14px 4px 0;
+
+                .image-wrapper {
+                    max-width: 62.2px;
+                    width: 100%;
+
+                    .item-image {
+                        border-radius: 4px;
+                        object-fit: cover;
+                    }
+                }
+
+                .item-info {
+                    flex: 1;
+                    overflow: hidden;
+
+                    .item-title {
+                        color: #333;
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 22.4px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        margin-bottom: 8px;
+                    }
+
+                    .item-subline {
+                        color: #000;
+                        font-size: 14.4px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        margin-bottom: 0;
+
+                        span {
+                            font-size: 14.4px;
+                            font-weight: 400;
+                            line-height: 24px;
+                        }
+
+                        .in-stock {
+                            color: #00A24D;
+                        }
+
+                        .out-of-stock {
+                            color: #000;
+                        }
+
+                    }
+                }
+
+            }
+
+            .item-price {
+                color: #003062;
+                text-align: right;
+                font-size: 19.2px;
+                font-weight: 600;
+                line-height: 24px;
+                margin-bottom: 22px;
+            }
+
+            .divider {
+                height: 1px;
+                background: #ddd;
+                margin: 6px 0;
+
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+
+        .summary-totals {
+            padding-right: 4px;
+
+            .total-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 4px 0;
+
+                span {
+                    color: #212529;
+                    text-align: right;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    flex: 1.25;
+                }
+
+                .price {
+                    color: #003062;
+                    text-align: right;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    flex: 1;
+                }
+            }
+
+            .total-pay {
+                margin-top: 8px;
+
+                span {
+                    color: #212529;
+                    text-align: right;
+                    font-size: 20px;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+
+                .total-amount {
+                    color: #003062;
+                    text-align: right;
+                    font-size: 20.8px;
+                    font-weight: 600;
+                    line-height: 24.96px;
+                }
+            }
+
+            .vat-info {
+                color: #212529;
+                text-align: right;
+                font-size: 12.8px;
+                font-weight: 400;
+                line-height: 24px;
+                margin-bottom: 0;
+                margin-top: 20px;
+            }
+        }
+
+        .divider-lg {
+            height: 1px;
+            background: #ddd;
+            margin: 0 0 24px;
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .gmd-progress-bar {
+        .userdetails-form {
+            flex-wrap: wrap-reverse;
+        }
+
+        .summary-box {
+            margin: 0 auto 20px;
+            max-width: 750px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .gmd-progress-bar {
+        .free-shipping-progress {
+            .fsp-text {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+
+            .fsp-bar {
+                margin: 22px 0 12px;
+                height: 6px;
+
+                .fsp-bar-dot {
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
+
+        .summary-box {
+            display: none;
+        }
+
+        .bg-white.d-md-none {
+            display: none;
+        }
+
+        .summary-mobile-wrapper {
+            display: block;
+            max-width: 100%;
+            padding: 17px 8px;
+            margin-bottom: 12px;
+
+            &.open {
+                .cart-wrapper {
+                    display: block;
+                }
+
+                .summary-header {
+                    h3::after {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            .cart-wrapper {
+                display: none;
+            }
+
+            .edit-link {
+                display: block;
+                text-align: right;
+            }
+
+            .summary-header {
+                h3 {
+                    color: #343A40;
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 24px;
+                    display: flex;
+
+                    &::after {
+                        content: '';
+                        height: 24px;
+                        width: 24px;
+                        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6.35342 10.3529C6.25969 10.2592 6.20703 10.132 6.20703 9.99945C6.20703 9.86687 6.25969 9.73971 6.35342 9.64595L6.64542 9.35295C6.69187 9.30639 6.74705 9.26944 6.80779 9.24424C6.86854 9.21903 6.93366 9.20606 6.99942 9.20606C7.06519 9.20606 7.13031 9.21903 7.19106 9.24424C7.2518 9.26944 7.30698 9.30639 7.35342 9.35295L11.9994 13.9999L16.6454 9.35295C16.6919 9.30639 16.747 9.26944 16.8078 9.24424C16.8685 9.21903 16.9337 9.20606 16.9994 9.20606C17.0652 9.20606 17.1303 9.21903 17.1911 9.24424C17.2518 9.26944 17.307 9.30639 17.3534 9.35295L17.6464 9.64595C17.7402 9.73971 17.7928 9.86687 17.7928 9.99945C17.7928 10.132 17.7402 10.2592 17.6464 10.3529L12.1764 15.8229C12.1532 15.8462 12.1256 15.8647 12.0952 15.8773C12.0649 15.8899 12.0323 15.8964 11.9994 15.8964C11.9665 15.8964 11.934 15.8899 11.9036 15.8773C11.8732 15.8647 11.8456 15.8462 11.8224 15.8229L6.35342 10.3529Z" fill="%23343A40"/></svg>');
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
