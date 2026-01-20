@@ -45,22 +45,26 @@
 
             if (observer) observer.disconnect();
 
-            const subtotalEl = document.querySelector("#cart-totals .cart-totals-row:nth-child(1) .price");
+            // const subtotalEl = document.querySelector("#cart-totals .cart-totals-row:nth-child(1) .price");
             const shippingEl = document.querySelector("#cart-totals .cart-totals-row:nth-child(2) .price");
+            const totalAmountEl = document.querySelector("#cart-totals .cart-totals-row h4");
 
-            if (!subtotalEl || !shippingEl) {
+            if (!totalAmountEl || !shippingEl) {
                 isUpdating = false;
                 observe();
                 return;
             }
 
-            const subtotal = parseEuro(subtotalEl.textContent);
+            const totalAmount = parseEuro(totalAmountEl.textContent);
             const shipping = parseEuro(shippingEl.textContent);
 
-            const threshold = shipping <= 10 ? 100 : 350;
+            const freeShippingLimit = shipping <= 10 ? 100 : 350;
 
-            const remaining = threshold - subtotal;
-            const percent = (subtotal / threshold) * 100;
+            let remaining = freeShippingLimit - (totalAmount - shipping);
+            if (remaining < 0) remaining = 0;
+
+            let percent = (totalAmount / freeShippingLimit) * 100;
+            if (percent > 100) percent = 100;
 
             const fspText = document.querySelector(".fsp-text");
             const remEl = document.querySelector(".fsp-remaining");
