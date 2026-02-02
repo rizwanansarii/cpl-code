@@ -409,8 +409,17 @@
                         </svg>`)
 
                     el.querySelector('.accordion-btn').addEventListener('click', () => {
-                        // const nextBtn = document.querySelector('#next');
-                        document.querySelector('#next').click();
+                        setTimeout(() => {
+                            const nextBtn = document.querySelector('#next');
+
+                            ['mousedown', 'mouseup', 'click'].forEach(type => {
+                                nextBtn.dispatchEvent(new MouseEvent(type, {
+                                    bubbles: true,
+                                    cancelable: true
+                                }));
+                            });
+                        }, 50);
+
                     })
                 })
             }
