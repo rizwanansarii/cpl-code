@@ -296,7 +296,7 @@
         },
         {
             id: 8,
-            title: "Combinatiekeuring Groot Rijbewijs (C/D/E) + Touringcar/Taxipas",
+            title: "Combikeuring Groot Rijbewijs (C/D/E) + Touringcar/Taxipas",
             description: "Gecombineerde keuring voor Groot Rijbewijs en Touringcar/Taxipas in één afspraak. Te boeken op al onze keuringslocaties.",
             requirements: [
                 {
@@ -353,16 +353,16 @@
     ];
 
 
-    waitForElement(".wijcbf_form_wrapper", ([producPage]) => {
+    waitForElement(".wijcbf_form_wrapper #wijcbf_category", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className)
 
         function updateNextButton() {
             const category = document.querySelector('#wijcbf_category')
             const nextBtn = document.querySelector('#next');
             if (category.style.display == 'none') {
-                nextBtn.classList.remove('hide-btn');
+                nextBtn.classList.remove('gmd-hide-btn');
             } else {
-                nextBtn.classList.add('hide-btn');
+                nextBtn.classList.add('gmd-hide-btn');
             }
         }
 
@@ -370,10 +370,10 @@
             const target = document.querySelector('.wijcbf_form_options_wrapper')
 
             const formOptions = document.querySelectorAll('#wijcbf_category .wijcbf_service')
-            if (document.querySelector('.heading-wrapper')) return;
+            if (document.querySelector('.gmd-heading-wrapper')) return;
             formOptions.forEach(option => {
                 const wrapper = document.createElement('div');
-                wrapper.className = 'heading-wrapper';
+                wrapper.className = 'gmd-heading-wrapper';
 
                 while (option.firstChild) {
                     wrapper.appendChild(option.firstChild);
@@ -383,32 +383,42 @@
             });
             if (target) {
                 document.querySelectorAll('#wijcbf_category .wijcbf_service').forEach((el, index) => {
+                    if (el.querySelector('.gmd-accordion-card')) return;
+                    const headingEl = el.querySelector('.wijcbf_service_title');
+                    if (!headingEl) return;
+
+                    const headingText = headingEl.textContent.trim();
+                    const matched = accordionContent.find(item =>
+                        item.title.trim() === headingText
+                    );
+
+                    if (!matched) return;
                     el.insertAdjacentHTML('beforeend', `
-                        <div class="accordion-card">
-                            <div class="accordion-content">
-                                <p class="accordion-description">${accordionContent[index].description}</p>
+                        <div class="gmd-accordion-card">
+                            <div class="gmd-accordion-content">
+                                <p class="gmd-accordion-description">${matched.description}</p>
 
-                                <h4 class="accordion-subtitle">Wat neemt u mee naar deze keuring?</h4>
+                                <h4 class="gmd-accordion-subtitle">Wat neemt u mee naar deze keuring?</h4>
 
-                                <ul class="accordion-requirements">
-                                    ${accordionContent[index].requirements.map((li) => `<li>
+                                <ul class="gmd-accordion-requirements">
+                                    ${matched.requirements.map((li) => `<li>
                                             ${li.icon}
                                             <p>${li.label}</p>
                                         </li>`).join('')}
                                 </ul>
                             </div>
 
-                            <div class="accordion-action">
-                                <button class="accordion-btn">Maak een afspraak</button>
+                            <div class="gmd-accordion-action">
+                                <button class="gmd-accordion-btn">Maak een afspraak</button>
                             </div>
                             </div>`);
-                    el.querySelector('div[data-id]').classList.add('arrow-icon-wrapper');
-                    el.querySelector('.arrow-icon-wrapper').insertAdjacentHTML('beforeend', `
+                    el.querySelector('div[data-id]').classList.add('gmd-arrow-icon-wrapper');
+                    el.querySelector('.gmd-arrow-icon-wrapper').insertAdjacentHTML('beforeend', `
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
                             <path d="M15.0001 19.0903L23.3334 27.4237L31.6667 19.0903" stroke="#0689F1" stroke-width="2.5" stroke-linecap="round"/>
                         </svg>`)
 
-                    el.querySelector('.accordion-btn').addEventListener('click', () => {
+                    el.querySelector('.gmd-accordion-btn').addEventListener('click', () => {
                         setTimeout(() => {
                             const nextBtn = document.querySelector('#next');
 

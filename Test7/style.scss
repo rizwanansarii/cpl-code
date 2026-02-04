@@ -1,29 +1,29 @@
 .gmd-add-accordion {
-    .hide-btn {
+    .gmd-hide-btn {
         visibility: hidden;
     }
 
     #wijcbf_category {
         .wijcbf_form_option {
-            .heading-wrapper {
+            .gmd-heading-wrapper {
                 display: flex;
                 align-items: center;
                 width: 100%;
             }
 
             &.selected {
-                .accordion-card {
+                .gmd-accordion-card {
                     display: flex;
                 }
 
-                .arrow-icon-wrapper {
+                .gmd-arrow-icon-wrapper {
                     svg {
                         transform: rotate(-180deg);
                     }
                 }
             }
 
-            .arrow-icon-wrapper {
+            .gmd-arrow-icon-wrapper {
                 svg {
                     transition: 0.2s ease-in;
                 }
@@ -45,7 +45,7 @@
 
     }
 
-    .accordion-card {
+    .gmd-accordion-card {
         display: none;
         justify-content: space-between;
         align-items: flex-end;
@@ -54,12 +54,12 @@
         margin-top: 8px;
         width: 100%;
 
-        .accordion-content {
+        .gmd-accordion-content {
             flex: 1;
             max-width: 513px;
             width: 100%;
 
-            .accordion-description {
+            .gmd-accordion-description {
                 color: #3F3F3F;
                 font-size: 16px;
                 font-weight: 400;
@@ -67,7 +67,7 @@
                 margin-bottom: 12px;
             }
 
-            .accordion-subtitle {
+            .gmd-accordion-subtitle {
                 color: #3F3F3F;
                 font-size: 16px;
                 font-weight: 600;
@@ -75,7 +75,7 @@
                 margin-bottom: 6px;
             }
 
-            .accordion-requirements {
+            .gmd-accordion-requirements {
                 list-style: none;
                 padding: 0;
                 margin: 0;
@@ -109,13 +109,13 @@
         }
 
 
-        .accordion-action {
+        .gmd-accordion-action {
             display: flex;
             align-items: center;
             max-width: 217px;
             width: 100%;
 
-            .accordion-btn {
+            .gmd-accordion-btn {
                 color: #FFF;
                 text-align: center;
                 font-size: 16px;
@@ -126,10 +126,6 @@
                 background: linear-gradient(0deg, #FF6200 0%, #FF6200 100%), linear-gradient(89deg, #0588F0 16.12%, #0689F1 91.6%);
                 width: 100%;
                 padding: 8px;
-
-                &:hover {
-                    background: #e85f00;
-                }
             }
         }
     }
@@ -138,14 +134,14 @@
 
 @media (max-width: 1080px) {
     .gmd-add-accordion {
-        .accordion-card {
+        .gmd-accordion-card {
             flex-wrap: wrap;
 
-            .accordion-content {
+            .gmd-accordion-content {
                 max-width: 100%;
                 flex: unset;
 
-                .accordion-requirements {
+                .gmd-accordion-requirements {
                     li {
                         max-width: 100%;
                     }
@@ -163,7 +159,7 @@
                 height: auto;
                 padding: 8px 4px 15px;
 
-                .arrow-icon-wrapper {
+                .gmd-arrow-icon-wrapper {
                     margin-right: -2px;
                 }
             }
@@ -183,14 +179,14 @@
 
         }
 
-        .accordion-card {
+        .gmd-accordion-card {
             margin-top: 11px;
             margin-left: 9px;
 
-            .accordion-action {
+            .gmd-accordion-action {
                 margin-top: 7px;
 
-                .accordion-btn {
+                .gmd-accordion-btn {
                     height: auto;
                 }
             }
