@@ -1,0 +1,81 @@
+.gmd-saved-amount {
+    .bundle-info {
+        .control-wrapper {
+            .price-container {
+                span[data-price-type="basePrice"] {
+                    display: flex;
+                    gap: 12px;
+                    align-items: center;
+                    justify-content: flex-end;
+                    flex-wrap: wrap;
+
+                }
+            }
+        }
+    }
+
+    .saved-amount,
+    .saved-discount {
+        color: #C03535;
+        text-align: right;
+        font-family: Gilroy-Bold;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.4px;
+        border-radius: 4px;
+        background: #FCF5F5;
+        padding: 8px 10px;
+        white-space: nowrap;
+        display: inline-block;
+
+        &.mini {
+            padding: 6px 10px;
+            margin-left: 12px;
+        }
+
+        &.checkout-page {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    }
+
+    .totals.disc {
+        .price {
+            color: #C03535;
+        }
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .gmd-saved-amount {
+
+        .saved-amount,
+        .saved-discount {
+
+            &.checkout-page {
+                margin-top: 8px;
+            }
+        }
+
+        .product-add-form {
+            .control-wrapper.main-control {
+                .field.qty {
+                    width: 74px;
+                }
+            }
+        }
+
+        .product-info-main {
+            .box-tocart {
+                .main-control {
+                    .input-text.qty {
+                        width: 46px;
+                        padding: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+}
