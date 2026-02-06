@@ -5,6 +5,10 @@
 
     #wijcbf_category {
         .wijcbf_form_option {
+            .icon-wrapper {
+                min-width: 48px;
+            }
+
             .gmd-heading-wrapper {
                 display: flex;
                 align-items: center;
@@ -31,6 +35,7 @@
 
             .wijcbf_service_title {
                 margin-bottom: 0;
+                margin-right: 12px;
             }
 
             flex-wrap: wrap;
@@ -147,6 +152,10 @@
                     }
                 }
             }
+
+            .gmd-accordion-action {
+                margin-top: 7px;
+            }
         }
     }
 }
@@ -158,6 +167,10 @@
                 flex-wrap: wrap;
                 height: auto;
                 padding: 8px 4px 15px;
+
+                .icon-wrapper {
+                    min-width: 35px;
+                }
 
                 .gmd-arrow-icon-wrapper {
                     margin-right: -2px;
@@ -173,7 +186,6 @@
 
                 .wijcbf_service_price {
                     margin-right: 0;
-                    margin-left: 12PX;
                 }
             }
 
@@ -184,8 +196,6 @@
             margin-left: 9px;
 
             .gmd-accordion-action {
-                margin-top: 7px;
-
                 .gmd-accordion-btn {
                     height: auto;
                 }
