@@ -15,6 +15,34 @@
     }
 
     const daysInDutch = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+    const dutchHolidays = {
+        2025: [
+            '2025-01-01', // Nieuwjaarsdag
+            '2025-04-18', // Goede Vrijdag
+            '2025-04-20', // Pasen
+            '2025-04-21', // Tweede Paasdag
+            '2025-04-27', // Koningsdag
+            '2025-05-05', // Bevrijdingsdag
+            '2025-05-29', // Hemelvaartsdag
+            '2025-06-08', // Pinksteren
+            '2025-06-09', // Tweede Pinksterdag
+            '2025-12-25', // Kerstmis
+            '2025-12-26'  // Tweede Kerstdag
+        ],
+        2026: [
+            '2026-01-01',
+            '2026-04-03',
+            '2026-04-05',
+            '2026-04-06',
+            '2026-04-27',
+            '2026-05-05',
+            '2026-05-14',
+            '2026-05-24',
+            '2026-05-25',
+            '2026-12-25',
+            '2026-12-26'
+        ]
+    };
 
     function getTimeNow() {
         return new Date(
@@ -28,8 +56,16 @@
         return 22;
     }
 
+    function isHoliday(date) {
+        const year = date.getFullYear();
+        const dateString = date.toISOString().split('T')[0];
+
+        return dutchHolidays[year]?.includes(dateString);
+    }
+
     function isWorkingDay(day) {
-        return day !== 0 && day !== 6;
+        const day = date.getDay();
+        return day !== 0 && day !== 6 && !isHoliday(date);
     }
 
     function getNextWorkingDay(startDay, amount = 1) {
@@ -113,14 +149,13 @@
     function updateTimers(cartWrapper) {
         const { cutoffHour } = calculateDelivery();
         const { hours, minutes, seconds } = getCountdown(cutoffHour);
-
         cartWrapper.querySelectorAll('.gmd-dp-time').forEach(el => {
             el.textContent = `${hours}u ${minutes}m ${seconds}s`;
         });
     }
 
-    function injectDeliveryMessage(cartItems) {
-        const lineItems = cartItems;
+    function injectDeliveryMessage() {
+        const lineItems = document.querySelectorAll('.woocommerce-cart-form .cart_item, #offcanvasCart .og-cart-items .row');
 
         lineItems.forEach(item => {
             if (item.querySelector('.gmd-dp-wrapper')) return;
@@ -133,14 +168,14 @@
         });
     }
 
-    function observeCartChanges(targetContainer, cartItems) {
+    function observeCartChanges(targetContainer) {
 
         const container = targetContainer;
 
         if (!container) return;
 
         const observer = new MutationObserver(() => {
-            injectDeliveryMessage(cartItems);
+            injectDeliveryMessage();
         });
 
         observer.observe(container, {
@@ -154,9 +189,9 @@
 
         const cartForm = document.querySelector(".woocommerce-cart-form");
         const lineItems = document.querySelectorAll('.woocommerce-cart-form .cart_item');
-        injectDeliveryMessage(lineItems);
+        injectDeliveryMessage();
         observeCartChanges(cartForm, lineItems);
-        setInterval(updateTimers(cartForm), 1000);
+        setInterval(() => updateTimers(cartForm), 1000);
     });
 
     waitForElement(".og-cart-items .row", ([producPage]) => {
@@ -164,9 +199,9 @@
         const cartForm = document.querySelector("#offcanvasCart");
 
         const lineItems = document.querySelectorAll('#offcanvasCart .og-cart-items .row');
-        injectDeliveryMessage(lineItems);
-        observeCartChanges(cartForm, lineItems);
-        setInterval(updateTimers(cartForm), 1000);
+        injectDeliveryMessage();
+        observeCartChanges(cartForm);
+        setInterval(() => updateTimers(cartForm), 1000);
     });
 
 })();
