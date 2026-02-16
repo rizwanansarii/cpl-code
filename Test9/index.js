@@ -63,7 +63,7 @@
         return dutchHolidays[year]?.includes(dateString);
     }
 
-    function isWorkingDay(day) {
+    function isWorkingDay(date) {
         const day = date.getDay();
         return day !== 0 && day !== 6 && !isHoliday(date);
     }
