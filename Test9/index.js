@@ -63,9 +63,9 @@
         return dutchHolidays[year]?.includes(dateString);
     }
 
-    function isWorkingDay(date) {
-        const day = date.getDay();
-        return day !== 0 && day !== 6 && !isHoliday(date);
+    function isWorkingDay(day) {
+        // const day = date.getDay();
+        return day !== 0 && day !== 6;
     }
 
     function getNextWorkingDay(startDay, amount = 1) {
