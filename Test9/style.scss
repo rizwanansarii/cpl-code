@@ -1,0 +1,67 @@
+.gmd-dp-wrapper {
+    color: #000;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 6px;
+    white-space: nowrap;
+
+    .gmd-dp-dot {
+        width: 6px;
+        height: 6px;
+        margin-right: 4px;
+        display: inline-block;
+        background: #78A206;
+        border-radius: 50%;
+        animation: dpPulse 1.5s infinite;
+    }
+
+    .gmd-dp-time,
+    .gmd-dp-day {
+        color: #ff9600;
+        font-weight: 600;
+    }
+}
+
+.og-cart-items {
+    .gmd-dp-wrapper {
+        margin-top: 1px;
+
+        @media (max-width: 767px) {
+            margin-top: 3px;
+        }
+    }
+
+    .row {
+        .col-7 {
+            padding-left: 2px;
+        }
+    }
+
+
+    .og-remove-cart-item {
+        margin-top: 3px;
+
+        @media (max-width: 767px) {
+            margin-top: 1px;
+        }
+    }
+}
+
+
+@keyframes dpPulse {
+    0% {
+        opacity: 0.4;
+        // transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        // transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0.4;
+        // transform: scale(0.9);
+    }
+}
