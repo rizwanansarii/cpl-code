@@ -14,19 +14,19 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
-    waitForElement(".form", ([producPage]) => {
+    waitForElement(".shopify-section .\\#product-meta .form", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className);
 
         const atsContent = {
-            productName: document.querySelector('.desktop-title .\\#product-title').innerHTML,
-            price: document.querySelector('#b-price').innerHTML,
+            productName: document.querySelector('.shopify-section .desktop-title .\\#product-title').innerHTML,
+            price: document.querySelector('.shopify-section .\\#product-meta #b-price').innerHTML,
             image: document.querySelector('.\\#product-gallery-stage .\\#media-image-wrapper img').src,
             alt: document.querySelector('.\\#product-gallery-stage .\\#media-image-wrapper img').alt,
-            quantity: document.querySelector('.qty-input').value,
-            minQuantity: document.querySelector('.qty-input').min,
-            maxQuantity: document.querySelector('.qty-input').getAttribute('max'),
-            btnIcon: document.querySelector('.form img').src,
-            btnText: document.querySelector('.form .\\#button').innerText,
+            quantity: document.querySelector('.shopify-section .\\#product-meta .qty-input').value,
+            minQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input').min,
+            maxQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input').getAttribute('max'),
+            btnIcon: document.querySelector('.shopify-section .\\#product-meta .form img').src,
+            btnText: document.querySelector('.shopify-section .\\#product-meta .form .\\#button').innerText,
         }
         document.querySelector('body').insertAdjacentHTML('beforeend', `
             <div class="gmd-sticky-ats-wrapper">
@@ -61,7 +61,7 @@
                 </div>
             </div>`
         );
-        const buyNowButton = document.querySelector('.form .\\#button');
+        const buyNowButton = document.querySelector('.shopify-section .\\#product-meta .form .\\#button');
         const atsButton = document.querySelector('.gmd-buy-now-btn');
         if (buyNowButton) {
             const observer = new IntersectionObserver(
@@ -98,11 +98,11 @@
             );
             observer.observe(buyNowButton);
 
-            waitForElement('.kaching-bundles', () => {
-                const bundleContainer = document.querySelector('.kaching-bundles');
+            waitForElement('.shopify-section .\\#product-meta .kaching-bundles', () => {
+                const bundleContainer = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles');
                 if (bundleContainer) {
                     const priceObserver = new MutationObserver(() => {
-                        const sourceEl = document.querySelector('.kaching-bundles__bar--selected .kaching-bundles__bar-label');
+                        const sourceEl = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles__bar--selected .kaching-bundles__bar-label');
                         const targetEl = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@on-sale .\\#price-value');
 
                         if (!sourceEl || !targetEl) return;
@@ -153,7 +153,7 @@
             })
         })
 
-        const topInput = document.querySelector('.qty-input');
+        const topInput = document.querySelector('.shopify-section .\\#product-meta .qty-input');
         const atsInput = document.querySelector('.gmd-input-quantity-wrapper input');
 
         if (topInput && atsInput) {
