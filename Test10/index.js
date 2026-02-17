@@ -1,7 +1,7 @@
 (() => {
     'use strict';
     const testInfo = {
-        className: 'gmd-sticky-ats',
+        className: 'gmd-02',
         debug: 0,
         testName: 'T10 | Add Sticky ATS',
         testVersion: 'v1'
@@ -16,7 +16,6 @@
 
     waitForElement(".form", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className);
-        document.querySelector('head').insertAdjacentHTML('beforeend', '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">');
 
         const atsContent = {
             productName: document.querySelector('.desktop-title .\\#product-title').innerHTML,
@@ -30,64 +29,64 @@
             btnText: document.querySelector('.form .\\#button').innerText,
         }
         document.querySelector('body').insertAdjacentHTML('beforeend', `
-            <div class="sticky-ats-wrapper">
-                <div class="ats-container">
-                    <div class="ats-content-wrapper">
-                        <div class="left-wrapper">
-                            <div class="image-wrapper">
+            <div class="gmd-sticky-ats-wrapper">
+                <div class="gmd-ats-container">
+                    <div class="gmd-ats-content-wrapper">
+                        <div class="gmd-left-wrapper">
+                            <div class="gmd-image-wrapper">
                                 <img src="${atsContent.image}" alt="${atsContent.alt}" />
                             </div>
-                            <div class="text-wrapper">
-                                <div class="product-info-wrapper">
-                                    <div class="product-name">${atsContent.productName}</div>
+                            <div class="gmd-text-wrapper">
+                                <div class="gmd-product-info-wrapper">
+                                    <div class="gmd-product-name">${atsContent.productName}</div>
                                 </div>
-                                <div class="price-stock-wrapper">
-                                    <div class="price">${atsContent.price}</div>
+                                <div class="gmd-price-stock-wrapper">
+                                    <div class="gmd-price">${atsContent.price}</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="quantity-buy-btn-wrapper">
-                            <div class="input-quantity-wrapper">
-                                <button class="qty-minus">−</button>
+                        <div class="gmd-quantity-buy-btn-wrapper">
+                            <div class="gmd-input-quantity-wrapper">
+                                <button class="gmd-qty-minus">−</button>
                                 <input type="number" min="${atsContent.minQuantity}" max="${atsContent.maxQuantity}" class="quantity" value="${atsContent.quantity}" />
-                                <button class="qty-plus">+</button>
+                                <button class="gmd-qty-plus">+</button>
                             </div>
-                            <div class="btn-wrapper">
-                                <button class="buy-now-btn desktop">${atsContent.btnText}<img src="${atsContent.btnIcon}"/></button>
-                                <button class="buy-now-btn mobile">In winkelwagen<img src="${atsContent.btnIcon}"/></button>
+                            <div class="gmd-btn-wrapper">
+                                <button class="gmd-buy-now-btn gmd-desktop">${atsContent.btnText}<img src="${atsContent.btnIcon}"/></button>
+                                <button class="gmd-buy-now-btn gmd-mobile">In winkelwagen<img src="${atsContent.btnIcon}"/></button>
                             </div>
                         </div>
                     </div>
-                    <div class="discount-line">Hoe meer je bestelt, hoe hoger je korting.</div>
+                    <div class="gmd-discount-line">Hoe meer je bestelt, hoe hoger je korting.</div>
                 </div>
             </div>`
         );
         const buyNowButton = document.querySelector('.form .\\#button');
-        const atsButton = document.querySelector('.buy-now-btn');
+        const atsButton = document.querySelector('.gmd-buy-now-btn');
         if (buyNowButton) {
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach(entry => {
                         if (!entry.isIntersecting) {
-                            document.querySelector('.sticky-ats-wrapper').classList.add('active')
+                            document.querySelector('.gmd-sticky-ats-wrapper').classList.add('gmd-active')
                             const interval = setInterval(() => {
                                 if (document.querySelector('#ShopifyChat') && document.querySelector('#smile-ui-lite-launcher-frame-container') && document.querySelector('#CookiebotWidget')) {
                                     clearInterval(interval);
-                                    document.querySelector('#ShopifyChat').classList.add('active-ats');
-                                    document.querySelector('#smile-ui-lite-launcher-frame-container').classList.add('active-ats');
-                                    document.querySelector('#CookiebotWidget').classList.add('active-ats');
-                                    document.querySelector('.styles_StickyWidget__').classList.add('active-ats');
+                                    document.querySelector('#ShopifyChat').classList.add('gmd-active-ats');
+                                    document.querySelector('#smile-ui-lite-launcher-frame-container').classList.add('gmd-active-ats');
+                                    document.querySelector('#CookiebotWidget').classList.add('gmd-active-ats');
+                                    document.querySelector('.styles_StickyWidget__').classList.add('gmd-active-ats');
                                 }
                             }, 100)
                         } else {
-                            document.querySelector('.sticky-ats-wrapper').classList.remove('active')
+                            document.querySelector('.gmd-sticky-ats-wrapper').classList.remove('gmd-active')
                             const interval = setInterval(() => {
                                 if (document.querySelector('#ShopifyChat') && document.querySelector('#smile-ui-lite-launcher-frame-container') && document.querySelector('#CookiebotWidget')) {
                                     clearInterval(interval);
-                                    document.querySelector('#ShopifyChat').classList.remove('active-ats');
-                                    document.querySelector('#smile-ui-lite-launcher-frame-container').classList.remove('active-ats');
-                                    document.querySelector('#CookiebotWidget').classList.remove('active-ats');
-                                    document.querySelector('.styles_StickyWidget__').classList.remove('active-ats');
+                                    document.querySelector('#ShopifyChat').classList.remove('gmd-active-ats');
+                                    document.querySelector('#smile-ui-lite-launcher-frame-container').classList.remove('gmd-active-ats');
+                                    document.querySelector('#CookiebotWidget').classList.remove('gmd-active-ats');
+                                    document.querySelector('.styles_StickyWidget__').classList.remove('gmd-active-ats');
                                 }
                             }, 100)
                         }
@@ -104,7 +103,7 @@
                 if (bundleContainer) {
                     const priceObserver = new MutationObserver(() => {
                         const sourceEl = document.querySelector('.kaching-bundles__bar--selected .kaching-bundles__bar-label');
-                        const targetEl = document.querySelector('.sticky-ats-wrapper .\\#price-item.\\@on-sale .\\#price-value');
+                        const targetEl = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@on-sale .\\#price-value');
 
                         if (!sourceEl || !targetEl) return;
 
@@ -124,7 +123,7 @@
 
 
 
-            document.querySelector('.qty-minus').addEventListener('click', (button) => {
+            document.querySelector('.gmd-qty-minus').addEventListener('click', (button) => {
                 const input = button.target.parentElement.querySelector('input');
 
                 let value = parseInt(input.value, 10);
@@ -135,7 +134,7 @@
                     input.dispatchEvent(new Event("input", { bubbles: true }));
                 }
             })
-            document.querySelector('.qty-plus').addEventListener('click', (button) => {
+            document.querySelector('.gmd-qty-plus').addEventListener('click', (button) => {
                 const input = button.target.parentElement.querySelector('input');
 
                 let value = parseInt(input.value, 10);
@@ -147,32 +146,15 @@
                 }
             })
 
-            const buttonStateObserver = new MutationObserver(() => {
-                if (buyNowButton.classList.contains('loading')) {
-                    atsButton.classList.add('loading');
-                } else {
-                    atsButton.classList.remove('loading');
-                }
-
-                if (buyNowButton.classList.contains('added')) {
-                    atsButton.classList.add('added');
-                } else {
-                    atsButton.classList.remove('added');
-                }
-            });
-
-            buttonStateObserver.observe(buyNowButton, {
-                attributes: true,
-                attributeFilter: ["class", "disabled"]
-            });
-
         }
-        document.querySelector('.buy-now-btn').addEventListener('click', () => {
-            buyNowButton.click();
+        document.querySelectorAll('.gmd-buy-now-btn').forEach((e) => {
+            e.addEventListener('click', () => {
+                buyNowButton.click();
+            })
         })
 
         const topInput = document.querySelector('.qty-input');
-        const atsInput = document.querySelector('.input-quantity-wrapper input');
+        const atsInput = document.querySelector('.gmd-input-quantity-wrapper input');
 
         if (topInput && atsInput) {
 

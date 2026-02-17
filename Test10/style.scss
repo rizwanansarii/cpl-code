@@ -1,6 +1,6 @@
-.gmd-sticky-ats {
+.gmd-02 {
 
-    .active-ats {
+    .gmd-active-ats {
         &#ShopifyChat {
             bottom: 210px !important;
         }
@@ -20,7 +20,7 @@
     }
 
     // #main {
-    .sticky-ats-wrapper {
+    .gmd-sticky-ats-wrapper {
         display: none;
         width: 100%;
         position: sticky;
@@ -30,19 +30,20 @@
         background: #FFF;
         box-shadow: 0 -12px 20px 0 rgba(0, 0, 0, 0.10);
 
-        &.active {
+        &.gmd-active {
             display: block;
         }
 
-        .ats-container {
+        .gmd-ats-container {
             padding: 24px 34px 12.5px;
             max-width: 1440px;
             width: 100%;
             margin: 0 auto;
         }
 
-        .ats-content-wrapper {
+        .gmd-ats-content-wrapper {
             display: flex;
+            align-items: center;
             justify-content: space-between;
             // padding: 24px 35px 12px;
             // max-width: 1440px;
@@ -50,39 +51,35 @@
             margin: 0 auto;
             gap: 0 24px;
 
-            .left-wrapper {
+            .gmd-left-wrapper {
                 display: flex;
-                gap: 0 18px;
+                gap: 0 15px;
                 width: 100%;
 
-                .image-wrapper {
-                    margin-left: 3px;
+                .gmd-image-wrapper {
                     max-width: 51px;
                     min-width: 51px;
                     width: 100%;
 
                     img {
-                        border-radius: 4px;
-                        background: #EAEAFD;
                         width: 100%;
                     }
                 }
 
-                .text-wrapper {
+                .gmd-text-wrapper {
                     // max-width: 730px;
                     width: 100%;
                     display: flex;
-                    // align-items: center;
+                    align-items: center;
                     gap: 0 16px;
 
-                    .product-info-wrapper {
+                    .gmd-product-info-wrapper {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        gap: 168px;
                         width: 100%;
 
-                        .product-name {
+                        .gmd-product-name {
                             font-family: Inter;
                             color: #000;
                             font-size: 24px;
@@ -92,12 +89,12 @@
 
                     }
 
-                    .price-stock-wrapper {
+                    .gmd-price-stock-wrapper {
                         display: flex;
+                        align-items: center;
                         gap: 12px;
-                        margin-top: 2px;
 
-                        .price {
+                        .gmd-price {
                             .\#product-price {
                                 .\#price {
                                     flex-wrap: nowrap;
@@ -145,24 +142,23 @@
                 }
             }
 
-            .quantity-buy-btn-wrapper {
+            .gmd-quantity-buy-btn-wrapper {
                 max-width: 507px;
                 width: 100%;
                 display: flex;
                 justify-content: center;
-                align-items: flex-start;
+                align-items: center;
                 gap: 14px;
 
-                .input-quantity-wrapper {
+                .gmd-input-quantity-wrapper {
                     display: flex;
                     align-items: center;
                     border: 1px solid #2F3F23;
                     border-radius: 50px;
-                    margin-top: 6px;
                     overflow: hidden;
 
-                    .qty-minus,
-                    .qty-plus {
+                    .gmd-qty-minus,
+                    .gmd-qty-plus {
                         border: none;
                         background: transparent;
                         cursor: pointer;
@@ -175,12 +171,12 @@
                         line-height: normal;
                     }
 
-                    .qty-minus {
+                    .gmd-qty-minus {
                         padding-left: 15.7px;
                         padding-right: 10.49px;
                     }
 
-                    .qty-plus {
+                    .gmd-qty-plus {
                         padding-right: 15.7px;
                         padding-left: 10.49px;
                     }
@@ -224,11 +220,11 @@
                     }
                 }
 
-                .btn-wrapper {
+                .gmd-btn-wrapper {
                     max-width: 327px;
                     width: 100%;
 
-                    .buy-now-btn {
+                    .gmd-buy-now-btn {
                         padding: 10px;
                         border-radius: 10px;
                         background: #2F3F23;
@@ -246,7 +242,7 @@
                         position: relative;
                         cursor: pointer;
 
-                        &.mobile {
+                        &.gmd-mobile {
                             display: none;
                         }
 
@@ -255,38 +251,13 @@
                             min-width: 30px;
                             width: 100%;
                         }
-
-                        &.added {
-                            &::after {
-                                font-family: WooCommerce;
-                                content: "\e017";
-                                margin-left: .53em;
-                                vertical-align: bottom;
-                            }
-                        }
-
-                        &.loading,
-                        &.added.loading {
-                            opacity: 0.25;
-
-                            &::after {
-                                font-family: WooCommerce;
-                                content: "\e01c";
-                                vertical-align: top;
-                                font-weight: 400;
-                                position: absolute;
-                                top: .618em;
-                                right: 1em;
-                                animation: spin 2s linear infinite;
-                            }
-                        }
                     }
                 }
             }
 
         }
 
-        .discount-line {
+        .gmd-discount-line {
             color: #000;
             text-align: center;
             margin-left: auto;
@@ -303,16 +274,16 @@
 }
 
 @media (max-width: 1149px) {
-    .gmd-sticky-ats {
+    .gmd-02 {
 
         // #main {
-        .sticky-ats-wrapper {
-            .ats-content-wrapper {
+        .gmd-sticky-ats-wrapper {
+            .gmd-ats-content-wrapper {
                 flex-wrap: wrap;
             }
         }
 
-        .active-ats {
+        .gmd-active-ats {
             &#ShopifyChat {
                 bottom: 240px !important;
             }
@@ -325,40 +296,41 @@
     }
 }
 
-@media (max-width: 991px) {
-    .gmd-sticky-ats {
-        .sticky-ats-wrapper {
-            .ats-container {
+@media (max-width: 767px) {
+    .gmd-02 {
+        .gmd-sticky-ats-wrapper {
+            .gmd-ats-container {
                 padding: 16px 24px;
             }
 
-            .ats-content-wrapper {
-                flex-wrap: wrap;
+            .gmd-ats-content-wrapper {
                 gap: 12px 0;
 
-                .left-wrapper {
+                .gmd-left-wrapper {
                     width: 100%;
 
-                    .image-wrapper {
+                    .gmd-image-wrapper {
                         display: none;
                     }
 
-                    .text-wrapper {
+                    .gmd-text-wrapper {
                         flex-wrap: wrap;
                         gap: 8px 0;
+                        justify-content: center;
 
-                        .product-info-wrapper {
-                            .product-name {
+                        .gmd-product-info-wrapper {
+                            justify-content: center;
+
+                            .gmd-product-name {
                                 font-size: 14px;
                                 line-height: 16.8px;
                             }
                         }
 
-                        .price-stock-wrapper {
+                        .gmd-price-stock-wrapper {
                             display: block;
-                            margin-top: 1px;
 
-                            .price {
+                            .gmd-price {
                                 .\#product-price {
                                     .\#price {
                                         gap: 0 10px;
@@ -394,16 +366,14 @@
                     }
                 }
 
-                .quantity-buy-btn-wrapper {
-                    justify-content: flex-start;
+                .gmd-quantity-buy-btn-wrapper {
+                    justify-content: center;
                     max-width: 100%;
-                    margin-top: 0;
                     gap: 0 10px;
 
-                    .input-quantity-wrapper {
+                    .gmd-input-quantity-wrapper {
                         max-width: 116.6px;
                         width: 100%;
-                        margin-top: 0;
 
                         input {
                             padding: 12.7px 0;
@@ -412,21 +382,21 @@
                         }
                     }
 
-                    .btn-wrapper {
+                    .gmd-btn-wrapper {
                         max-width: 250px;
                         min-width: auto;
 
-                        .buy-now-btn {
+                        .gmd-buy-now-btn {
                             font-size: 16px;
                             line-height: 30px;
                             gap: 8px;
                             padding: 9px;
 
-                            &.mobile {
+                            &.gmd-mobile {
                                 display: flex;
                             }
 
-                            &.desktop {
+                            &.gmd-desktop {
                                 display: none;
                             }
 
@@ -441,7 +411,7 @@
 
             }
 
-            .discount-line {
+            .gmd-discount-line {
                 margin-right: auto;
                 margin-top: 7px;
             }
