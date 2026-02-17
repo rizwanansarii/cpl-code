@@ -146,10 +146,10 @@
         `;
     }
 
-    function updateTimers(cartWrapper) {
+    function updateTimers() {
         const { cutoffHour } = calculateDelivery();
         const { hours, minutes, seconds } = getCountdown(cutoffHour);
-        cartWrapper.querySelectorAll('.gmd-dp-time').forEach(el => {
+        document.querySelectorAll('.gmd-dp-time').forEach(el => {
             el.textContent = `${hours}u ${minutes}m ${seconds}s`;
         });
     }
@@ -188,20 +188,19 @@
         document.querySelector('body').classList.add(testInfo.className);
 
         const cartForm = document.querySelector(".woocommerce-cart-form");
-        const lineItems = document.querySelectorAll('.woocommerce-cart-form .cart_item');
+
         injectDeliveryMessage();
-        observeCartChanges(cartForm, lineItems);
-        setInterval(() => updateTimers(cartForm), 1000);
+        observeCartChanges(cartForm);
+        setInterval(() => updateTimers(), 1000);
     });
 
     waitForElement(".og-cart-items .row", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className);
         const cartForm = document.querySelector("#offcanvasCart");
 
-        const lineItems = document.querySelectorAll('#offcanvasCart .og-cart-items .row');
         injectDeliveryMessage();
         observeCartChanges(cartForm);
-        setInterval(() => updateTimers(cartForm), 1000);
+        setInterval(() => updateTimers(), 1000);
     });
 
 })();
