@@ -101,6 +101,15 @@
                                     gap: 0 8px;
                                 }
 
+                                .\#price-item.\@regular {
+                                    font-size: 36px !important;
+                                    line-height: 35px;
+
+                                    .dcml {
+                                        margin-left: 5px;
+                                    }
+                                }
+
                                 .\#price-item.\@on-sale {
                                     padding: 6px 4px;
                                     font-size: 36px !important;
@@ -334,6 +343,16 @@
                                 .\#product-price {
                                     .\#price {
                                         gap: 0 10px;
+                                    }
+
+                                    .\#price-item.\@regular {
+                                        font-size: 22px !important;
+                                        line-height: 24px;
+
+                                        .dcml {
+                                            font-size: 14px;
+                                            line-height: 14px;
+                                        }
                                     }
 
                                     .\#price-item.\@on-sale {

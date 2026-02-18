@@ -103,7 +103,9 @@
                 if (bundleContainer) {
                     const priceObserver = new MutationObserver(() => {
                         const sourceEl = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles__bar--selected .kaching-bundles__bar-label');
-                        const targetEl = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@on-sale .\\#price-value');
+                        const salePrice = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@on-sale');
+                        const regularPrice = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@regular');
+                        const targetEl = salePrice ? salePrice.querySelector('.\\#price-value') : regularPrice.querySelector('.\\#price-value');
 
                         if (!sourceEl || !targetEl) return;
 
