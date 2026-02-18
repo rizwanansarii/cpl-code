@@ -1,10 +1,18 @@
-.gmd-add-accordion {
+.gmd-14 {
     .gmd-hide-btn {
         visibility: hidden;
     }
 
+
+
     #wijcbf_category {
         .wijcbf_form_option {
+
+            .icon.empty,
+            .icon.checked {
+                display: none;
+            }
+
             .icon-wrapper {
                 min-width: 48px;
             }
@@ -25,6 +33,26 @@
                         transform: rotate(-180deg);
                     }
                 }
+
+                &.gmd-extra-fields {
+                    .icon.checked {
+                        display: block;
+                    }
+
+                    .icon.empty {
+                        display: none;
+                    }
+                }
+            }
+
+            &.gmd-extra-fields {
+                .icon.checked {
+                    display: none;
+                }
+
+                .icon.empty {
+                    display: block;
+                }
             }
 
             .gmd-arrow-icon-wrapper {
@@ -41,11 +69,6 @@
             flex-wrap: wrap;
             height: auto;
             padding: 25px 50px;
-
-            .icon.empty,
-            .icon.checked {
-                display: none;
-            }
         }
 
     }
@@ -134,11 +157,8 @@
             }
         }
     }
-}
 
-
-@media (max-width: 1080px) {
-    .gmd-add-accordion {
+    @media (max-width: 1080px) {
         .gmd-accordion-card {
             flex-wrap: wrap;
 
@@ -158,10 +178,8 @@
             }
         }
     }
-}
 
-@media (max-width: 820px) {
-    .gmd-add-accordion {
+    @media (max-width: 820px) {
         #wijcbf_category {
             .wijcbf_form_option {
                 flex-wrap: wrap;
