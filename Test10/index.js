@@ -3,7 +3,7 @@
     const testInfo = {
         className: 'gmd-02',
         debug: 0,
-        testName: 'T10 | Add Sticky ATS',
+        testName: 'T2 | Sticky CTA op PDP',
         testVersion: 'v1'
     };
 
@@ -28,39 +28,41 @@
             btnIcon: document.querySelector('.shopify-section .\\#product-meta .form img').src,
             btnText: document.querySelector('.shopify-section .\\#product-meta .form .\\#button').innerText,
         }
-        document.querySelector('body').insertAdjacentHTML('beforeend', `
-            <div class="gmd-sticky-ats-wrapper">
-                <div class="gmd-ats-container">
-                    <div class="gmd-ats-content-wrapper">
-                        <div class="gmd-left-wrapper">
-                            <div class="gmd-image-wrapper">
-                                <img src="${atsContent.image}" alt="${atsContent.alt}" />
-                            </div>
-                            <div class="gmd-text-wrapper">
-                                <div class="gmd-product-info-wrapper">
-                                    <div class="gmd-product-name">${atsContent.productName}</div>
+        if (!document.querySelector('.gmd-sticky-ats-wrapper')) {
+            document.querySelector('body').insertAdjacentHTML('beforeend', `
+                <div class="gmd-sticky-ats-wrapper">
+                    <div class="gmd-ats-container">
+                        <div class="gmd-ats-content-wrapper">
+                            <div class="gmd-left-wrapper">
+                                <div class="gmd-image-wrapper">
+                                    <img src="${atsContent.image}" alt="${atsContent.alt}" />
                                 </div>
-                                <div class="gmd-price-stock-wrapper">
-                                    <div class="gmd-price">${atsContent.price}</div>
+                                <div class="gmd-text-wrapper">
+                                    <div class="gmd-product-info-wrapper">
+                                        <div class="gmd-product-name">${atsContent.productName}</div>
+                                    </div>
+                                    <div class="gmd-price-stock-wrapper">
+                                        <div class="gmd-price">${atsContent.price}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gmd-quantity-buy-btn-wrapper">
+                                <div class="gmd-input-quantity-wrapper">
+                                    <button class="gmd-qty-minus">−</button>
+                                    <input type="number" min="${atsContent.minQuantity}" max="${atsContent.maxQuantity}" class="quantity" value="${atsContent.quantity}" />
+                                    <button class="gmd-qty-plus">+</button>
+                                </div>
+                                <div class="gmd-btn-wrapper">
+                                    <button class="gmd-buy-now-btn gmd-desktop">${atsContent.btnText}<img src="${atsContent.btnIcon}"/></button>
+                                    <button class="gmd-buy-now-btn gmd-mobile">In winkelwagen<img src="${atsContent.btnIcon}"/></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="gmd-quantity-buy-btn-wrapper">
-                            <div class="gmd-input-quantity-wrapper">
-                                <button class="gmd-qty-minus">−</button>
-                                <input type="number" min="${atsContent.minQuantity}" max="${atsContent.maxQuantity}" class="quantity" value="${atsContent.quantity}" />
-                                <button class="gmd-qty-plus">+</button>
-                            </div>
-                            <div class="gmd-btn-wrapper">
-                                <button class="gmd-buy-now-btn gmd-desktop">${atsContent.btnText}<img src="${atsContent.btnIcon}"/></button>
-                                <button class="gmd-buy-now-btn gmd-mobile">In winkelwagen<img src="${atsContent.btnIcon}"/></button>
-                            </div>
-                        </div>
+                        <div class="gmd-discount-line">Hoe meer je bestelt, hoe hoger je korting.</div>
                     </div>
-                    <div class="gmd-discount-line">Hoe meer je bestelt, hoe hoger je korting.</div>
-                </div>
-            </div>`
-        );
+                </div>`
+            );
+        }
         const buyNowButton = document.querySelector('.shopify-section .\\#product-meta .form .\\#button');
         const atsButton = document.querySelector('.gmd-buy-now-btn');
         if (buyNowButton) {
