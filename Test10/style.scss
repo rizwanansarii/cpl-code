@@ -6,7 +6,9 @@
         }
 
         &#smile-ui-lite-launcher-frame-container,
-        &#CookiebotWidget {
+        &#CookiebotWidget,
+        &.smile-launcher-frame-container,
+        &.styles_StickyWidget__ {
             bottom: 140px !important;
         }
 
@@ -309,7 +311,9 @@
             }
 
             &#smile-ui-lite-launcher-frame-container,
-            &#CookiebotWidget {
+            &#CookiebotWidget,
+            &.smile-launcher-frame-container,
+            &.styles_StickyWidget__ {
                 bottom: 190px !important;
             }
         }

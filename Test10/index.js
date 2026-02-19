@@ -71,26 +71,8 @@
                     entries.forEach(entry => {
                         if (!entry.isIntersecting) {
                             document.querySelector('.gmd-sticky-ats-wrapper').classList.add('gmd-active')
-                            const interval = setInterval(() => {
-                                if (document.querySelector('#ShopifyChat') && document.querySelector('#smile-ui-lite-launcher-frame-container') && document.querySelector('#CookiebotWidget')) {
-                                    clearInterval(interval);
-                                    document.querySelector('#ShopifyChat').classList.add('gmd-active-ats');
-                                    document.querySelector('#smile-ui-lite-launcher-frame-container').classList.add('gmd-active-ats');
-                                    document.querySelector('#CookiebotWidget').classList.add('gmd-active-ats');
-                                    document.querySelector('.styles_StickyWidget__').classList.add('gmd-active-ats');
-                                }
-                            }, 100)
                         } else {
                             document.querySelector('.gmd-sticky-ats-wrapper').classList.remove('gmd-active')
-                            const interval = setInterval(() => {
-                                if (document.querySelector('#ShopifyChat') && document.querySelector('#smile-ui-lite-launcher-frame-container') && document.querySelector('#CookiebotWidget')) {
-                                    clearInterval(interval);
-                                    document.querySelector('#ShopifyChat').classList.remove('gmd-active-ats');
-                                    document.querySelector('#smile-ui-lite-launcher-frame-container').classList.remove('gmd-active-ats');
-                                    document.querySelector('#CookiebotWidget').classList.remove('gmd-active-ats');
-                                    document.querySelector('.styles_StickyWidget__').classList.remove('gmd-active-ats');
-                                }
-                            }, 100)
                         }
                     });
                 },
@@ -99,6 +81,30 @@
                 }
             );
             observer.observe(buyNowButton);
+
+            const body = document.querySelector('body');
+            const bodyObserver = new MutationObserver(() => {
+                if (document.querySelector('#ShopifyChat') && document.querySelector('#CookiebotWidget')) {
+                    if (document.querySelector('.gmd-sticky-ats-wrapper').classList.contains('gmd-active')) {
+                        document.querySelector('#ShopifyChat')?.classList.add('gmd-active-ats');
+                        document.querySelector('#smile-ui-lite-launcher-frame-container')?.classList.add('gmd-active-ats');
+                        document.querySelector('.smile-launcher-frame-container')?.classList.add('gmd-active-ats');
+                        document.querySelector('#CookiebotWidget')?.classList.add('gmd-active-ats');
+                        document.querySelector('.styles_StickyWidget__')?.classList.add('gmd-active-ats');
+                    } else {
+                        document.querySelector('#ShopifyChat')?.classList.remove('gmd-active-ats');
+                        document.querySelector('#smile-ui-lite-launcher-frame-container')?.classList.remove('gmd-active-ats');
+                        document.querySelector('.smile-launcher-frame-container')?.classList.remove('gmd-active-ats');
+                        document.querySelector('#CookiebotWidget')?.classList.remove('gmd-active-ats');
+                        document.querySelector('.styles_StickyWidget__')?.classList.remove('gmd-active-ats');
+                    }
+                }
+            });
+            bodyObserver.observe(body, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
 
             waitForElement('.shopify-section .\\#product-meta .kaching-bundles', () => {
                 const bundleContainer = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles');
