@@ -323,13 +323,11 @@
                     }
 
                     .gmd-text-wrapper {
-                        flex-wrap: wrap;
-                        gap: 8px 0;
-                        justify-content: center;
+                        // flex-wrap: wrap;
+                        gap: 8px;
+                        // justify-content: center;
 
                         .gmd-product-info-wrapper {
-                            justify-content: center;
-
                             .gmd-product-name {
                                 font-size: 14px;
                                 line-height: 16.8px;
@@ -386,7 +384,6 @@
                 }
 
                 .gmd-quantity-buy-btn-wrapper {
-                    justify-content: center;
                     max-width: 100%;
                     gap: 0 10px;
 
@@ -431,8 +428,9 @@
             }
 
             .gmd-discount-line {
-                margin-right: auto;
-                margin-top: 7px;
+                display: none;
+                // margin-right: auto;
+                // margin-top: 7px;
             }
         }
 
