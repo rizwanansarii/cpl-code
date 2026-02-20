@@ -1,9 +1,9 @@
 (() => {
     'use strict';
     const testInfo = {
-        className: 'gmd-shipping-time',
+        className: 'gmd-007',
         debug: 0,
-        testName: 'T9 | Add Estimate Shipping time',
+        testName: 'T7 | Add Estimate Shipping time',
         testVersion: 'v1'
     };
 
@@ -15,6 +15,7 @@
     }
 
     waitForElement(".catalog-product-view", () => {
+        document.querySelector('body').classList.add(testInfo.className)
         function getNow() {
             return new Date(
                 new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })
