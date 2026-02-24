@@ -363,10 +363,14 @@
                 nextBtn.classList.remove('gmd-hide-btn');
             } else {
                 nextBtn.classList.add('gmd-hide-btn');
-                if (document.querySelector('body').classList.contains('gmd-show-btn')) {
-                    nextBtn.classList.remove('gmd-hide-btn');
-                }
             }
+            if (document.querySelector('#wijcbf_category .gmd-extra-fields.selected')) nextBtn.classList.remove('gmd-hide-btn');
+            // else {
+            //     nextBtn.classList.add('gmd-hide-btn');
+            //     if (document.querySelector('body').classList.contains('gmd-show-btn')) {
+            //         nextBtn.classList.remove('gmd-hide-btn');
+            //     }
+            // }
         }
 
         function updateValues() {
@@ -440,6 +444,13 @@
                     if (!el.querySelector('.gmd-arrow-icon-wrapper svg')) {
                         el.classList.add('gmd-extra-fields')
                         document.querySelector('body').classList.add('gmd-show-btn');
+                    }
+                })
+                document.querySelector('#wijcbf_category').addEventListener('click', (e) => {
+                    if (e.target.closest('.gmd-extra-fields')) {
+                        document.querySelector('#next').classList.remove('gmd-hide-btn');
+                    } else if (e.target.closest('.wijcbf_service') && !e.target.closest('.wijcbf_service').classList.contains('gmd-extra-fields')) {
+                        document.querySelector('#next').classList.add('gmd-hide-btn');
                     }
                 })
             }
