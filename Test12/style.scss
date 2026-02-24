@@ -311,4 +311,12 @@
             }
         }
     }
+
+    @media (max-width: 374px) {
+        .gmd-cart-popup {
+            .gmd-cart-payment-options {
+                gap: 10.5px;
+            }
+        }
+    }
 }

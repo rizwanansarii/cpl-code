@@ -105,6 +105,18 @@
                     document.querySelector('body').classList.remove('gmd-overflow-hidden')
                 })
             })
+            document.querySelector('.gmd-cart-popup-overlay').addEventListener('click', (e) => {
+                if (!document.querySelector('.gmd-cart-popup-modal').contains(e.target)) {
+                    document.querySelector('.gmd-cart-popup').classList.remove('gmd-active')
+                    document.querySelector('body').classList.remove('gmd-overflow-hidden')
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelector('.gmd-cart-popup').classList.remove('gmd-active')
+                    document.querySelector('body').classList.remove('gmd-overflow-hidden')
+                }
+            });
         }
 
         document.querySelector('.add-to-cart-by-popup').addEventListener('click', (e) => {
