@@ -11,6 +11,7 @@
             .icon.empty,
             .icon.checked {
                 display: none;
+                min-width: 45px;
             }
 
             .icon-wrapper {
@@ -193,30 +194,41 @@
                 .gmd-arrow-icon-wrapper {
                     margin-right: -2px;
                 }
-            }
 
-            .wijcbf_service {
-                .wijcbf_service_title {
-                    font-size: 16px;
-                    line-height: 22.4px;
-                    margin-top: 0;
-                }
-
-                .wijcbf_service_price {
-                    margin-right: 0;
+                img.icon.empty,
+                img.icon.checked {
+                    min-width: 35px;
                 }
             }
-
         }
 
-        .gmd-accordion-card {
-            margin-top: 11px;
-            margin-left: 9px;
+        .wijcbf_service {
+            .wijcbf_service_title {
+                font-size: 16px;
+                line-height: 22.4px;
+                margin-top: 0;
+            }
 
-            .gmd-accordion-action {
-                .gmd-accordion-btn {
-                    height: auto;
+            .wijcbf_service_price {
+                margin-right: 0;
+            }
+
+            &.gmd-extra-fields {
+                .wijcbf_service_price {
+                    margin-right: 20px;
                 }
+            }
+        }
+
+    }
+
+    .gmd-accordion-card {
+        margin-top: 11px;
+        margin-left: 9px;
+
+        .gmd-accordion-action {
+            .gmd-accordion-btn {
+                height: auto;
             }
         }
     }
