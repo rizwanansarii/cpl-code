@@ -46,12 +46,56 @@
     waitForElement(".shopify-section-group-overlay-group .cart-drawer", () => {
         document.body.classList.add(testInfo.className);
 
+        const CROSS_SELL_HANDLES = [
+            'troonz-hoofdkussen-dreamscape-plus-ergonomisch-orthopedisch-kussen-met-bolletjes-vezel-hypoallergeen-geschikt-voor-rug-en-zijslapers-anthracite?_pos=1&_psq=dreamscape+&_ss=e&_v=1.0',
+            'troonz-hoofdkussen-pocketpillow-plus?_pos=1&_psq=pocket&_ss=e&_v=1.0',
+            'troonz®-hoofdkussen-portofino?_pos=3&_psq=portofin&_ss=e&_v=1.0'
+        ];
+
         const isFrench = Shopify.locale === 'fr';
+        const locale = Shopify?.locale;
+        const isDefaultLocale = locale === 'nl';
+
+        function buildProductUrl(handle) {
+            const origin = window.location.origin;
+            const localePrefix = isDefaultLocale ? '' : `/${locale}`;
+            return `${origin}${localePrefix}/products/${handle}`;
+        }
+
         const translations = {
             title: isFrench ? 'Complétez votre commande :' : 'Maak je bestelling compleet:',
 
             button: isFrench ? 'Ajouter' : 'Voeg toe'
         };
+
+        async function fetchProducts() {
+            const parser = new DOMParser();
+
+            const responses = await Promise.all(
+                CROSS_SELL_HANDLES.map(handle =>
+                    fetch(buildProductUrl(handle))
+                        .then(res => res.text())
+                )
+            );
+
+            return responses.map((html, index) => {
+
+                const doc = parser.parseFromString(html, 'text/html');
+                const handle = CROSS_SELL_HANDLES[index];
+                const pageUrl = buildProductUrl(handle);
+                const title = doc.querySelector('.product .product-info__title')?.innerText.trim();
+                const image = doc.querySelector('.product .product-gallery__media img')?.src;
+                const price = doc.querySelector('.product .price-list').outerHTML;
+                const variantId = doc.querySelector('form[action*="/cart/add"] input[name="id"]')?.value;
+                return {
+                    title,
+                    image,
+                    price,
+                    variantId,
+                    pageUrl
+                };
+            });
+        }
 
         const sliderEle = `
         <div class="gmd-product-recommendation">
@@ -85,79 +129,91 @@
             }
         }
 
-        function updateTrustpilot() {
+        async function updateTrustpilot() {
             if (!document.querySelector('.gmd-product-recommendation')) {
                 if (document.querySelector('.footer-row')) {
-                    document.querySelector('.footer-row').insertAdjacentHTML('afterbegin', sliderEle);
-                    for (var i = 0; products.length > i; i++) {
-                        document.querySelector('.gmd-cross-sell-swiper .swiper-wrapper').insertAdjacentHTML('beforeend', `
-                            <div class="swiper-slide">
-                                    <div class="gmd-cross-card">
-                                        <div class="gmd-image-wrapper">
-                                            <img src="${products[i].image}" alt="${products[i].title}" />
-                                        </div>
-                                        <div class="gmd-text-wrapper">
-                                            <h4>${products[i].title}</h4>
-                                            <div class="gmd-price">
-                                                ${products[i].price}
+                    const products = await fetchProducts();
+                    if (!document.querySelector('.gmd-product-recommendation')) {
+                        document.querySelector('.footer-row').insertAdjacentHTML('afterbegin', sliderEle);
+                        for (var i = 0; products.length > i; i++) {
+                            document.querySelector('.gmd-cross-sell-swiper .swiper-wrapper').insertAdjacentHTML('beforeend', `
+                                <div class="swiper-slide">
+                                        <div class="gmd-cross-card">
+                                            <a href="${products[i].pageUrl}" class="gmd-image-wrapper">
+                                                <img src="${products[i].image}" alt="${products[i].title}" />
+                                            </a>
+                                            <div class="gmd-text-wrapper">
+                                                <a href ="${products[i].pageUrl}"><h4>${products[i].title}</h4></a>
+                                                <div class="gmd-price">
+                                                    ${products[i].price}
+                                                </div>
+                                            </div>
+                                            <div class="gmd-btn-wrapper">
+                                                <button class="gmd-add-to-cart" data-id="${products[i].variantId}">${translations.button}</button>
+                                                <pill-loader class="pill-loader">
+                                                    <div class="loader-dots">
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    
+                                                    <svg class="loader-checkmark" fill="none" width="9" height="8" viewBox="0 0 9 8">
+                                                        <path d="M1 3.5 3.3 6 8 1" stroke="currentColor" stroke-width="2"></path>
+                                                    </svg>
+                                                </pill-loader>
                                             </div>
                                         </div>
-                                        <div class="gmd-btn-wrapper">
-                                            <button class="gmd-add-to-cart" data-id="${products[i].variantId}"}>${translations.button}</button>
-                                            <pill-loader class="pill-loader">
-                                                <div class="loader-dots">
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                </div>
-                                                
-                                                <svg class="loader-checkmark" fill="none" width="9" height="8" viewBox="0 0 9 8">
-                                                    <path d="M1 3.5 3.3 6 8 1" stroke="currentColor" stroke-width="2"></path>
-                                                </svg>
-                                            </pill-loader>
-                                        </div>
                                     </div>
-                                </div>
-                            `)
-                    }
-                    document.querySelectorAll('.gmd-cross-sell-swiper .gmd-add-to-cart').forEach((el) => {
-                        el.addEventListener('click', async (e) => {
-                            e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", true);
-                            const variantId = e.target.dataset.id;
-                            await addToCart(variantId)
-                            e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", false);
-                            document.dispatchEvent(new CustomEvent('cart:refresh'));
-                        })
-                    })
-                    const checkSlider = setInterval(() => {
-                        if (typeof Swiper != 'undefined') {
-                            clearInterval(checkSlider);
-                            new Swiper(".gmd-cross-sell-swiper", {
-                                direction: "horizontal",
-                                autoWidth: true,
-                                loop: true,
-                                slidesPerView: 1,
-                                spaceBetween: 22,
-                                centeredSlides: false,      // keep slides aligned to the left
-                                pagination: false,
-                                navigation: {
-                                    nextEl: ".gmd-product-recommendation .gmd-cross-next",
-                                    prevEl: ".gmd-product-recommendation .gmd-cross-prev",
-                                },
-                                breakpoints: {
-                                    0: {
-                                        slidesPerView: 1,
-                                    },
-                                    768: {
-                                        slidesPerView: 1,
-                                        centeredSlidesBounds: true,
-                                        freeMode: false,
-                                        watchSlidesProgress: true,
-                                    }
-                                }
-                            });
+                                `)
                         }
-                    }, 500);
+                        document.querySelectorAll('.gmd-cross-sell-swiper .gmd-add-to-cart').forEach((el) => {
+                            el.addEventListener('click', async (e) => {
+                                e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", true);
+                                const variantId = e.target.dataset.id;
+                                await addToCart(variantId)
+                                e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", false);
+                                document.dispatchEvent(new CustomEvent('cart:refresh'));
+                            })
+                        })
+                        const checkSlider = setInterval(() => {
+                            if (typeof Swiper != 'undefined') {
+                                clearInterval(checkSlider);
+                                new Swiper(".gmd-cross-sell-swiper", {
+                                    direction: "horizontal",
+                                    autoWidth: true,
+                                    // loop: true,
+                                    slidesPerView: 1,
+                                    spaceBetween: 22,
+                                    centeredSlides: false,      // keep slides aligned to the left
+                                    pagination: false,
+                                    navigation: {
+                                        nextEl: ".gmd-product-recommendation .gmd-cross-next",
+                                        prevEl: ".gmd-product-recommendation .gmd-cross-prev",
+                                    },
+                                    breakpoints: {
+                                        0: {
+                                            slidesPerView: 1,
+                                        },
+                                        768: {
+                                            slidesPerView: 1,
+                                            centeredSlidesBounds: true,
+                                            freeMode: false,
+                                            watchSlidesProgress: true,
+                                        }
+                                    }
+                                });
+                                document.querySelectorAll('.gmd-cross-sell-swiper .gmd-add-to-cart').forEach((el) => {
+                                    el.addEventListener('click', async (e) => {
+                                        e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", true);
+                                        const variantId = e.target.dataset.id;
+                                        await addToCart(variantId)
+                                        e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", false);
+                                        document.dispatchEvent(new CustomEvent('cart:refresh'));
+                                    })
+                                })
+                            }
+                        }, 500);
+                    }
                 }
             }
 
