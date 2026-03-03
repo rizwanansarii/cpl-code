@@ -122,7 +122,6 @@
                 });
 
                 const data = await response.json();
-                console.log('-00-0-0-0-')
                 return data;
 
             } catch (error) {
