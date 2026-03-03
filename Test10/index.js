@@ -14,19 +14,49 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
+    function calculateAndFormatEuro(priceText, qty = 1) {
+
+        if (!priceText) return '';
+
+        const rawPrice = priceText.split('/')[0].trim();
+
+        const numericPrice = parseFloat(
+            rawPrice
+                .replace(/[^\d,.-]/g, '')  // remove € and spaces safely
+                .replace(/\./g, '')        // remove thousand separators
+                .replace(',', '.')         // convert decimal comma to dot
+        );
+
+        if (isNaN(numericPrice)) return '';
+
+        const total = numericPrice * qty;
+
+        const formatted = new Intl.NumberFormat('nl-NL', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 2
+        }).format(total);
+
+        const parts = formatted.split(',');
+
+        if (parts.length < 2) return formatted;
+
+        return `${parts[0]},<sub class="dcml">${parts[1]}</sub>`;
+    }
+
     waitForElement(".shopify-section .\\#product-meta .form", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className);
 
         const atsContent = {
-            productName: document.querySelector('.shopify-section .desktop-title .\\#product-title').innerHTML,
-            price: document.querySelector('.shopify-section .\\#product-meta #b-price').innerHTML,
-            image: document.querySelector('.\\#product-gallery-stage .\\#media-image-wrapper img').src,
-            alt: document.querySelector('.\\#product-gallery-stage .\\#media-image-wrapper img').alt,
-            quantity: document.querySelector('.shopify-section .\\#product-meta .qty-input').value,
-            minQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input').min,
-            maxQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input').getAttribute('max'),
-            btnIcon: document.querySelector('.shopify-section .\\#product-meta .form img').src,
-            btnText: document.querySelector('.shopify-section .\\#product-meta .form .\\#button').innerText,
+            productName: document.querySelector('.shopify-section .desktop-title .\\#product-title')?.innerHTML,
+            price: document.querySelector('.shopify-section .\\#product-meta #b-price')?.innerHTML,
+            image: document.querySelector('.\\#product-gallery-stage .\\#media-image-wrapper img')?.src,
+            alt: document.querySelector('.\\#product-gallery-stage .\\#media-image-wrapper img')?.alt,
+            quantity: document.querySelector('.shopify-section .\\#product-meta .qty-input')?.value,
+            minQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input')?.min,
+            maxQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input')?.getAttribute('max'),
+            btnIcon: document.querySelector('.shopify-section .\\#product-meta .form img')?.src,
+            btnText: document.querySelector('.shopify-section .\\#product-meta .form .\\#button')?.innerText,
         }
         if (!document.querySelector('.gmd-sticky-ats-wrapper')) {
             document.querySelector('body').insertAdjacentHTML('beforeend', `
@@ -53,7 +83,7 @@
                                     <button class="gmd-qty-plus">+</button>
                                 </div>
                                 <div class="gmd-btn-wrapper">
-                                    <button class="gmd-buy-now-btn gmd-desktop">${atsContent.btnText}<img src="${atsContent.btnIcon}"/></button>
+                                    <button class="gmd-buy-now-btn gmd-desktop">${atsContent.btnText}${atsContent.btnIcon ? `<img src="${atsContent.btnIcon}"/>` : ``}</button>
                                     <button class="gmd-buy-now-btn gmd-mobile">In winkelwagen<img src="${atsContent.btnIcon}"/></button>
                                 </div>
                             </div>
@@ -110,18 +140,25 @@
                 const bundleContainer = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles');
                 if (bundleContainer) {
                     const priceObserver = new MutationObserver(() => {
+                        const price = document.querySelector('.shopify-section .\\#product-meta #b-price');
+                        const quantity = document.querySelector('.shopify-section .\\#product-meta .qty-input').value;
                         const sourceEl = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles__bar--selected .kaching-bundles__bar-label');
                         const salePrice = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@on-sale');
                         const regularPrice = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@regular');
+                        const comparePrice = document.querySelector('.gmd-sticky-ats-wrapper .\\#price-item.\\@compare');
                         const targetEl = salePrice ? salePrice.querySelector('.\\#price-value') : regularPrice.querySelector('.\\#price-value');
 
                         if (!sourceEl || !targetEl) return;
 
-                        const fullText = sourceEl.textContent.trim();
-                        const price = fullText.split('/')[0].trim();
-                        const [main, decimal] = price.replace('€', '').split(',');
+                        const formattedSale = calculateAndFormatEuro(sourceEl.textContent.trim(), quantity);
 
-                        targetEl.innerHTML = `€${main},<sub class="dcml">${decimal}</sub>`;
+                        targetEl.innerHTML = formattedSale;
+
+                        if (price.querySelector('.\\@compare .\\#price-value')) {
+                            const formattedRegular = calculateAndFormatEuro(price.querySelector('.\\@compare .\\#price-value').textContent.trim(), quantity);
+                            comparePrice.querySelector('.\\#price-value').innerHTML = formattedRegular;
+                        }
+
                     });
                     priceObserver.observe(bundleContainer, {
                         childList: true,
