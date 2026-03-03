@@ -56,10 +56,19 @@
         const locale = Shopify?.locale;
         const isDefaultLocale = locale === 'nl';
 
+        function getMarketPrefix() {
+            const match = window.location.pathname.match(
+                /^\/([a-z]{2}(?:-[a-z]{2})?)(?=\/|$)/i
+            );
+
+            return match ? `/${match[1]}` : '';
+        }
+
         function buildProductUrl(handle) {
             const origin = window.location.origin;
-            const localePrefix = isDefaultLocale ? '' : `/${locale}`;
-            return `${origin}${localePrefix}/products/${handle}`;
+            const marketPrefix = getMarketPrefix();
+
+            return `${origin}${marketPrefix}/products/${handle}`;
         }
 
         const translations = {
