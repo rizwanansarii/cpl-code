@@ -122,6 +122,7 @@
                 });
 
                 const data = await response.json();
+                console.log('-00-0-0-0-')
                 return data;
 
             } catch (error) {
@@ -166,15 +167,6 @@
                                     </div>
                                 `)
                         }
-                        document.querySelectorAll('.gmd-cross-sell-swiper .gmd-add-to-cart').forEach((el) => {
-                            el.addEventListener('click', async (e) => {
-                                e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", true);
-                                const variantId = e.target.dataset.id;
-                                await addToCart(variantId)
-                                e.target.closest('.gmd-btn-wrapper').querySelector('.pill-loader').setAttribute("aria-busy", false);
-                                document.dispatchEvent(new CustomEvent('cart:refresh'));
-                            })
-                        })
                         const checkSlider = setInterval(() => {
                             if (typeof Swiper != 'undefined') {
                                 clearInterval(checkSlider);
