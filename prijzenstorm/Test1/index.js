@@ -114,7 +114,13 @@
 
             const body = document.querySelector('body');
             const bodyObserver = new MutationObserver(() => {
-                if (document.querySelector('#ShopifyChat') && document.querySelector('#CookiebotWidget')) {
+                if (document.querySelector('#CookiebotWidget') ||
+                    document.querySelector('#ShopifyChat') ||
+                    document.querySelector('#smile-ui-lite-launcher-frame-container') ||
+                    document.querySelector('.smile-launcher-frame-container') ||
+                    document.querySelector('#CookiebotWidget') ||
+                    document.querySelector('.styles_StickyWidget__')
+                ) {
                     if (document.querySelector('.gmd-sticky-ats-wrapper').classList.contains('gmd-active')) {
                         document.querySelector('#ShopifyChat')?.classList.add('gmd-active-ats');
                         document.querySelector('#smile-ui-lite-launcher-frame-container')?.classList.add('gmd-active-ats');
