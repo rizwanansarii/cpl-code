@@ -314,7 +314,7 @@
             &#CookiebotWidget,
             &.smile-launcher-frame-container,
             &.styles_StickyWidget__ {
-                bottom: 140px !important;
+                bottom: 190px !important;
             }
         }
     }
@@ -322,6 +322,16 @@
 
 @media (max-width: 767px) {
     .gmd-02 {
+        .gmd-active-ats {
+
+            &#smile-ui-lite-launcher-frame-container,
+            &#CookiebotWidget,
+            &.smile-launcher-frame-container,
+            &.styles_StickyWidget__ {
+                bottom: 140px !important;
+            }
+        }
+
         .gmd-sticky-ats-wrapper {
             .gmd-ats-container {
                 padding: 16px 24px;

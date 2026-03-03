@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="gmd-btn-wrapper">
                                     <button class="gmd-buy-now-btn gmd-desktop">${atsContent.btnText}${atsContent.btnIcon ? `<img src="${atsContent.btnIcon}"/>` : ``}</button>
-                                    <button class="gmd-buy-now-btn gmd-mobile">In winkelwagen<img src="${atsContent.btnIcon}"/></button>
+                                    <button class="gmd-buy-now-btn gmd-mobile">In winkelwagen${atsContent.btnIcon ? `<img src="${atsContent.btnIcon}"/>` : ``}</button>
                                 </div>
                             </div>
                         </div>
@@ -99,11 +99,13 @@
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach(entry => {
+                        const sticky = document.querySelector('.gmd-sticky-ats-wrapper');
                         if (!entry.isIntersecting) {
-                            document.querySelector('.gmd-sticky-ats-wrapper').classList.add('gmd-active')
+                            sticky.classList.add('gmd-active');
                         } else {
-                            document.querySelector('.gmd-sticky-ats-wrapper').classList.remove('gmd-active')
+                            sticky.classList.remove('gmd-active');
                         }
+                        syncFloatingWidgets();
                     });
                 },
                 {
@@ -112,35 +114,32 @@
             );
             observer.observe(buyNowButton);
 
-            const body = document.querySelector('body');
-            const bodyObserver = new MutationObserver(() => {
-                if (document.querySelector('#CookiebotWidget') ||
-                    document.querySelector('#ShopifyChat') ||
-                    document.querySelector('#smile-ui-lite-launcher-frame-container') ||
-                    document.querySelector('.smile-launcher-frame-container') ||
-                    document.querySelector('#CookiebotWidget') ||
-                    document.querySelector('.styles_StickyWidget__')
-                ) {
-                    if (document.querySelector('.gmd-sticky-ats-wrapper').classList.contains('gmd-active')) {
-                        document.querySelector('#ShopifyChat')?.classList.add('gmd-active-ats');
-                        document.querySelector('#smile-ui-lite-launcher-frame-container')?.classList.add('gmd-active-ats');
-                        document.querySelector('.smile-launcher-frame-container')?.classList.add('gmd-active-ats');
-                        document.querySelector('#CookiebotWidget')?.classList.add('gmd-active-ats');
-                        document.querySelector('.styles_StickyWidget__')?.classList.add('gmd-active-ats');
-                    } else {
-                        document.querySelector('#ShopifyChat')?.classList.remove('gmd-active-ats');
-                        document.querySelector('#smile-ui-lite-launcher-frame-container')?.classList.remove('gmd-active-ats');
-                        document.querySelector('.smile-launcher-frame-container')?.classList.remove('gmd-active-ats');
-                        document.querySelector('#CookiebotWidget')?.classList.remove('gmd-active-ats');
-                        document.querySelector('.styles_StickyWidget__')?.classList.remove('gmd-active-ats');
-                    }
-                }
-            });
-            bodyObserver.observe(body, {
+            function syncFloatingWidgets() {
+                const isActive = document
+                    .querySelector('.gmd-sticky-ats-wrapper')
+                    ?.classList.contains('gmd-active');
+
+                const selectors = [
+                    '#ShopifyChat',
+                    '#smile-ui-lite-launcher-frame-container',
+                    '.smile-launcher-frame-container',
+                    '#CookiebotWidget',
+                    '.styles_StickyWidget__'
+                ];
+
+                selectors.forEach(selector => {
+                    const el = document.querySelector(selector);
+                    if (!el) return;
+                    el.classList.toggle('gmd-active-ats', !!isActive);
+                });
+            }
+            const bodyObserver = new MutationObserver(syncFloatingWidgets);
+
+            bodyObserver.observe(document.body, {
                 childList: true,
-                subtree: true,
-                characterData: true
+                subtree: true
             });
+            syncFloatingWidgets();
 
             waitForElement('.shopify-section .\\#product-meta .kaching-bundles', () => {
                 const bundleContainer = document.querySelector('.shopify-section .\\#product-meta .kaching-bundles');
