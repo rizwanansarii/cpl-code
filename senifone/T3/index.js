@@ -106,6 +106,21 @@
 
     };
 
+    let deliveryIntervalStarted = false;
+
+    function startDeliveryInterval() {
+        if (deliveryIntervalStarted) return;
+
+        deliveryIntervalStarted = true;
+
+        setInterval(() => {
+            const now = new Date();
+            if (now.getSeconds() === 0) {
+                getDeliveryTime();
+            }
+        }, 1000);
+    }
+
     waitForElement('#shopify-section-announcement-bar', () => {
         document.body.classList.add(testInfo.className);
 
@@ -120,12 +135,7 @@
             </div>`;
             if (document.querySelector("#shopify-section-announcement-bar .announcement .announcement__text .gmd-usp-block")) {
                 getDeliveryTime();
-                setInterval(() => {
-                    const now = new Date();
-                    if (now.getSeconds() === 0) {
-                        getDeliveryTime();
-                    }
-                }, 1000);
+                startDeliveryInterval();
             }
         }
     });
@@ -137,12 +147,7 @@
             document.querySelector('.add-to-cart-holder .usps').insertAdjacentHTML('beforeend', `<div class="gmd-single-usp single-usp gmd-delivery"></div>`);
             if (document.querySelector(".gmd-single-usp.single-usp")) {
                 getDeliveryTime();
-                setInterval(() => {
-                    const now = new Date();
-                    if (now.getSeconds() === 0) {
-                        getDeliveryTime();
-                    }
-                }, 1000);
+                startDeliveryInterval();
             }
         }
     });
