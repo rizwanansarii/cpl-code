@@ -25,11 +25,13 @@
     const deliveryText = {
         nl: {
             orderBefore: ['Voor 17.00 uur besteld, ', 'is ', ' in huis'],
-            orderToday: ['Vandaag besteld, ', 'is ', ' in huis']
+            orderToday: ['Vandaag besteld, ', 'is ', ' in huis'],
+            defaultText: ['Gratis verzending', '30 dagen uitproberen!']
         },
         de: {
             orderBefore: ['Vor 17 Uhr bestellt, ', 'am ', ' bei dir'],
-            orderToday: ['Heute bestellt, ', 'am ', ' bei dir']
+            orderToday: ['Heute bestellt, ', 'am ', ' bei dir'],
+            defaultText: ['Kostenloser Versand', '30 Tage lang testen!']
         }
     };
 
@@ -125,12 +127,21 @@
         if (!document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text .gmd-usp-block')) {
             const text = document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').textContent.trim();
             const parts = text.split('✓').filter(Boolean).map(t => t.trim());
-            document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').innerHTML = `
-            <div class="gmd-usp-block">
-                <span class="usp-item first">${checkSvg} ${parts[0]}</span>
-                <span class="usp-item second delivery-time-text"></span>
-                <span class="usp-item third">${checkSvg} ${parts[2]}</span>
-            </div>`;
+            if (parts.length) {
+                document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').innerHTML = `
+                <div class="gmd-usp-block">
+                    <span class="usp-item first">${checkSvg} ${parts[0]}</span>
+                    <span class="usp-item second delivery-time-text"></span>
+                    <span class="usp-item third">${checkSvg} ${parts[2]}</span>
+                </div>`;
+            } else {
+                document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').innerHTML = `
+                <div class="gmd-usp-block">
+                    <span class="usp-item first">${checkSvg} ${deliveryText[lang].defaultText[0]}</span>
+                    <span class="usp-item second delivery-time-text"></span>
+                    <span class="usp-item third">${checkSvg} ${deliveryText[lang].defaultText[1]}</span>
+                </div>`
+            }
             if (document.querySelector("#shopify-section-announcement-bar .announcement .announcement__text .gmd-usp-block")) {
                 getDeliveryTime();
                 startDeliveryInterval();
