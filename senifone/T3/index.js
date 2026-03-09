@@ -92,8 +92,6 @@
 
         const deliveryEl = document.querySelector(".gmd-usp-block .delivery-time-text");
         const deliveryProductEl = document.querySelector(".gmd-single-usp.single-usp");
-        if (!deliveryEl) return;
-
         if (deliveryEl) deliveryEl.innerHTML = checkSvg + getDeliveryText(deliveryType, deliveryDay, 'header');
         if (deliveryProductEl) deliveryProductEl.innerHTML = `
             <div class="icon">
