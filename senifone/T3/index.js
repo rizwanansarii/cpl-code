@@ -95,47 +95,55 @@
         if (!deliveryEl) return;
 
         if (deliveryEl) deliveryEl.innerHTML = checkSvg + getDeliveryText(deliveryType, deliveryDay, 'header');
-        if (deliveryProductEl) deliveryProductEl.innerHTML = `<div class="icon">
-                                            ${calenderSvg}
-                                        </div>
-                                        <div class="text">
-                                            <p>${getDeliveryText(deliveryType, deliveryDay, 'main')}</p>
-                                        </div>`
+        if (deliveryProductEl) deliveryProductEl.innerHTML = `
+            <div class="icon">
+                ${calenderSvg}
+            </div>
+            <div class="text">
+                <p>${getDeliveryText(deliveryType, deliveryDay, 'main')}</p>
+            </div>`
+            ;
 
     };
 
     waitForElement('#shopify-section-announcement-bar', () => {
         document.body.classList.add(testInfo.className);
 
-
-        document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').innerHTML = `
-        <div class="gmd-usp-block">
-            <span class="usp-item first">${checkSvg} Gratis verzending</span>
-            <span class="usp-item second delivery-time-text"></span>
-            <span class="usp-item third">${checkSvg} 30 dagen uitproberen!</span>
-        </div>`;
-        if (document.querySelector("#shopify-section-announcement-bar .announcement .announcement__text .gmd-usp-block")) {
-            getDeliveryTime();
-            setInterval(() => {
-                const now = new Date();
-                if (now.getSeconds() === 0) {
-                    getDeliveryTime();
-                }
-            }, 1000);
+        if (!document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text .gmd-usp-block')) {
+            const text = document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').textContent.trim();
+            const parts = text.split('✓').filter(Boolean).map(t => t.trim());
+            document.querySelector('#shopify-section-announcement-bar .announcement .announcement__text').innerHTML = `
+            <div class="gmd-usp-block">
+                <span class="usp-item first">${checkSvg} ${parts[0]}</span>
+                <span class="usp-item second delivery-time-text"></span>
+                <span class="usp-item third">${checkSvg} ${parts[2]}</span>
+            </div>`;
+            if (document.querySelector("#shopify-section-announcement-bar .announcement .announcement__text .gmd-usp-block")) {
+                getDeliveryTime();
+                setInterval(() => {
+                    const now = new Date();
+                    if (now.getSeconds() === 0) {
+                        getDeliveryTime();
+                    }
+                }, 1000);
+            }
         }
     });
+
     waitForElement('.quantity-submit-row .add-to-cart-holder', () => {
         document.body.classList.add(testInfo.className);
 
-        document.querySelector('.add-to-cart-holder .usps').insertAdjacentHTML('beforeend', `<div class="gmd-single-usp single-usp gmd-delivery"></div>`);
-        if (document.querySelector(".gmd-single-usp.single-usp")) {
-            getDeliveryTime();
-            setInterval(() => {
-                const now = new Date();
-                if (now.getSeconds() === 0) {
-                    getDeliveryTime();
-                }
-            }, 1000);
+        if (!document.querySelector('.add-to-cart-holder .usps .gmd-single-usp.single-usp')) {
+            document.querySelector('.add-to-cart-holder .usps').insertAdjacentHTML('beforeend', `<div class="gmd-single-usp single-usp gmd-delivery"></div>`);
+            if (document.querySelector(".gmd-single-usp.single-usp")) {
+                getDeliveryTime();
+                setInterval(() => {
+                    const now = new Date();
+                    if (now.getSeconds() === 0) {
+                        getDeliveryTime();
+                    }
+                }, 1000);
+            }
         }
     });
 
