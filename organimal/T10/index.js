@@ -174,7 +174,7 @@
             });
             observer.observe(target, {
                 childList: true,
-                subtree: true,
+                // subtree: true,
                 // attributes: true,
                 // attributeFilter: ["class"]
             })
