@@ -39,7 +39,16 @@
                     &.gmd-validate,
                     &.woocommerce-validated.gmd-validate {
                         &.woocommerce-invalid {
+                            .woocommerce-input-wrapper {
+                                position: relative;
+
+                                &::before {
+                                    content: none;
+                                }
+                            }
+
                             input.input-text {
+                                border-color: #A00;
                                 background: none;
                                 padding-left: 10px;
                             }
@@ -66,7 +75,9 @@
                             border-color: #7AD03A;
                             padding-left: 27px;
 
-                            &:-webkit-autofill {
+                            &:-webkit-autofill,
+                            &:-webkit-autofill:hover,
+                            &:-webkit-autofill:focus {
                                 box-shadow: 0 0 0 1000px #FFFFFF inset !important;
                             }
                         }
