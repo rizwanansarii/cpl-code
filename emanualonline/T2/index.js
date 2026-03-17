@@ -80,7 +80,7 @@
                 </div>`
             );
         }
-        const targetEl = document.querySelector('.product-info-main .product-add-form');
+        const targetEl = document.querySelector('.product-info-main .product-add-form #product-quickbuy-button');
         if (targetEl) {
             const observer = new IntersectionObserver(
                 (entries) => {
@@ -152,5 +152,9 @@
 
         handleButtonClick('.gmd-buy-now-btn', '.product-info-main .product-add-form #product-quickbuy-button');
         handleButtonClick('.gmd-add-to-cart-btn', '.product-info-main .product-add-form #product-addtocart-button');
+
+        if (document.querySelector('.gmd-price').innerText.length > 6) {
+            document.body.classList.add('decrease-font-size');
+        }
     })
 })();

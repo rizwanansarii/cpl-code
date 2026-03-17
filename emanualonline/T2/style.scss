@@ -5,11 +5,11 @@
     }
 
     .gmd-active-ats {
-        &#chat-button {
+        &.whatsapp {
             bottom: 150px !important;
         }
 
-        &.whatsapp {
+        &#chat-button {
             bottom: 80px !important;
         }
     }
@@ -167,11 +167,11 @@
         }
 
         .gmd-active-ats {
-            &#chat-button {
+            &.whatsapp {
                 bottom: 205px !important;
             }
 
-            &.whatsapp {
+            &#chat-button {
                 bottom: 135px !important;
             }
         }
@@ -182,11 +182,11 @@
     .gmd-02 {
         .gmd-active-ats {
 
-            &#chat-button {
+            &.whatsapp {
                 bottom: 130px !important;
             }
 
-            &.whatsapp {
+            &#chat-button {
                 bottom: 70px !important;
             }
         }
@@ -220,7 +220,7 @@
                 }
 
                 .gmd-btn-wrapper {
-                    max-width: 240px;
+                    max-width: fit-content;
                     min-width: auto;
 
                     button {
@@ -240,5 +240,31 @@
             }
         }
 
+        &.decrease-font-size {
+            .gmd-sticky-ats-wrapper {
+                .gmd-ats-content-wrapper {
+                    .gmd-left-wrapper {
+                        .gmd-text-wrapper {
+                            .gmd-price-stock-wrapper {
+                                .gmd-price {
+                                    font-size: 15px;
+                                    line-height: 155.556%;
+                                }
+                            }
+                        }
+                    }
+
+                    .gmd-btn-wrapper {
+                        button {
+                            .gmd-btn-text {
+                                font-size: 13px;
+                                line-height: 175%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
 }
