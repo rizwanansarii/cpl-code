@@ -14,7 +14,7 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
-    waitForElement(".catalog-product-view", ([producPage]) => {
+    waitForElement(".catalog-product-view .product-add-form", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className);
 
         const atsContent = {
