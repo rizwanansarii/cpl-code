@@ -8,6 +8,7 @@
 
         @media (max-width: 800px) {
             line-height: 120%;
+            margin-top: 2px;
         }
 
         &.gmd-invalid {
@@ -35,9 +36,17 @@
                 }
 
                 .form-row {
+                    &#billing_street_name_field {
+                        float: left;
+
+                        @media (max-width: 549px) {
+                            float: none;
+                        }
+                    }
 
                     &.gmd-validate,
-                    &.woocommerce-validated.gmd-validate {
+                    &.woocommerce-validated.gmd-validate,
+                    &.woocommerce-invalid {
                         &.woocommerce-invalid {
                             .woocommerce-input-wrapper {
                                 position: relative;
@@ -51,6 +60,15 @@
                                 border-color: #A00;
                                 background: none;
                                 padding-left: 10px;
+
+                                &:-webkit-autofill,
+                                &:-webkit-autofill:hover,
+                                &:-webkit-autofill:focus {
+                                    background: #FFFFFF !important;
+                                    box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+                                    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+                                    -webkit-text-fill-color: #000000 !important;
+                                }
                             }
                         }
 
@@ -75,10 +93,14 @@
                             border-color: #7AD03A;
                             padding-left: 27px;
 
+
                             &:-webkit-autofill,
                             &:-webkit-autofill:hover,
                             &:-webkit-autofill:focus {
+                                background: #FFFFFF !important;
                                 box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+                                -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+                                -webkit-text-fill-color: #000000 !important;
                             }
                         }
 

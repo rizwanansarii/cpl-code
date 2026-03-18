@@ -78,7 +78,7 @@
 
             else {
 
-                if (!value || (value && row.classList.contains('woocommerce-invalid'))) {
+                if (!value) {
 
                     valid = false;
                 }
@@ -147,14 +147,14 @@
                 });
                 wrapper.addEventListener('change', function (e) {
                     const input = e.target.closest('input:not([type="hidden"])');
-                    const checkFields = wrapper.querySelectorAll('#billing_email, #billing_first_name, #billing_last_name');
-                    if (input.name == 'billing_email' || input.name == 'billing_first_name' || input.name == 'billing_last_name') {
-                        checkFields.forEach((e) => {
-                            if (e.value) {
-                                validateField(e);
-                            }
-                        })
-                    }
+                    const checkFields = wrapper.querySelectorAll('input:not([type="hidden"])');
+                    // if (input.name == 'billing_email' || input.name == 'billing_first_name' || input.name == 'billing_last_name') {
+                    checkFields.forEach((e) => {
+                        if (e.value) {
+                            validateField(e);
+                        }
+                    })
+                    // }
                 });
             })
         }
