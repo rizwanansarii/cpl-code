@@ -40,7 +40,6 @@
         document.body.classList.add(testInfo.className)
 
         function validateField(input) {
-
             const row = input.closest('.form-row');
             const errorEl = row.querySelector('.gmd-error-msg');
             const value = input.value.trim();
@@ -143,17 +142,40 @@
                 wrapper.addEventListener('focusout', function (e) {
                     const input = e.target.closest('input:not([type="hidden"]), select');
                     if (!input) return;
-                    validateField(input);
-                });
-                wrapper.addEventListener('change', function (e) {
-                    const input = e.target.closest('input:not([type="hidden"])');
-                    const checkFields = wrapper.querySelectorAll('input:not([type="hidden"])');
+                    const checkFields = wrapper.querySelectorAll('input.input-text');
                     // if (input.name == 'billing_email' || input.name == 'billing_first_name' || input.name == 'billing_last_name') {
                     checkFields.forEach((e) => {
                         if (e.value) {
                             validateField(e);
                         }
                     })
+                    validateField(input);
+                });
+                wrapper.addEventListener('change', function (e) {
+                    const checkFields = wrapper.querySelectorAll('input.input-text');
+                    // if (input.name == 'billing_email' || input.name == 'billing_first_name' || input.name == 'billing_last_name') {
+                    if (e.target.name == 'billing_postcode') {
+                        setTimeout(() => {
+                            checkFields.forEach((e) => {
+                                if (e.name == 'billing_street_name' || e.name == 'billing_city') {
+                                    const interval = setInterval(() => {
+                                        if (!e.classList.contains('wcnlpc_spinner')) {
+                                            clearInterval(interval)
+                                            if (e.value) {
+                                                validateField(e);
+                                            }
+                                        }
+                                    }, 200)
+                                }
+                            })
+                        }, 500)
+                    } else {
+                        checkFields.forEach((e) => {
+                            if (e.value) {
+                                validateField(e);
+                            }
+                        })
+                    }
                     // }
                 });
             })
@@ -161,7 +183,7 @@
         checkValidations();
 
         function validateFilledFieldsOnLoad() {
-            const inputFields = document.querySelectorAll('.woocommerce-billing-fields__field-wrapper input:not([type="hidden"]), .woocommerce-billing-fields__field-wrapper select');
+            const inputFields = document.querySelectorAll('.woocommerce-billing-fields__field-wrapper input.input-text, .woocommerce-billing-fields__field-wrapper select');
 
             inputFields.forEach((input) => {
                 const value = input.value.trim();
@@ -192,7 +214,7 @@
             if (!btn) return;
 
             const inputFields = document.querySelectorAll(
-                '.woocommerce-billing-fields__field-wrapper .validate-required input:not([type="hidden"]), .woocommerce-billing-fields__field-wrapper .validate-required     select'
+                '.woocommerce-billing-fields__field-wrapper .validate-required input.input-text, .woocommerce-billing-fields__field-wrapper .validate-required select'
             );
 
             let firstInvalid = null;
