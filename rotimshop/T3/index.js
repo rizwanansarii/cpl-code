@@ -187,52 +187,13 @@
             );
             observer.observe(buyNowButton);
 
-            function syncFloatingWidgets() {
-                const isActive = document.querySelector('.gmd-sticky-ats-wrapper')?.classList.contains('gmd-active');
-
-                const selectors = [
-                    '#ShopifyChat',
-                    '#smile-ui-lite-launcher-frame-container',
-                    '.smile-launcher-frame-container',
-                    '#CookiebotWidget',
-                    '.styles_StickyWidget__'
-                ];
-
-                selectors.forEach(selector => {
-                    const el = document.querySelector(selector);
-                    if (!el) return;
-                    el.classList.toggle('gmd-active-ats', !!isActive);
-                });
-            }
-            const bodyObserver = new MutationObserver(syncFloatingWidgets);
-
-            bodyObserver.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-            syncFloatingWidgets();
-
             const stepInput = document.querySelector('.product-details-inner .fakeQuantity');
             let stepValue = parseInt(stepInput.step, 10);
             document.querySelector('.gmd-qty-minus').addEventListener('click', (button) => {
                 document.querySelector('.product-details-inner a.down').click();
-                // const input = button.target.closest('.gmd-input-quantity-wrapper').querySelector('input');
-                // let value = parseInt(input.value, 10);
-                // const min = parseInt(input.min, 10) || 1;
-
-                // if (value > min) {
-                //     input.value = value - stepValue;
-                //     input.dispatchEvent(new Event("input", { bubbles: true }));
-                // }
             })
             document.querySelector('.gmd-qty-plus').addEventListener('click', (button) => {
                 document.querySelector('.product-details-inner a.up').click();
-                // const input = button.target.closest('.gmd-input-quantity-wrapper').querySelector('input');
-                // let value = parseInt(input.value, 10);
-                // // const max = parseInt(input.max, 10) || Infinity;
-
-                // input.value = value + stepValue;
-                // input.dispatchEvent(new Event("input", { bubbles: true }));
             })
 
         }
@@ -304,37 +265,21 @@
         function setBottom(el, offset, innerSelector = null) {
             if (!el) return;
 
-            // Case 1: element has shadow DOM
             if (el.shadowRoot) {
                 if (innerSelector) {
-                    // 👉 target INNER element (like .watermelon-widget-button)
                     const innerEl = el.shadowRoot.querySelector(innerSelector);
                     if (!innerEl) return;
 
                     innerEl.style.bottom = offset + 'px';
+                    if (innerSelector == '.watermelon-eyecatcher') {
+                        innerEl.style.bottom = 74 + offset + 'px';
+                    }
                     innerEl.style.position = 'fixed';
                     innerEl.style.transition = 'bottom 0.3s ease';
 
-                } else {
-                    // 👉 fallback to host styling
-                    let style = el.shadowRoot.querySelector('#custom-style');
-
-                    if (!style) {
-                        style = document.createElement('style');
-                        style.id = 'custom-style';
-                        el.shadowRoot.appendChild(style);
-                    }
-
-                    style.textContent = `
-                        :host {
-                            bottom: ${offset}px !important;
-                            position: fixed !important;
-                        }
-                    `;
                 }
             } else {
-                // Case 2: normal DOM
-                el.style.bottom = offset + 'px + 74px';
+                el.style.bottom = offset + 74 + 'px';
                 el.style.position = 'fixed';
             }
         }
@@ -345,7 +290,7 @@
 
             if (!widget || !widget.shadowRoot) return;
 
-            let offset = 20; // default spacing
+            let offset = 16; // default spacing
 
             if (stickyBar) {
                 const rect = stickyBar.getBoundingClientRect();
@@ -356,23 +301,9 @@
                 }
             }
 
-            setBottom(
-                document.querySelector('watermelon-widget-button'),
-                offset,
-                '.watermelon-widget-button'
-            );
-
-            // 2. wrapper
-            setBottom(
-                document.querySelector('#watermelon-widget-wrapper'),
-                offset
-            );
-
-            // 3. eyecatcher
-            setBottom(
-                document.querySelector('watermelon-eyecatcher-message'),
-                offset
-            );
+            setBottom(document.querySelector('watermelon-widget-button'), offset, '.watermelon-widget-button');
+            setBottom(document.querySelector('#watermelon-widget-wrapper'), offset);
+            setBottom(document.querySelector('watermelon-eyecatcher-message'), offset, '.watermelon-eyecatcher');
         }
 
         const interval = setInterval(() => {
@@ -380,12 +311,13 @@
 
             if (widget && widget.shadowRoot) {
                 clearInterval(interval);
-                handleScroll(); // ✅ call once after load
+                handleScroll();
             }
         }, 200);
-        handleScroll();
-        let ticking = false;
 
+        handleScroll();
+
+        let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
