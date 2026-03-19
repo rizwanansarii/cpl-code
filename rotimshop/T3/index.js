@@ -14,14 +14,10 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
-    function parseEuro(value) {
-        return parseFloat(
-            value.replace('€', '').replace('.', '').replace(',', '.')
-        );
-    }
-
-    function formatEuro(value) {
-        return '€' + value.toFixed(2).replace('.', ',');
+    // Function to format prices based on locale
+    function formatEuro(price) {
+        // Format the price using Intl.NumberFormat
+        return new Intl.NumberFormat('de-DE', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(price);
     }
 
     function updateStickyPrice(qty) {
@@ -50,7 +46,7 @@
             const unitPrice = taxIncl ? parseFloat(selectedRow.dataset.priceIncl.replace('€', '').replace(',', '.')) : parseFloat(selectedRow.dataset.priceExcl.replace('€', '').replace(',', '.'));
             const rowQty = parseInt(selectedRow.dataset.qty);
 
-            priceEl.textContent = formatEuro((unitPrice / rowQty) * qty);
+            priceEl.textContent = '€' + formatEuro((unitPrice / rowQty) * qty);
 
             return;
         }
@@ -178,7 +174,6 @@
                         } else {
                             sticky.classList.remove('gmd-active');
                         }
-                        syncFloatingWidgets();
                     });
                 },
                 {
@@ -203,43 +198,45 @@
             })
         })
 
-        const topInput = document.querySelector('.product-details-inner .realQuantity');
+        const topInput = document.querySelector('.product-details-inner .fakeQuantity');
+        const realInput = document.querySelector('.product-details-inner .realQuantity');
         const atsInput = document.querySelector('.gmd-input-quantity-wrapper input');
 
         if (topInput && atsInput) {
 
-            function sync(from, to, mode = "copy") {
-                let value = parseInt(from.value, 10) || 0;
-                const step = parseInt(atsContent.step, 10) || 1;
-
-                if (mode === "multiply") {
-                    value = value * step;
-                }
-
-                if (mode === "divide") {
-                    value = Math.floor(value / step);
-                }
-
-                if (parseInt(to.value, 10) !== value) {
-                    to.value = value;
+            function sync(from, to) {
+                if (to.value !== from.value) {
+                    to.value = from.value;
                     to.dispatchEvent(new Event("input", { bubbles: true }));
-                    to.dispatchEvent(new Event("change", { bubbles: true }));
+                    if (to.closest('.gmd-input-quantity-wrapper')) {
+                        to.dispatchEvent(new Event("change", { bubbles: true }));
+                    }
+                    if (from.closest('.gmd-input-quantity-wrapper')) {
+                    }
+                    realInput.value = Math.floor(to.value / atsContent.step);
                 }
             }
 
-            topInput.addEventListener("input", () => {
-                sync(topInput, atsInput, "multiply");
-            });
+            function onFocusOut() {
+                atsInput.addEventListener('focusout', (e) => {
+                    if (!(e.target.value % atsContent.step) == 0) {
+                        window.alert(`Vul een juist aantal in met een stap van ${atsContent.step}`)
+                        e.target.value = Math.floor(e.target.value / atsContent.step) * atsContent.step;
+                        topInput.value = Math.floor(e.target.value / atsContent.step) * atsContent.step;
+                    }
+                })
+            }
+            onFocusOut();
 
-            atsInput.addEventListener("input", () => {
-                sync(atsInput, topInput, "divide");
-            });
+            topInput.addEventListener("input", () => sync(topInput, atsInput));
+            atsInput.addEventListener("input", () => sync(atsInput, topInput));
+            const observeTarget = document.body;
 
             const observer = new MutationObserver(() => {
                 observer.disconnect();
 
-                sync(topInput, atsInput, "multiply");
-                sync(atsInput, topInput, "divide");
+                sync(topInput, atsInput);
+                sync(atsInput, topInput);
                 const qty = parseInt(topInput.value, 10) || 1;
                 updateStickyPrice(qty);
 
@@ -250,7 +247,6 @@
                 });
             });
 
-            const observeTarget = document.body;
 
             observer.observe(observeTarget, {
                 childList: true,
@@ -259,7 +255,7 @@
             });
             const qty = parseInt(topInput.value, 10) || 1;
             const step = parseInt(atsContent.step, 10) || 1;
-            updateStickyPrice(qty * step);
+            updateStickyPrice(qty);
         }
 
         function setBottom(el, offset, innerSelector = null) {
