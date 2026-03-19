@@ -1,9 +1,9 @@
 (() => {
     'use strict';
     const testInfo = {
-        className: 'gmd-02',
+        className: 'gmd-03',
         debug: 0,
-        testName: 'T2 | Sticky CTA op PDP',
+        testName: 'T3 | Sticky CTA onder aan elke PDP ',
         testVersion: 'v1'
     };
 
