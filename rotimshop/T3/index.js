@@ -77,7 +77,7 @@
             const totalQty = qty;
             const totalPrice = (unitPrice / step) * totalQty;
 
-            priceEl.textContent = formatEuro(totalPrice);
+            priceEl.textContent = '€' + formatEuro(totalPrice);
 
             return;
         }
@@ -90,7 +90,7 @@
 
             const unitPrice = parseFloat(basePriceEl.textContent.match(/[\d,]+/)[0].replace(',', '.'));
 
-            priceEl.textContent = formatEuro(unitPrice * qty);
+            priceEl.textContent = '€' + formatEuro(unitPrice * qty);
 
         }
 
