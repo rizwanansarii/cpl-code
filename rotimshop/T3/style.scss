@@ -10,6 +10,10 @@
         background: #FFF;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.20);
 
+        &.increase-bottom {
+            bottom: 72px;
+        }
+
         &.gmd-active {
             display: block;
         }

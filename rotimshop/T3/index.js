@@ -100,11 +100,11 @@
         document.querySelector('body').classList.add(testInfo.className);
 
         const atsContent = {
-            productName: document.querySelector('.product-details-inner .product-title')?.innerHTML,
-            productCode: document.querySelector('.product-details-inner .product-code .text-muted')?.innerText,
-            price: document.querySelector('.product-details-inner .new-price.price-new-excl')?.innerText,
-            quantity: parseInt(document.querySelector('.product-details-inner .realQuantity')?.value, 10),
-            step: parseInt(document.querySelector('.product-details-inner .fakeQuantity')?.step, 10),
+            productName: document.querySelector('.product-title')?.innerHTML,
+            productCode: document.querySelector('.product-code .text-muted')?.innerText,
+            price: document.querySelector('#product-cart-details .new-price.price-new-excl')?.innerText,
+            quantity: parseInt(document.querySelector('#product-cart-details .realQuantity')?.value, 10),
+            step: parseInt(document.querySelector('#product-cart-details .fakeQuantity')?.step, 10),
             // minQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input')?.min,
             // maxQuantity: document.querySelector('.shopify-section .\\#product-meta .qty-input')?.getAttribute('max'),
             // btnIcon: document.querySelector('.shopify-section .\\#product-meta .form img')?.src,
@@ -162,7 +162,7 @@
                 </div>`
             );
         }
-        const buyNowButton = document.querySelector('.product-details-inner .product-cart .btn-GA_add_to_cart');
+        const buyNowButton = document.querySelector('#product-cart-details .product-cart .btn-GA_add_to_cart');
         const atsButton = document.querySelector('.gmd-buy-now-btn');
         if (buyNowButton) {
             const observer = new IntersectionObserver(
@@ -182,13 +182,13 @@
             );
             observer.observe(buyNowButton);
 
-            const stepInput = document.querySelector('.product-details-inner .fakeQuantity');
+            const stepInput = document.querySelector('#product-cart-details .fakeQuantity');
             let stepValue = parseInt(stepInput.step, 10);
             document.querySelector('.gmd-qty-minus').addEventListener('click', (button) => {
-                document.querySelector('.product-details-inner a.down').click();
+                document.querySelector('#product-cart-details a.down').click();
             })
             document.querySelector('.gmd-qty-plus').addEventListener('click', (button) => {
-                document.querySelector('.product-details-inner a.up').click();
+                document.querySelector('#product-cart-details a.up').click();
             })
 
         }
@@ -198,8 +198,8 @@
             })
         })
 
-        const topInput = document.querySelector('.product-details-inner .fakeQuantity');
-        const realInput = document.querySelector('.product-details-inner .realQuantity');
+        const topInput = document.querySelector('#product-cart-details .fakeQuantity');
+        const realInput = document.querySelector('#product-cart-details .realQuantity');
         const atsInput = document.querySelector('.gmd-input-quantity-wrapper input');
 
         if (topInput && atsInput) {
@@ -244,6 +244,7 @@
                     childList: true,
                     subtree: true,
                     attributes: true,
+                    attributeFilter: ['value'] // 🔥 key optimization
                 });
             });
 
@@ -252,6 +253,7 @@
                 childList: true,
                 subtree: true,
                 attributes: true,
+                attributeFilter: ['value'] // 🔥 key optimization
             });
             const qty = parseInt(topInput.value, 10) || 1;
             const step = parseInt(atsContent.step, 10) || 1;
@@ -268,13 +270,26 @@
 
                     innerEl.style.bottom = offset + 'px';
                     if (innerSelector == '.watermelon-eyecatcher') {
-                        innerEl.style.bottom = 74 + offset + 'px';
+                        if (!document.querySelector('.mobileNavIcons.sticky')) {
+                            innerEl.style.bottom = 74 + offset + 'px';
+                        } else {
+                            innerEl.style.bottom = 148 + offset + 'px';
+                        }
+                    } else {
+                        if (!document.querySelector('.mobileNavIcons.sticky')) {
+                            innerEl.style.bottom = offset + 'px';
+                        } else {
+                            innerEl.style.bottom = 74 + offset + 'px';
+                        }
                     }
                     innerEl.style.position = 'fixed';
                     innerEl.style.transition = 'bottom 0.3s ease';
-
                 }
+
             } else {
+                if (document.querySelector('.mobileNavIcons.sticky')) {
+                    el.style.bottom = offset + 74 + 74 + 'px';
+                }
                 el.style.bottom = offset + 74 + 'px';
                 el.style.position = 'fixed';
             }
@@ -295,6 +310,12 @@
                 if (isVisible) {
                     offset += rect.height;
                 }
+            }
+
+            if (document.querySelector('.mobileNavIcons.sticky')) {
+                document.querySelector('.gmd-sticky-ats-wrapper').classList.add('increase-bottom')
+            } else {
+                document.querySelector('.gmd-sticky-ats-wrapper').classList.remove('increase-bottom')
             }
 
             setBottom(document.querySelector('watermelon-widget-button'), offset, '.watermelon-widget-button');
