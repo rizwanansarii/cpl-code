@@ -160,7 +160,15 @@
                         if (reviewEl) {
                             prod.querySelector('.gmd-review-wrapper').innerHTML = reviewEl.outerHTML;
                         } else {
-                            prod.querySelector('.gmd-review-wrapper').innerHTML = 'No reviews';
+                            prod.querySelector('.gmd-review-wrapper').innerHTML = `
+                            <div class="stars-container">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star star-half"></div>
+                            </div>
+                            `;
                         }
 
                     } catch (err) {
@@ -197,8 +205,6 @@
                 </svg>
             </div>
         `)
-        setTimeout(() => {
-        }, 1000);
         try {
             await addToCart(productId, productUrl);
 
@@ -219,8 +225,6 @@
     waitForElement(".kuResults", ([]) => {
         document.querySelector('body').classList.add(testInfo.className);
         init();
-
-        let debounce;
 
         const observer = new MutationObserver(() => {
             setTimeout(() => {
