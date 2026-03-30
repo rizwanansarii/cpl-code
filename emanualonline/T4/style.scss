@@ -1,0 +1,265 @@
+.gmd-04 {
+
+    #product_just_stars_mg,
+    .downloads-no-separately {
+        display: none;
+    }
+
+    div[aria-live="polite"] {
+        margin-bottom: 0;
+    }
+
+    .prodDownloadedMessage {
+        margin: 0;
+        margin-top: 7px;
+        margin-bottom: 9px;
+        width: 100%;
+        max-width: 220px;
+        color: #000;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+
+        .view-count {
+            font-weight: 700;
+        }
+    }
+
+    .page-title {
+        color: #000;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 130%;
+    }
+
+    #rating-container {
+        span {
+            color: #828282;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .star:before {
+            width: 24px;
+        }
+    }
+
+    .product-info-block {
+        gap: 0;
+    }
+
+    #ab-tiny-widget-custom {
+        span {
+            color: #000;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    #answerbase {
+        margin-bottom: 24px;
+    }
+
+    .lifetime-access-info {
+        margin-bottom: 16px;
+
+        .text-blue {
+            color: #000;
+            font-size: 14px;
+            line-height: 16px;
+            margin-bottom: 15px;
+        }
+
+        .uppercase {
+            color: #000;
+            font-size: 14px;
+            line-height: 19.5px;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        svg {
+            display: none;
+        }
+
+        .flex {
+            span {
+                color: #000;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 28px;
+                padding-left: 31px;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10.5" fill="white" stroke="%231EC28E"/><path d="M9.6097 15.2271L5.67719 11.3919C5.44094 11.1615 5.44094 10.7879 5.67719 10.5574L6.53277 9.72299C6.76903 9.49255 7.15212 9.49255 7.38838 9.72299L10.0375 12.3066L15.7116 6.77279C15.9479 6.54237 16.331 6.54237 16.5672 6.77279L17.4228 7.60723C17.6591 7.83765 17.6591 8.21124 17.4228 8.44168L10.4653 15.2272C10.229 15.4576 9.84595 15.4576 9.6097 15.2271Z" fill="%231EC28E"/></svg>');
+                    height: 22px;
+                    width: 22px;
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 2px;
+                }
+            }
+        }
+    }
+
+    .columns {
+        .product-info-main {
+            .price-container {
+                .price-wrapper {
+                    .price {
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+
+    .product-add-form {
+        >div {
+            width: 100%;
+            max-width: 360px;
+            gap: 0;
+        }
+
+        .buybuttonnew {
+            margin-top: 15px;
+            margin-bottom: 7px;
+
+            button {
+                background: #4C74CD;
+            }
+
+            .font-semibold {
+                font-weight: 700;
+                margin-left: 0;
+            }
+
+            picture {
+                display: none;
+            }
+        }
+
+        #product-addtocart-button {
+            .loader {
+                path {
+                    fill: #000;
+                }
+            }
+
+            border: 1px solid #000;
+            background: #FFF;
+            color: #000;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.10),
+            0 2px 4px -2px rgba(0, 0, 0, 0.10);
+        }
+    }
+
+    .payments-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        margin-bottom: 17px;
+    }
+
+    .tg_1-bleft {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #click-preview {
+        background: none;
+        padding: 0;
+        color: #828282;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        text-decoration-line: underline;
+        box-shadow: none;
+        width: fit-content;
+        margin: 0 auto;
+        min-width: 0;
+        gap: 8px;
+    }
+
+    @media (max-width: 767px) {
+        .page-title {
+            font-size: 21px;
+        }
+
+        .prodDownloadedMessage {
+            margin-bottom: 8px;
+        }
+
+        &.catalog-product-view {
+            #rating-container {
+                margin-bottom: -1px;
+
+                a {
+                    flex-wrap: wrap;
+                }
+
+                span {
+                    font-size: 12px;
+                }
+
+                .star:before {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .product-info-block {
+            >.lifetime-access-info {
+                display: block;
+            }
+        }
+
+        .lifetime-access-info {
+            margin-bottom: 20px;
+
+            .text-blue {
+                margin-bottom: 11px;
+            }
+
+            .uppercase {
+                font-size: 13px;
+                margin-bottom: 3px;
+            }
+
+            .flex {
+                span {
+                    font-size: 12px;
+                    line-height: 16px;
+                    padding-left: 20px;
+
+                    &::before {
+                        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none"><path d="M7.3335 8.33301L9.3335 10.333L12.6668 6.33301" stroke="%231EC28E" stroke-width="1.88235" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.0002 14.6663C13.6821 14.6663 16.6668 11.6816 16.6668 7.99968C16.6668 4.31778 13.6821 1.33301 10.0002 1.33301C6.31826 1.33301 3.3335 4.31778 3.3335 7.99968C3.3335 11.6816 6.31826 14.6663 10.0002 14.6663Z" stroke="%231EC28E" stroke-width="1.88235"/></svg>');
+                        width: 20px;
+                        height: 16px;
+                        left: -8px;
+                        top: -2px;
+                    }
+                }
+            }
+        }
+
+        .product-add-form {
+            .lifetime-access-info {
+                display: none;
+            }
+
+            .buybuttonnew {
+                margin-top: 18px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
