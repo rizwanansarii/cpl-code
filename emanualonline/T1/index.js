@@ -115,6 +115,58 @@
             });
     }
 
+    const reviewCache = new Map();
+    const MAX_CONCURRENT = 4;
+    let activeRequests = 0;
+    const queue = [];
+
+    function processQueue() {
+        if (activeRequests >= MAX_CONCURRENT || !queue.length) return;
+
+        const task = queue.shift();
+        activeRequests++;
+
+        task().finally(() => {
+            activeRequests--;
+            processQueue();
+        });
+    }
+
+    function addToQueue(task) {
+        queue.push(task);
+        processQueue();
+    }
+
+    function loadReview(link, prod) {
+
+        // ✅ cache check
+        if (reviewCache.has(link)) {
+            prod.querySelector('.gmd-review-wrapper').innerHTML = reviewCache.get(link);
+            return;
+        }
+
+        addToQueue(async () => {
+            try {
+                const res = await fetch(link, { credentials: 'include' });
+                if (!res.ok) throw new Error(res.status);
+
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+
+                const reviewEl = doc.querySelector('#rating-container .stars-container')
+
+                const output = reviewEl ? reviewEl.outerHTML : 'No reviews';
+
+                reviewCache.set(link, output);
+                prod.querySelector('.gmd-review-wrapper').innerHTML = output;
+
+            } catch (err) {
+                console.warn('Failed:', link);
+                prod.querySelector('.gmd-review-wrapper').innerHTML = '';
+            }
+        });
+    }
+
     async function init() {
         const prodList = document.querySelectorAll('.kuResults ul li')
         if (prodList.length) {
@@ -123,8 +175,9 @@
                     const link = prod.querySelector('.klevuProductClick')?.href;
                     if (!prod.querySelector('.gmd-review-wrapper')) {
                         prod.querySelector('.kuName').insertAdjacentHTML('afterend', `
-                                <div class="gmd-review-wrapper"></div>
-                                `)
+                            <div class="gmd-review-wrapper"><div class="kuResourceLoader"></div></div>
+                            `
+                        )
                     }
                     if (!prod.querySelector('.gmd-btn-wrapper')) {
                         prod.querySelector('.kuPrice').insertAdjacentHTML('afterend', `
@@ -147,33 +200,34 @@
                                 </div>
                                 `)
                     }
-                    try {
-                        // if (link)
-                        const res = await fetch(link);
-                        const html = await res.text();
+                    loadReview(link, prod);
+                    // try {
+                    //     // if (link)
+                    //     const res = await fetch(link);
+                    //     const html = await res.text();
 
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
+                    //     const parser = new DOMParser();
+                    //     const doc = parser.parseFromString(html, 'text/html');
 
-                        const reviewEl = doc.querySelector('#rating-container');
+                    //     const reviewEl = doc.querySelector('#rating-container .stars-container');
 
-                        if (reviewEl) {
-                            prod.querySelector('.gmd-review-wrapper').innerHTML = reviewEl.outerHTML;
-                        } else {
-                            prod.querySelector('.gmd-review-wrapper').innerHTML = `
-                            <div class="stars-container">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star star-half"></div>
-                            </div>
-                            `;
-                        }
+                    //     if (reviewEl) {
+                    //         prod.querySelector('.gmd-review-wrapper').innerHTML = reviewEl.outerHTML;
+                    //     } else {
+                    //         prod.querySelector('.gmd-review-wrapper').innerHTML = `
+                    //         <div class="stars-container">
+                    //             <div class="star"></div>
+                    //             <div class="star"></div>
+                    //             <div class="star"></div>
+                    //             <div class="star"></div>
+                    //             <div class="star star-half"></div>
+                    //         </div>
+                    //         `;
+                    //     }
 
-                    } catch (err) {
-                        console.error('Error fetching:', link, err);
-                    }
+                    // } catch (err) {
+                    //     console.error('Error fetching:', link, err);
+                    // }
                 }
             }
         }

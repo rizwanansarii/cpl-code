@@ -116,6 +116,27 @@
                         }
                     }
 
+                    .gmd-review-wrapper {
+                        .kuResourceLoader {
+                            width: 1em;
+                            height: 1em;
+                            top: -32px;
+                            margin: 15px auto;
+
+                            &::before {
+                                left: -1.5em;
+                                width: 1em;
+                                height: 1em;
+                            }
+
+                            &::after {
+                                left: 1.5em;
+                                width: 1em;
+                                height: 1em;
+                            }
+                        }
+                    }
+
                     .stars-container {
                         display: flex;
                         gap: 2px;
