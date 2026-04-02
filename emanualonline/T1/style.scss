@@ -1,14 +1,76 @@
 .gmd-01 {
+    &.gmd-faceted-search {
+        .kuSearchResultsPageContainer .kuResults ul {
+            padding: 0 !important;
+        }
+    }
+
+    &.search-index-index {
+        .kuSearchResultsPageContainer .kuResults ul {
+            padding: 0 5px 0 3px !important;
+            gap: 11px 16px;
+
+            @media (max-width: 767px) {
+                gap: 7px 14px;
+                padding: 0 !important;
+            }
+
+            li {
+                max-width: calc(33.33% - 11px);
+
+                @media (max-width:1023px) {
+                    max-width: calc(50% - 8px);
+                }
+
+                @media (max-width:991px) {
+                    max-width: calc(50% - 13px);
+                }
+
+                @media (max-width:767px) {
+                    max-width: calc(50% - 7px);
+                }
+            }
+        }
+    }
+
+    &.catalog-category-view .tooltiptext.icontext,
+    &.search-index-index .tooltiptext.icontext {
+        z-index: 1;
+    }
+
+
     .kuSearchResultsPageContainer {
         .kuResults {
+            @media (max-width: 767px) {
+                margin-top: 24px;
+            }
+
             ul {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                // justify-content: space-between;
                 padding: 0 5px 0 3px !important;
+                gap: 11px 36px;
+
+                @media (max-width:1199px) {
+                    gap: 5px 25px;
+                }
 
                 li {
-                    max-width: 30.838%;
+                    // max-width: 30.838%;
+                    max-width: calc(33.33% - 24px);
+
+                    @media (max-width:1199px) {
+                        max-width: calc(33.33% - 17px);
+                    }
+
+                    @media (max-width:1023px) {
+                        max-width: calc(50% - 17px);
+                    }
+
+                    @media (max-width:991px) {
+                        max-width: calc(50% - 13px);
+                    }
 
                     .kuName {
                         margin-bottom: 2px;
@@ -108,7 +170,7 @@
 
                         .kuProdBottom {
                             padding: 24px;
-                            padding-top: 88px;
+                            // padding-top: 88px;
                             padding-bottom: 13px;
                             height: 100% !important;
                             display: flex;
@@ -170,8 +232,11 @@
 
     .kuResultContent {
         .iconblock {
-            top: 24px;
-            left: 24px;
+            // top: 24px;
+            // left: 24px;
+            position: relative;
+            width: fit-content;
+            margin-bottom: 17px;
             right: auto;
             bottom: auto;
 
@@ -179,31 +244,39 @@
                 width: 44px;
                 height: 48px;
                 background-size: cover;
+                display: inline-block;
             }
         }
     }
 
-    @media (max-width: 1024px) {
-        .kuSearchResultsPageContainer {
-            .kuResults {
-                ul {
-                    li {
-                        max-width: 48.338%;
-                    }
-                }
-            }
-        }
-    }
+    // @media (max-width: 1023px) {
+    //     .kuSearchResultsPageContainer {
+    //         .kuResults {
+    //             ul {
+    //                 li {
+    //                     max-width: 48.338%;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     @media (max-width: 767px) {
         .kuSearchResultsPageContainer {
             .kuResults {
                 ul {
                     padding: 0 !important;
+                    gap: 0 14px;
 
                     li {
-                        max-width: 47.765%;
+                        max-width: calc(50% - 7px);
                         text-align: center;
+
+                        &:nth-child(odd) {
+                            .tooltiptext.icontext {
+                                left: 40px;
+                            }
+                        }
 
                         .kuName {
 
@@ -218,13 +291,13 @@
                             border-radius: 4px;
 
                             footer {
-                                margin-top: 15px;
+                                margin-top: 0;
                                 height: auto;
                             }
 
                             .kuProdBottom {
                                 padding: 12px;
-                                padding-top: 44px;
+                                // padding-top: 44px;
                             }
                         }
 
@@ -239,6 +312,7 @@
                         .gmd-usp-wrapper {
                             gap: 4px;
                             margin-top: 7px;
+                            justify-content: center;
 
                             .desktop {
                                 display: none;
@@ -291,9 +365,8 @@
 
         .kuResultContent {
             .iconblock {
-                top: -3px;
-                left: 50%;
-                transform: translateX(-50%);
+                margin: 0 auto;
+                margin-bottom: 10px;
 
                 .file_info {
                     width: 33px;

@@ -172,6 +172,8 @@
         if (prodList.length) {
             for (const prod of prodList) {
                 if (!prod.querySelector('.gmd-btn-wrapper') || !prod.querySelector('.gmd-review-wrapper')) {
+                    const iconBlock = prod.querySelector('.iconblock');
+                    prod.querySelector('.kuProdBottom').insertAdjacentElement('afterbegin', iconBlock);
                     const link = prod.querySelector('.klevuProductClick')?.href;
                     if (!prod.querySelector('.gmd-review-wrapper')) {
                         prod.querySelector('.kuName').insertAdjacentHTML('afterend', `
