@@ -231,20 +231,22 @@
     }
 
     .kuResultContent {
-        .iconblock {
-            // top: 24px;
-            // left: 24px;
-            position: relative;
-            width: fit-content;
-            margin-bottom: 17px;
-            right: auto;
-            bottom: auto;
+        .kuProdBottom {
+            >.iconblock {
+                // top: 24px;
+                // left: 24px;
+                position: relative;
+                width: fit-content;
+                margin-bottom: 17px;
+                right: auto;
+                bottom: auto;
 
-            .file_info {
-                width: 44px;
-                height: 48px;
-                background-size: cover;
-                display: inline-block;
+                .file_info {
+                    width: 44px;
+                    height: 48px;
+                    background-size: cover;
+                    display: inline-block;
+                }
             }
         }
     }
@@ -364,13 +366,15 @@
         }
 
         .kuResultContent {
-            .iconblock {
-                margin: 0 auto;
-                margin-bottom: 10px;
+            .kuProdBottom {
+                >.iconblock {
+                    margin: 0 auto;
+                    margin-bottom: 10px;
 
-                .file_info {
-                    width: 33px;
-                    height: 36px;
+                    .file_info {
+                        width: 33px;
+                        height: 36px;
+                    }
                 }
             }
         }
