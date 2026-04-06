@@ -1,0 +1,290 @@
+.gmd-07 {
+
+    .hero-new__form,
+    .planning-modal__overlay {
+        display: none;
+    }
+
+    .planning-modal {
+        position: unset;
+    }
+
+    &:has(.planning-modal) {
+        overflow: unset !important;
+    }
+
+    .hero-new__cta-wrapper {
+
+        .usp-list {
+            margin-bottom: 25px;
+        }
+
+        .planning-modal {
+            padding: 0;
+            margin: 0 -5px;
+        }
+
+        .planning-modal__content {
+            box-shadow: none;
+            border-radius: 0;
+            background: none;
+        }
+
+        .planning-modal__close,
+        .planning__search,
+        form .planning__section:has(.days, .planning__betaling-info) .planning__subtitle,
+        .planning__betaling-info,
+        .planning__label,
+        .planning__betaling-info,
+        .planning__spoed,
+        .planning__usps,
+        .planning__payment-logos,
+        .planning__betaling-korting,
+        .dummy .planning__postcode,
+        form>.planning__postcode,
+        form:has(.dummy.d-block)>.planning__section,
+        .thankyou__svg-wrapper,
+        .days {
+            display: none;
+        }
+
+        .planning-modal__inner {
+            padding: 0;
+        }
+
+        .planning__section {
+            border: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .planning {
+            >.planning__subtitle {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
+
+        .planning__subtitle {
+            color: #FFF;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 20px;
+            letter-spacing: -0.4px;
+        }
+
+        .planning__section:has(.timeslots) .planning__subtitle {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 5px;
+        }
+
+        .datepicker {
+            margin-top: 0;
+        }
+
+        .datepicker__title {
+            text-align: right;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: -0.2px;
+        }
+
+        .button--outline {
+            border-radius: 8px;
+            border: 0.667px solid rgba(255, 255, 255, 0.25);
+            padding: 4.5px;
+
+            svg {
+                fill: #fff;
+                height: auto;
+                width: auto;
+                flex: auto;
+            }
+        }
+
+        .datepicker__weekdays {
+            color: #FFF;
+            font-size: 16px;
+            line-height: 14px;
+            gap: 4px;
+            margin-bottom: 5px;
+        }
+
+        .datepicker__grid {
+            gap: 5px;
+        }
+
+        .datepicker__day {
+            &.available.selected {
+                border: 1px solid #0CC883;
+                background: #FFF;
+                color: #15A872;
+            }
+
+            &.almost-full.selected {
+                background: #FFF;
+                color: #c5a83e;
+                border-color: #f3cd45;
+            }
+
+            padding: 3px 0;
+        }
+
+        .timeslots {
+            gap: 4px;
+        }
+
+        .timeslots__item {
+            color: #FFF;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 7px 5.5px;
+            flex: unset;
+
+            &.timeslots__item--disabled {
+                border: 1px solid rgba(255, 255, 255, 0.10);
+                opacity: 0.5;
+                background: #833631;
+            }
+
+            &.timeslots__item--active {
+                border: 1px solid #ea5b1340;
+                color: #833631;
+                background: #FFF;
+            }
+        }
+
+        .form-flex:has([name="voornaam"]) {
+            gap: 6px 0;
+        }
+
+        .planning__betaling {
+            border-radius: 16px;
+            border: 1px solid #FFF;
+            margin-top: 14px;
+            padding: 4px;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+
+        .planning__betaling-optie {
+            padding: 8px 5px;
+            justify-content: center;
+
+            &.planning__betaling-optie--active {
+                border-radius: 13px;
+                border: 1.5px solid #EA5B13;
+                background: #EA5B13;
+            }
+        }
+
+        .planning__betaling-label {
+            color: #FFF;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .planning__betaling-prijs {
+            color: #FFF;
+            text-align: center;
+            font-weight: 400;
+            margin-left: 2px;
+        }
+
+        .planning__submit {
+            margin-top: 16px;
+        }
+
+        .planning__confirm {
+            color: #FFF;
+
+            span {
+                color: #FFF;
+            }
+        }
+
+        .dummy {
+            display: none;
+
+            &.d-block {
+                display: block;
+            }
+        }
+
+        .thankyou__subtitle,
+        .thankyou__step-title,
+        .thankyou__step-text {
+            color: #fff;
+        }
+
+        @media (max-width: 767px) {
+            .usp-list {
+                margin-bottom: 49px;
+            }
+
+            .planning {
+                >.planning__subtitle {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+
+            .planning__subtitle {
+                font-size: 16px;
+                line-height: 16px;
+                letter-spacing: -0.32px;
+            }
+
+            .form-flex {
+                >div:has([name="postcode"]) {
+                    width: 100%;
+                }
+
+                >div:has([name="huisnummer"]),
+                >div:has([name="toevoeging"]),
+                >div:has([name="voornaam"]),
+                >div:has([name="achternaam"]) {
+                    width: 50%;
+                }
+
+                >div:has([name="postcode"]) {
+                    width: 100%;
+                }
+            }
+
+            .planning__section {
+                margin-top: 16px;
+            }
+
+            .datepicker__grid {
+                gap: 5px 6px;
+            }
+
+            .timeslots {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 6px;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            .timeslots__item {
+                padding: 7px 9.5px;
+            }
+
+            .planning__betaling-label {
+                font-size: 13px;
+            }
+        }
+
+    }
+}
