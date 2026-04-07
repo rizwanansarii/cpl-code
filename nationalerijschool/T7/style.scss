@@ -22,6 +22,13 @@
         .planning-modal {
             padding: 0;
             margin: 0 -5px;
+
+            form {
+                .gmd-info {
+                    color: #fff !important;
+                    margin-top: 10px;
+                }
+            }
         }
 
         .planning-modal__content {
@@ -220,7 +227,9 @@
 
         .thankyou__subtitle,
         .thankyou__step-title,
-        .thankyou__step-text {
+        .thankyou__step-text,
+        .thankyou__step-confirm,
+        .thankyou__step-confirm span {
             color: #fff;
         }
 
