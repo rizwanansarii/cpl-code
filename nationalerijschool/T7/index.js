@@ -487,7 +487,7 @@
                     const target = document.querySelector('.hero-new__cta');
                     if (target && externalForm) {
                         target.insertAdjacentElement('beforeend', externalForm);
-                        console.log('element moved')
+                        console.log(target, 'element moved')
                     }
 
                     console.log(';;;;')
