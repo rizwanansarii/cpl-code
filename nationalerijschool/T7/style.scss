@@ -7,6 +7,7 @@
 
     .planning-modal {
         position: unset;
+        overflow-y: unset;
     }
 
     &:has(.planning-modal) {
@@ -196,6 +197,18 @@
             color: #FFF;
             text-align: center;
             font-weight: 600;
+
+            @media (max-width: 1023px) {
+                font-size: 15px;
+            }
+
+            @media (max-width: 879px) {
+                font-size: 13px;
+            }
+
+            @media (max-width: 374px) {
+                font-size: 12px;
+            }
         }
 
         .planning__betaling-prijs {
@@ -288,10 +301,6 @@
 
             .timeslots__item {
                 padding: 7px 9.5px;
-            }
-
-            .planning__betaling-label {
-                font-size: 13px;
             }
         }
 
