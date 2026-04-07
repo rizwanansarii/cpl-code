@@ -75,8 +75,101 @@
                         }
                     }, 100);
                 });
+                // wrapper.querySelector('.planning__search').addEventListener('click', () => {
+                //     const btn = document.querySelector('form > .planning__postcode .planning__search');
+                //     if (btn) btn.dispatchEvent(new Event('click', { bubbles: true }));
+                // })
             });
+
+            waitForElement('#sidebar-cta', () => {
+                document.querySelector('#sidebar-cta .form__button').addEventListener('click', function (e) {
+                    const form = document.querySelector('#sidebar-cta')
+
+                    const postcode = form.querySelector('input[name="postcode"]');
+                    const number = form.querySelector('input[name="huisnummer"]');
+                    const toevoeging = form.querySelector('input[name="toevoeging"]');
+
+                    if (!postcode || !number) return;
+
+                    // ✅ validation
+                    const isPostcodeValid = postcode.checkValidity();
+                    const isNumberValid = number.checkValidity();
+
+                    if (!isPostcodeValid || !isNumberValid) {
+                        return;
+                    }
+
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+
+                    // ✅ get values
+                    const values = {
+                        postcode: postcode.value.trim(),
+                        huisnummer: number.value.trim(),
+                        toevoeging: toevoeging?.value.trim() || ''
+                    };
+
+                    fillCustomFields(values);
+                }, true);
+            })
         })
+    }
+
+    function fillValues(values) {
+        const editBtn = document.querySelector('.planning__edit');
+        if (editBtn) {
+            editBtn.click();
+        }
+        isValidationBound = false;
+        isFormLoaded = false;
+
+        const modal = document.querySelector('form > .planning__postcode');
+        const wrapper = document.querySelector('.gmd-new-fields-wrapper');
+        const btn = document.querySelector('form > .planning__postcode .planning__search');
+
+        if (!modal || !wrapper) return;
+
+        const fields = ['postcode', 'huisnummer', 'toevoeging'];
+
+        fields.forEach(name => {
+            // if (!source || !target) return;
+
+            waitForElement('form > .planning__postcode input', () => {
+                wrapper.querySelector(`input[name="${name}"]`).value = values[name];
+                wrapper.querySelector(`input[name="${name}"]`).dispatchEvent(new Event('input', { bubbles: true }));
+                modal.querySelector(`input[name="${name}"]`).value = values[name];
+                modal.querySelector(`input[name="${name}"]`).dispatchEvent(new Event('input', { bubbles: true }));
+                if (btn) {
+                    modal.querySelector(`input[name="${name}"]`).dispatchEvent(new Event('blur', { bubbles: true }));
+                    wrapper.querySelector(`input[name="${name}"]`).dispatchEvent(new Event('blur', { bubbles: true }));
+                }
+            })
+            // wrapper.querySelector('.planning__search').addEventListener('click', () => {
+            //     const btn = document.querySelector('form > .planning__postcode .planning__search');
+            //     if (btn) btn.dispatchEvent(new Event('click', { bubbles: true }));
+            // })
+        });
+
+        setTimeout(() => {
+            wrapper.querySelector(`input[name="postcode"]`).focus();
+            wrapper.querySelector(`input[name="postcode"]`).blur();
+        }, 200)
+    }
+
+    function fillCustomFields(values) {
+
+        if (document.querySelector('.thankyou__buttons')) {
+            document.querySelector('.thankyou__buttons button').click();
+            waitForElement('.planning-modal .planning-modal__inner form', () => {
+                setTimeout(() => {
+                    fillValues(values);
+                    bindFieldValidation();
+                }, 200)
+            })
+        } else {
+            fillValues(values);
+        }
     }
 
     function syncError(from, to) {
@@ -147,6 +240,7 @@
             waitForElement('form > .planning__section .planning__submit', () => {
                 document.querySelector('form > .planning__section .planning__submit').addEventListener('click', () => {
                     waitForElement('.thankyou__buttons', () => {
+                        document.querySelector('.thankyou__buttons button span').innerHTML = 'Begin opnieuw'
                         document.querySelector('.thankyou__buttons button').addEventListener('click', () => {
                             loadTest();
                         })
@@ -179,6 +273,10 @@
                 if (!document.querySelector('.gmd-new-fields-wrapper')) {
                     fieldWrapper.insertAdjacentHTML('afterend', `<div class="gmd-new-fields-wrapper"></div>`)
                     document.querySelector('.gmd-new-fields-wrapper').insertAdjacentElement('afterbegin', cloneField);
+                    document.querySelector('.gmd-new-fields-wrapper .planning__search').innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20.465 20.469" class="fill-current text-blue-picton" width="18" height="18" aria-hidden="true">
+                        <path d="M20.187,17.7,16.2,13.711a.959.959,0,0,0-.68-.28h-.652a8.311,8.311,0,1,0-1.439,1.439v.652a.959.959,0,0,0,.28.68L17.7,20.187a.955.955,0,0,0,1.355,0l1.131-1.131a.964.964,0,0,0,0-1.359ZM8.315,13.431a5.117,5.117,0,1,1,5.117-5.117A5.114,5.114,0,0,1,8.315,13.431Z"></path>
+                    </svg>`
                     document.querySelector('.planning > form').insertAdjacentHTML('beforeend', `<div class="dummy d-block">
                         <form novalidate="">
                             <div class="planning__postcode">
@@ -351,11 +449,11 @@
                                 <p class="planning__betaling-info" style="margin-bottom: 0.75rem;"> Je proefles kost €50,- Ga je
                                     na je proefles verder met rijlessen? Dan krijg je dit bedrag volledig terug als korting op jouw lespakket.
                                     Je proefles is dus eigenlijk gratis! </p>
-                                <div class="planning__betaling"><button type="button" class="planning__betaling-optie"><strong
+                                <div class="planning__betaling"><button type="button" class="planning__betaling-optie" disabled><strong
                                             class="planning__betaling-label">Online betalen <span
                                                 class="planning__betaling-prijs">€45,-</span></strong><span
                                             class="tag tag--small planning__betaling-korting">€5 korting!</span></button><button type="button"
-                                        class="planning__betaling-optie planning__betaling-optie--active"><strong class="planning__betaling-label">Betaal in de auto <span
+                                        class="planning__betaling-optie planning__betaling-optie--active"  disabled><strong class="planning__betaling-label">Betaal in de auto <span
                                                 class="planning__betaling-prijs">€50,-</span></strong></button></div><!---->
                                 <ul class="planning__usps">
                                     <li>Start nu, betaal achteraf</li>
@@ -368,6 +466,11 @@
                             </div>
                         </form>
                         </div>`);
+
+                    document.querySelector('.dummy').addEventListener('click', () => {
+                        document.querySelector('.gmd-new-fields-wrapper input[name="postcode"]').dispatchEvent(new Event('blur', { bubbles: true }));
+                        document.querySelector('.gmd-new-fields-wrapper input[name="huisnummer"]').dispatchEvent(new Event('blur', { bubbles: true }));
+                    })
 
                 }
 

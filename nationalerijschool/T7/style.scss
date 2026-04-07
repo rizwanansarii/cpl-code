@@ -1,8 +1,13 @@
 .gmd-07 {
 
     .hero-new__form,
-    .planning-modal__overlay {
+    .planning-modal__overlay,
+    .hero-new__buttons {
         display: none;
+    }
+
+    .hero-new__row {
+        align-items: flex-start;
     }
 
     .planning-modal {
@@ -39,6 +44,7 @@
         }
 
         .planning-modal__close,
+        // form>.planning__postcode .planning__search,
         .planning__search,
         form .planning__section:has(.days, .planning__betaling-info) .planning__subtitle,
         .planning__betaling-info,
@@ -54,6 +60,22 @@
         .thankyou__svg-wrapper,
         .days {
             display: none;
+        }
+
+        .gmd-new-fields-wrapper {
+            .planning__search {
+                padding: 0.75rem;
+            }
+        }
+
+        .dummy .datepicker,
+        .dummy .planning__section {
+            opacity: 0.5;
+        }
+
+        .dummy input,
+        .dummy button {
+            pointer-events: none;
         }
 
         .planning-modal__inner {
