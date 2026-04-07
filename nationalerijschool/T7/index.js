@@ -158,6 +158,8 @@
 
     function loadTest() {
         waitForElement(".hero-new__cta-wrapper .form__button", ([]) => {
+            isValidationBound = false;
+            isFormLoaded = false;
             document.querySelector('body').classList.add(testInfo.className);
 
             setTimeout(() => {
