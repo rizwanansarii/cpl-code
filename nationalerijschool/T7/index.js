@@ -154,6 +154,10 @@
         setTimeout(() => {
             wrapper.querySelector(`input[name="postcode"]`).focus();
             wrapper.querySelector(`input[name="postcode"]`).blur();
+            document.querySelector('.hero-new__cta').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }, 200)
     }
 
