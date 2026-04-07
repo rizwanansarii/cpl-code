@@ -487,11 +487,14 @@
                     const target = document.querySelector('.hero-new__cta');
                     if (target && externalForm) {
                         target.insertAdjacentElement('beforeend', externalForm);
+                        console.log('element moved')
                     }
 
+                    console.log(';;;;')
                     const form = document.querySelector('.planning form > .planning__postcode');
                     if (form) {
                         const observer = new MutationObserver(() => {
+                            console.log('mutation')
                             checklocation();
                         })
                         observer.observe(form, {
