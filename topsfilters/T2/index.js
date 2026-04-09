@@ -14,7 +14,7 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
-    waitForElement("#header", ([producPage]) => {
+    waitForElement("#header", ([]) => {
         let lastScroll = 0;
 
         const header = document.querySelector('.page-header');
@@ -26,9 +26,9 @@
             const currentScroll = window.scrollY;
 
             if (currentScroll > lastScroll && currentScroll > 5 && currentScroll > 120) {
-                header.classList.add('header-hidden');
+                header.classList.add('gmd-header-hidden');
             } else {
-                header.classList.remove('header-hidden');
+                header.classList.remove('gmd-header-hidden');
             }
 
             lastScroll = currentScroll;
@@ -40,7 +40,7 @@
 
         window.addEventListener('resize', () => {
             if (window.innerWidth > 767) {
-                header.classList.remove('header-hidden');
+                header.classList.remove('gmd-header-hidden');
                 document.querySelector('body').classList.remove(testInfo.className)
             }
         });
