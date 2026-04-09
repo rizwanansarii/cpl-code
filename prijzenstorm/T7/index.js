@@ -83,7 +83,5 @@
                 subtree: true
             })
         }
-        waitForElement('.\\#collection-inner .\\#collection-grid .\\#product-card', () => {
-        })
     });
 })();
