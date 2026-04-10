@@ -73,7 +73,7 @@
 
         swapCardsElement();
 
-        const cardsWrapper = document.querySelector('.\\#collection-inner .\\#collection-grid .\\#grid');
+        const cardsWrapper = document.querySelector('.\\#collection-inner');
         if (cardsWrapper) {
             const observer = new MutationObserver(() => {
                 swapCardsElement();
