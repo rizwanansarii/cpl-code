@@ -238,7 +238,7 @@
             })
 
             waitForElement('form > .planning__section .planning__betaling-optie', () => {
-                document.querySelector('form > .planning__section .planning__betaling-optie:not(:has(.planning__betaling-korting))')?.click();
+                document.querySelector('form > .planning__section .planning__betaling-optie:has(.planning__betaling-korting)')?.click();
             });
 
             waitForElement('form > .planning__section .planning__submit', () => {
@@ -266,7 +266,7 @@
                         detail: { postcode: '', huisnummer: '', toevoeging: '' }
                     })
                 );
-            }, 200)
+            }, 2000)
 
 
             waitForElement('.planning-modal .planning-modal__inner form', () => {
@@ -453,11 +453,11 @@
                                 <p class="planning__betaling-info" style="margin-bottom: 0.75rem;"> Je proefles kost €50,- Ga je
                                     na je proefles verder met rijlessen? Dan krijg je dit bedrag volledig terug als korting op jouw lespakket.
                                     Je proefles is dus eigenlijk gratis! </p>
-                                <div class="planning__betaling"><button type="button" class="planning__betaling-optie" disabled><strong
+                                <div class="planning__betaling"><button type="button" class="planning__betaling-optie planning__betaling-optie--active" disabled><strong
                                             class="planning__betaling-label">Online betalen <span
                                                 class="planning__betaling-prijs">€45,-</span></strong><span
                                             class="tag tag--small planning__betaling-korting">€5 korting!</span></button><button type="button"
-                                        class="planning__betaling-optie planning__betaling-optie--active"  disabled><strong class="planning__betaling-label">Betaal in de auto <span
+                                        class="planning__betaling-optie"  disabled><strong class="planning__betaling-label">Betaal in de auto <span
                                                 class="planning__betaling-prijs">€50,-</span></strong></button></div><!---->
                                 <ul class="planning__usps">
                                     <li>Start nu, betaal achteraf</li>
