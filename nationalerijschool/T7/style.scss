@@ -52,7 +52,7 @@
         .planning__betaling-info,
         .planning__spoed,
         .planning__usps,
-        .planning__payment-logos,
+        // .planning__payment-logos,
         .planning__betaling-korting,
         .dummy .planning__postcode,
         form>.planning__postcode,
@@ -210,7 +210,7 @@
 
             &.planning__betaling-optie--active {
                 border-radius: 13px;
-                border: 1.5px solid #EA5B13;
+                // border: 1.5px solid #EA5B13;
                 background: #EA5B13;
             }
         }
