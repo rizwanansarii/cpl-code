@@ -52,7 +52,7 @@
         .planning__betaling-info,
         .planning__spoed,
         .planning__usps,
-        // .planning__payment-logos,
+        .planning__payment-logos,
         .planning__betaling-korting,
         .dummy .planning__postcode,
         form>.planning__postcode,
@@ -266,6 +266,12 @@
         .thankyou__step-confirm,
         .thankyou__step-confirm span {
             color: #fff;
+        }
+
+        .gmd-extra-info-text {
+            color: #fff;
+            text-align: center;
+            margin-top: 8px;
         }
 
         @media (max-width: 767px) {

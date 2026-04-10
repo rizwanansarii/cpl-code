@@ -242,6 +242,7 @@
             });
 
             waitForElement('form > .planning__section .planning__submit', () => {
+                document.querySelector('form > .planning__section .planning__submit').closest('.planning__section').insertAdjacentHTML('beforeend', `<div class="gmd-extra-info-text">Betaal later met Klarna</div>`)
                 document.querySelector('form > .planning__section .planning__submit').addEventListener('click', () => {
                     waitForElement('.thankyou__buttons', () => {
                         document.querySelector('.thankyou__buttons button span').innerHTML = 'Begin opnieuw'
@@ -467,6 +468,7 @@
                                         class="planning__payment-logo planning__payment-logo--ideal"><img src="/svg/payment/klarna.svg"
                                         alt="Klarna" class="planning__payment-logo planning__payment-logo--klarna"></div><!----><button
                                     type="submit" class="planning__submit button button--brand" disabled=""><span>Proefles plannen</span></button><!---->
+                                    <div class="gmd-extra-info-text">Betaal later met Klarna</div>
                             </div>
                         </form>
                         </div>`);
