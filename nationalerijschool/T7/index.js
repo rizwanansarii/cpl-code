@@ -476,6 +476,29 @@
                         document.querySelector('.gmd-new-fields-wrapper input[name="huisnummer"]').dispatchEvent(new Event('blur', { bubbles: true }));
                     })
 
+                    waitForElement('.textlink', () => {
+                        document.querySelector('.textlink').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            e.stopImmediatePropagation();
+                            document.querySelector('.hero-new__cta').scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, true)
+                    })
+                    waitForElement('.cta-block__wrapper', () => {
+                        document.querySelector('a[href="#open-planner"]').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            e.stopImmediatePropagation();
+                            document.querySelector('.hero-new__cta').scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, true)
+                    })
+
                 }
 
                 waitForElement('.planning-modal__inner', (innerForm) => {
