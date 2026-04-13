@@ -478,6 +478,12 @@
                         document.querySelector('.gmd-new-fields-wrapper input[name="huisnummer"]').dispatchEvent(new Event('blur', { bubbles: true }));
                     })
 
+                    const clonelabel = document.querySelector('.dummy .planning__label').cloneNode(true)
+                    const cloneInfo = document.querySelector('.dummy .planning__betaling-info').cloneNode(true)
+
+                    document.querySelector('.hero-new__buttons').insertAdjacentElement('beforebegin', clonelabel)
+                    document.querySelector('.hero-new__buttons').insertAdjacentElement('beforebegin', cloneInfo)
+
                     waitForElement('.textlink', () => {
                         document.querySelector('.textlink').addEventListener('click', (e) => {
                             e.preventDefault();
