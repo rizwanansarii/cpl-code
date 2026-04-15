@@ -95,12 +95,19 @@
             return baseDay;
         }
 
-        const match = s.match(/(\d+)\s*[-–]\s*(\d+)/);
-
+        // ✅ RANGE (e.g. 2 - 4 werkdagen)
+        let match = s.match(/(\d+)\s*[-–]\s*(\d+)/);
         if (match) {
-            const maxDays = parseInt(match[2], 10); // 👉 number AFTER dash
+            const maxDays = parseInt(match[2], 10);
             const finalDate = addBusinessDays(baseDay, maxDays);
+            return formatDutchDate(finalDate);
+        }
 
+        // ✅ SINGLE VALUE (e.g. 10 werkdagen)
+        match = s.match(/(\d+)\s*werkdagen/);
+        if (match) {
+            const days = parseInt(match[1], 10);
+            const finalDate = addBusinessDays(baseDay, days);
             return formatDutchDate(finalDate);
         }
 
