@@ -51,11 +51,11 @@
             .replace(/\s+/g, " ")
             .trim();
     }
-    function isAfterCutoff1730(date) {
-        const h = date.getHours();
-        const m = date.getMinutes();
-        return h > 17 || (h === 17 && m >= 30);
-    }
+    // function isAfterCutoff1730(date) {
+    //     const h = date.getHours();
+    //     const m = date.getMinutes();
+    //     return h > 11 || (h === 11 && m >= 0);
+    // }
 
     function getBaseShipDay() {
         // "today" in Amsterdam time
@@ -65,9 +65,9 @@
         let base = shiftToNextBusinessDay(now);
 
         // if it's a business day AND after 17:30, move to next business day
-        if (isBusinessDay(now) && isAfterCutoff1730(now)) {
-            base = addBusinessDays(base, 1);
-        }
+        // if (isBusinessDay(now) && isAfterCutoff1730(now)) {
+        //     base = addBusinessDays(base, 1);
+        // }
 
         // normalize time (optional, but keeps formatting consistent)
         base.setHours(12, 0, 0, 0);
