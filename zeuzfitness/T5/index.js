@@ -31,7 +31,7 @@
                 const color = label?.style.getPropertyValue('--swatch-background');
 
                 if (color) {
-                    colorDot = `<span class="color-circle" style="border: 1px solid ${color}"><span class="color-dot" style="background: ${color}"></span></span>`;
+                    colorDot = `<span class="color-circle"><span class="color-dot" style="background: ${color}"></span></span>`;
                 }
             }
 
@@ -57,7 +57,7 @@
             const color = label?.style.getPropertyValue('--swatch-background');
 
             if (color) {
-                selectedColorDot = `<span class="color-circle" style="border: 1px solid ${color}"><span class="color-dot" style="background: ${color}"></span></span>`;
+                selectedColorDot = `<span class="color-circle"><span class="color-dot" style="background: ${color}"></span></span>`;
             }
         }
 
@@ -103,7 +103,7 @@
 
                 selectedWrapper.innerHTML = `
                     <span class="dot-wrapper">
-                        <span class="color-circle" style="border: 1px solid ${color}"><span class="color-dot" style="background: ${color}"></span></span>
+                        <span class="color-circle"><span class="color-dot" style="background: ${color}"></span></span>
                         <span class="selected-text">${value}</span>
                     </span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -290,7 +290,7 @@
                     if (selectedWrapper) {
                         selectedWrapper.innerHTML = `
                             <span class="dot-wrapper">
-                                <span class="color-circle" style="border: 1px solid ${color}"><span class="color-dot" style="background: ${color}"></span></span>
+                                <span class="color-circle"><span class="color-dot" style="background: ${color}"></span></span>
                                 <span class="selected-text">${value}</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
