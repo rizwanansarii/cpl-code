@@ -119,7 +119,7 @@
             }
 
             .gmd-quantity-buy-btn-wrapper {
-                width: 100%;
+                // width: 100%;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
@@ -132,17 +132,15 @@
                 @media (max-width: 767px) {
                     flex-wrap: wrap;
                     gap: 10px;
+                    width: 100%;
                 }
 
                 .gmd-quantity-wrapper {
                     display: flex;
                     gap: 19px;
-                    width: 100%;
-                    justify-content: flex-end;
 
                     @media (max-width: 767px) {
                         gap: 10px;
-                        justify-content: flex-start;
                     }
 
                     @media (max-width: 374px) {
@@ -186,7 +184,11 @@
                     border: 1px solid rgba(46, 46, 46, 0.12);
 
                     @media (max-width: 767px) {
-                        padding: 8px 12px;
+                        padding: 8px 6px;
+
+                        svg {
+                            width: 20px;
+                        }
                     }
 
                     &.color-dropdown {
@@ -201,13 +203,13 @@
 
                     &.size-dropdown {
                         max-width: 102px;
-                        width: 100%;
+                        min-width: 102px;
                         // min-width: 150px;
 
-                        // @media (max-width: 767px) {
-                        //     max-width: 130px;
-                        //     min-width: 130px;
-                        // }
+                        @media (max-width: 767px) {
+                            max-width: 71px;
+                            min-width: 71px;
+                        }
                     }
 
 
@@ -257,7 +259,7 @@
                     }
 
                     &__option {
-                        padding: var(--spacing-2) var(--spacing-6);
+                        padding: 6px 12px;
                         color: rgb(var(--text-color) / .7);
                         display: flex;
                         align-items: center;
