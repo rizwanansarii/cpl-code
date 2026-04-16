@@ -148,24 +148,43 @@
     waitForElement(".catalog-product-view #tab_details_eigenschappen .delivery-time", () => {
         document.querySelector('body').classList.add(testInfo.className)
 
-
-        const targetMain = document.querySelector('#tab_details_eigenschappen .delivery-time');
-        const mainContainer = document.querySelector('#tab_details_eigenschappen');
-        renderShippingTimeline(targetMain, mainContainer, 'afterend');
-        waitForElement(".catalog-product-view .product-options-bottom .delivery-time", () => {
-            const mainContainer = document.querySelector('.product-options-bottom');
-            const deliveryText = document.querySelector('.product-options-bottom .delivery-time p');
-            const html = deliveryText.innerHTML;
-            const parts = html.split(/<br\s*\/?>/i);
-
-            if (parts.length === 2) {
-                deliveryText.innerHTML = `
-                    <span class="gmd-delivery-text">${parts[0].trim()}</span><br>
-                    <span class="gmd-shipping-text">${parts[1].trim()}</span>
-                `;
-                const targetMain = document.querySelector('.product-options-bottom .delivery-time .gmd-delivery-text');
+        function loadTest() {
+            const targetMain = document.querySelector('#tab_details_eigenschappen .delivery-time');
+            const mainContainer = document.querySelector('#tab_details_eigenschappen');
+            if (!mainContainer.querySelector('.gmd-shipping-timeline')) {
                 renderShippingTimeline(targetMain, mainContainer, 'afterend');
             }
-        });
+            waitForElement(".catalog-product-view .product-options-bottom .delivery-time", () => {
+                const mainContainer = document.querySelector('.product-options-bottom');
+                const deliveryText = document.querySelector('.product-options-bottom .delivery-time p');
+                const html = deliveryText.innerHTML;
+                if (!mainContainer.querySelector('.gmd-shipping-timeline')) {
+                    const parts = html.split(/<br\s*\/?>/i);
+
+                    if (parts.length === 2) {
+                        deliveryText.innerHTML = `
+                            <span class="gmd-delivery-text">${parts[0].trim()}</span><br>
+                            <span class="gmd-shipping-text">${parts[1].trim()}</span>
+                        `;
+                        const targetMain = document.querySelector('.product-options-bottom .delivery-time .gmd-delivery-text');
+                        renderShippingTimeline(targetMain, mainContainer, 'afterend');
+                    }
+                }
+            });
+        }
+        loadTest();
+        const target = document.querySelector('.product-add-form');
+
+        if (target) {
+            const observer = new MutationObserver(() => {
+                loadTest();
+            })
+            observer.observe(target, {
+                childList: true,
+                subtree: true
+            })
+        }
+
+
     });
 })();
