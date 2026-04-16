@@ -274,21 +274,41 @@
             }
 
             // ===== COLOR =====
+            const colorOptions = product.querySelectorAll('.variant-picker__option-values input[type="radio"]');
             const activeColor = product.querySelector('.variant-picker__option-values input[type="radio"]:checked');
 
-            if (activeColor) {
-                const value = activeColor.value;
+            const dropdown = document.querySelector('.color-dropdown');
+            if (dropdown) {
 
-                const dropdown = document.querySelector('.color-dropdown');
-                if (dropdown) {
-                    // 🔍 find original label (to get color)
-                    const labelEl = document.querySelector(`label[for="${activeColor.id}"]`);
-                    const color = labelEl?.style.getPropertyValue('--swatch-background');
+                colorOptions.forEach(real => {
+                    const value = real.value;
 
-                    const selectedWrapper = dropdown.querySelector('.custom-select__selected');
+                    const custom = dropdown.querySelector(
+                        `.custom-select__option[data-value="${value}"]`
+                    );
 
-                    if (selectedWrapper) {
-                        selectedWrapper.innerHTML = `
+                    if (!custom) return;
+
+                    // 🔍 get label (important for hidden + color)
+                    const labelEl = document.querySelector(`label[for="${real.id}"]`);
+
+                    // ===== DISABLED / HIDDEN SYNC =====
+                    if (labelEl?.hasAttribute('hidden')) {
+                        custom.setAttribute('hidden', true);
+                    } else {
+                        custom.removeAttribute('hidden');
+                    }
+
+                    // ===== ACTIVE SYNC =====
+                    if (real.checked) {
+                        custom.classList.add('active');
+
+                        const color = labelEl?.style.getPropertyValue('--swatch-background');
+
+                        const selectedWrapper = dropdown.querySelector('.custom-select__selected');
+
+                        if (selectedWrapper) {
+                            selectedWrapper.innerHTML = `
                             <span class="dot-wrapper">
                                 <span class="color-circle"><span class="color-dot" style="background: ${color}"></span></span>
                                 <span class="selected-text">${value}</span>
@@ -297,13 +317,12 @@
                                 <path d="M18 9L12 15L6 9" stroke="#00010A" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="round"/>
                             </svg>
                         `;
-                    }
+                        }
 
-                    // ✅ active class sync
-                    dropdown.querySelectorAll('.custom-select__option').forEach(opt => {
-                        opt.classList.toggle('active', opt.dataset.value === value);
-                    });
-                }
+                    } else {
+                        custom.classList.remove('active');
+                    }
+                });
             }
 
             // button
