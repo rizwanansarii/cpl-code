@@ -141,10 +141,11 @@
 
                     @media (max-width: 767px) {
                         gap: 10px;
+                        width: 100%;
                     }
 
                     @media (max-width: 374px) {
-                        gap: 0;
+                        gap: 2px;
                         justify-content: space-between;
                         width: 100%;
                     }
@@ -158,11 +159,21 @@
                         height: 44px;
 
                         .quantity-selector__button {
-                            padding: 0 8px;
+                            padding: 0 14px;
 
                             .quantity-selector__input {
                                 max-width: 25px !important;
                             }
+                        }
+                    }
+
+                    @media (max-width: 399px) {
+                        // height: 44px;
+
+                        .quantity-selector__button {
+                            padding: 0 8px;
+
+
                         }
                     }
                 }
@@ -196,6 +207,12 @@
                         min-width: 150px;
 
                         @media (max-width: 767px) {
+                            max-width: 100%;
+                            min-width: 130px;
+                            width: 100%;
+                        }
+
+                        @media (max-width: 374px) {
                             max-width: 130px;
                             min-width: 130px;
                         }
@@ -207,6 +224,12 @@
                         // min-width: 150px;
 
                         @media (max-width: 767px) {
+                            max-width: 110px;
+                            min-width: 82px;
+                            width: 100%;
+                        }
+
+                        @media (max-width: 374px) {
                             max-width: 71px;
                             min-width: 71px;
                         }
@@ -227,7 +250,7 @@
                         justify-content: space-between;
 
                         .selected-text {
-                            font-weight: 700;
+                            font-weight: 400;
                             white-space: nowrap;
                             text-overflow: ellipsis;
                             overflow: hidden;
@@ -246,7 +269,7 @@
 
                     &__dropdown {
                         position: absolute;
-                        bottom: 110%; // 🔥 THIS MAKES IT OPEN ABOVE
+                        bottom: 110%;
                         left: 0;
                         width: 100%;
                         border: 1px solid #ccc;

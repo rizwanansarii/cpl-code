@@ -25,7 +25,6 @@
 
             let colorDot = '';
 
-            // 🎯 ONLY FOR COLOR DROPDOWN
             if (customClass === 'color-dropdown') {
                 const label = document.querySelector(`label[for="${opt.id}"]`);
                 const color = label?.style.getPropertyValue('--swatch-background');
@@ -79,23 +78,19 @@
         const selectedText = wrapper.querySelector(".selected-text");
         const dropdown = wrapper.querySelector(".custom-select__dropdown");
 
-        // 👉 Event delegation (BEST with insertAdjacentHTML)
         dropdown.addEventListener("click", (e) => {
-            e.stopPropagation(); // 🔥 prevent wrapper toggle
+            e.stopPropagation();
             const item = e.target.closest(".custom-select__option");
             if (!item || item.classList.contains('disabled')) return;
 
             const value = item.dataset.value;
 
-            // ===== UPDATE SELECTED UI =====
             if (customClass === 'color-dropdown') {
 
-                // 🔍 find original radio input
                 const radio = document.querySelector(
                     `.product input[type="radio"][value="${value}"]`
                 );
 
-                // 🔍 find corresponding label (for color)
                 const label = document.querySelector(`label[for="${radio?.id}"]`);
                 const color = label?.style.getPropertyValue('--swatch-background');
 
@@ -112,7 +107,6 @@
                 `;
 
             } else {
-                // normal (size dropdown)
                 selectedText.textContent = value;
             }
 
@@ -123,7 +117,6 @@
 
             wrapper.classList.remove("open");
 
-            // 🔥 SYNC TO MAIN
             if (customClass === 'color-dropdown') {
 
                 const radio = document.querySelector(
@@ -146,20 +139,17 @@
             }
         });
 
-        // toggle
         const trigger = wrapper;
 
         trigger.addEventListener("click", (e) => {
-            e.stopPropagation(); // 🔥 prevent bubbling
+            e.stopPropagation();
             wrapper.classList.toggle("open");
         });
 
-        // outside click
         document.addEventListener("click", (e) => {
             if (!wrapper.contains(e.target)) wrapper.classList.remove("open");
         });
 
-        // mount
         document.querySelector(".gmd-quantity-wrapper").insertAdjacentElement('beforeend', wrapper);
         wrapper.closest('.custom-select').classList.add(customClass);
     }
@@ -210,11 +200,6 @@
             );
         }
 
-        // document.querySelector('.gmd-btn-wrapper').insertAdjacentElement('beforebegin', atsContent.variantWrapper)
-        // document.querySelector('.gmd-quantity-buy-btn-wrapper .select').closest('.relative').querySelector('.select').setAttribute('aria-controls', 'size-dropdown')
-        // document.querySelector('.gmd-quantity-buy-btn-wrapper .select').closest('.relative').querySelector('.popover').setAttribute('id', 'size-dropdown')
-        // document.querySelector('.gmd-quantity-buy-btn-wrapper .popover-listbox').setAttribute('aria-owns', 'size-dropdown-selected-value')
-
         const sizeOptions = document.querySelectorAll(".product .popover-listbox button")
         if (sizeOptions.length && !document.querySelector('.size-dropdown')) {
             const customClass = 'size-dropdown';
@@ -242,7 +227,6 @@
 
             if (sizeDropdown) {
 
-                // ✅ loop all options (for disabled sync)
                 sizeOptions.forEach(real => {
                     const value = real.value;
 
@@ -252,14 +236,12 @@
 
                     if (!custom) return;
 
-                    // 🔥 DISABLED SYNC
                     if (real.classList.contains('is-disabled')) {
                         custom.classList.add('disabled');
                     } else {
                         custom.classList.remove('disabled');
                     }
 
-                    // 🔥 ACTIVE SYNC
                     if (real.getAttribute('aria-selected') === 'true') {
                         custom.classList.add('active');
 
@@ -289,17 +271,14 @@
 
                     if (!custom) return;
 
-                    // 🔍 get label (important for hidden + color)
                     const labelEl = document.querySelector(`label[for="${real.id}"]`);
 
-                    // ===== DISABLED / HIDDEN SYNC =====
                     if (labelEl?.hasAttribute('hidden')) {
                         custom.setAttribute('hidden', true);
                     } else {
                         custom.removeAttribute('hidden');
                     }
 
-                    // ===== ACTIVE SYNC =====
                     if (real.checked) {
                         custom.classList.add('active');
 
@@ -334,12 +313,6 @@
                 } else {
                     addToCartBtnSticky.querySelector('button').removeAttribute('aria-busy')
                 }
-                // if (addToCartBtn.querySelector('.essential-preorder-container-active')) {
-                //     addToCartBtnSticky.querySelector('button div').textContent = addToCartBtn.querySelector('button div').textContent;
-                //     addToCartBtnSticky.querySelector('button div').textContent = addToCartBtn.querySelector('.essential-preorder-container-active button div')?.textContent;
-                // } else {
-                //     addToCartBtnSticky.querySelector('button div').textContent = addToCartBtn.querySelector('button div').textContent;
-                // }
             }
         }
 
@@ -353,7 +326,6 @@
 
             const observer = new MutationObserver(() => {
 
-                // 🔥 debounce using RAF (prevents spam)
                 if (rafId) cancelAnimationFrame(rafId);
 
                 rafId = requestAnimationFrame(() => {
