@@ -265,6 +265,10 @@
                         align-items: center;
                         gap: 14px;
 
+                        &.disabled {
+                            text-decoration: line-through;
+                        }
+
                         &.active {
                             color: rgb(var(--text-color));
 
