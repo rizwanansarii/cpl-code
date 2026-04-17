@@ -328,7 +328,7 @@
             // button
             const addToCartBtn = document.querySelector('.product .buy-buttons');
             const addToCartBtnSticky = document.querySelector('.gmd-sticky-ats-wrapper .buy-buttons');
-            if (addToCartBtn) {
+            if (addToCartBtn && addToCartBtnSticky) {
                 if (addToCartBtn.querySelector('button').getAttribute('aria-busy')) {
                     addToCartBtnSticky.querySelector('button').setAttribute('aria-busy', true)
                 } else {
@@ -392,9 +392,11 @@
             observer.observe(buyNowButton);
 
         }
-        atsButton.addEventListener('click', () => {
-            buyNowButton.querySelector('button').click();
-        })
+        if (atsButton) {
+            atsButton.addEventListener('click', () => {
+                buyNowButton.querySelector('button').click();
+            })
+        }
 
         const topInput = document.querySelector('.product .product-info .quantity-selector__input');
         const atsInput = document.querySelector('.gmd-quantity-buy-btn-wrapper .quantity-selector__input');
