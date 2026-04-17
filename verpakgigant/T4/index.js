@@ -16,7 +16,7 @@
 
     waitForElement(".section > .section-content .row .col .box-text .plain", async () => {
 
-        const BASE_URL = "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/VPG/category-lists.json";
+        const BASE_URL = "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/VPG/categorys-data-lists.json";
 
         // Get slug from URL
         const path = window.location.pathname.replace("/c/", "").replace(/\/$/, "");
