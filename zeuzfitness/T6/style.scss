@@ -1,0 +1,97 @@
+.gmd-06 {
+    .product-card {
+        align-content: unset;
+    }
+
+    .product-card__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card__aside {
+        margin: 0;
+    }
+
+    .product-card__variant-list {
+        gap: 6px;
+        margin: 0;
+
+        @media(max-width: 767px) {
+            gap: 1px;
+        }
+    }
+
+
+    .color-swatch {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background-size: cover !important;
+
+        @media(max-width: 767px) {
+            height: 15px;
+            width: 15px;
+        }
+    }
+
+    .media-swatch__view-more {
+        height: auto;
+        width: auto;
+        border: none;
+        color: #2E2E2E;
+        font-size: 12.5px;
+        font-weight: 400;
+        line-height: 22.4px;
+    }
+
+    .gmd-btn-wrapper {
+        width: 100%;
+        margin-top: auto;
+    }
+
+    .product-card__quick-buy {
+        position: unset;
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 8px;
+
+        @media(max-width: 767px) {
+            margin-top: 2px;
+        }
+
+        .product-card__mobile-quick-buy-button {
+            width: 100%;
+            height: auto;
+            color: #2E2E2E;
+            text-align: center;
+            font-size: 14.1px;
+            font-weight: 500;
+            line-height: 25.6px;
+            padding: 8.21px;
+            border: 1px solid #D8D8D8;
+            background: #EFEFEF;
+
+            @media(max-width: 767px) {
+                padding: 6.21px;
+            }
+        }
+    }
+
+    .gmd-link-wrapper {
+        color: #797979;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22.4px;
+        display: block;
+        width: fit-content;
+        margin-top: 5px;
+        text-decoration-line: underline;
+        // text-decoration-style: solid;
+        // text-decoration-skip-ink: auto;
+        // text-decoration-thickness: auto;
+        // text-underline-offset: auto;
+        // text-underline-position: from-font;
+    }
+}
