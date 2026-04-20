@@ -134,7 +134,7 @@
             if (!mainContainer.classList.contains('product-options-bottom')) {
                 line1 = `Levertijd: ${dispatchDate}`;
             } else {
-                line1 = `${dispatchDate}`;
+                line1 = `${dispatchDate.charAt(0).toUpperCase() + dispatchDate.slice(1)}`;
             }
         }
 
