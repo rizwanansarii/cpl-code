@@ -114,11 +114,13 @@
 
         applyColors();
 
+        const target = document.querySelector('.collection')?.closest('.shopify-section')
+
         const observer = new MutationObserver(() => {
             applyColors();
         });
 
-        observer.observe(document.querySelector('.shopify-section--main-collection'), {
+        observer.observe(target, {
             childList: true,
             subtree: true
         });

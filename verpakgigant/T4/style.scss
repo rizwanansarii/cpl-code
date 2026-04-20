@@ -81,6 +81,7 @@
             img {
                 width: auto;
                 max-height: 91px;
+                mix-blend-mode: multiply;
 
                 @media(max-width: 767px) {
                     max-height: 72.145px;
@@ -106,6 +107,7 @@
     .gmd-content {
         display: flex;
         flex-direction: column;
+        height: 100%;
 
         h3 {
             color: #005440;
@@ -132,6 +134,7 @@
             font-size: 16px;
             font-weight: 500;
             line-height: 120%;
+            margin-top: auto;
         }
     }
 
