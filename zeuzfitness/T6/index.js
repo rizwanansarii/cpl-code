@@ -104,6 +104,12 @@
                             prod.querySelector('.product-card__info .product-card__quick-buy .product-card__mobile-quick-buy-button').innerHTML = translations[lang].addToCart
 
                         }
+                    } else {
+                        prod.querySelector('.gmd-btn-wrapper').insertAdjacentHTML('beforeend', `
+                            <div class="product-card__quick-buy">
+                                <button type="button" class="product-card__mobile-quick-buy-button gmd-out-of-stock-btn" disabled><div>${prod.querySelector('.badge--sold-out')?.textContent}</div></button>
+                            </div>
+                        `);
                     }
                     prod.querySelector('.gmd-btn-wrapper').insertAdjacentHTML('beforeend', `
                         <a href="${prodLink.href}" class="gmd-link-wrapper">${translations[lang].viewNow}</a>
