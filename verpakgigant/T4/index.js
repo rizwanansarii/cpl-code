@@ -60,7 +60,7 @@
                         
                                     <div class="gmd-content">
                                         <h3>${item.keyword}</h3>
-                                        <p>${item.description || ''}, ${item.context}</p>
+                                        <p>${item.description || ''} - ${item.context}</p>
                                         <span class="gmd-price">${item.price_per_item || ''}</span>
                                     </div>
                         
