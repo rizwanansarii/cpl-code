@@ -114,6 +114,9 @@
                         const customBtn = document.querySelector(customBtnSelector);
                         const originalBtn = document.querySelector(originalBtnSelector);
                         const cloneBtn = originalBtn?.closest('form').querySelector('.added_to_cart')?.cloneNode(true)
+                        if (originalBtn && originalBtn.innerText != customBtn.innerText) {
+                            customBtn.innerHTML = originalBtn.innerText
+                        }
                         if (originalBtn && originalBtn.classList.contains('added')) {
                             customBtn.classList.add('added');
                         }
