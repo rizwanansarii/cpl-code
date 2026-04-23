@@ -79,8 +79,8 @@
                         const selectors = [
                             document.querySelector('#launcher'),
                             document.querySelector('iframe[name="Messaging window"]'),
+                            document.querySelector('#launcher')?.closest('div').querySelector('div[aria-label]'),
                             // document.querySelector('#launcher')?.closest('div').querySelector('div > iframe'),
-                            // document.querySelector('#launcher')?.closest('div').querySelector('div[aria-label]'),
 
                         ];
 
