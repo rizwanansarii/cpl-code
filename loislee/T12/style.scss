@@ -6,7 +6,8 @@
     .gmd-active-ats {
 
         &#launcher,
-        &#to-top {
+        &#to-top,
+        &.cky-revisit-bottom-left {
             bottom: 100px !important;
 
             @media(max-width: 767px) {
