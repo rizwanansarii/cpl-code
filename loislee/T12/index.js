@@ -14,6 +14,35 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
+    const replaceEuroSignAndDecimals = () => {
+        // Traverse all elements on the page
+        const elements = document.querySelectorAll('.gmd-sticky-ats-wrapper .woocommerce-Price-amount');
+        // Loop through each element
+        elements.forEach((element) => {
+            // Only process elements with child nodes of type Text
+            element.childNodes.forEach((node) => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    // Replace € and ",00" in the text content
+                    const updatedText = node.nodeValue
+                        .replaceAll('€ ', '').replaceAll('€', '')
+                    // Update the node content if there's a change
+                    if (updatedText !== node.nodeValue) {
+                        node.nodeValue = updatedText;
+                    }
+                    if (node.nodeValue.includes(",00")) {
+                        console.log(element, node.nodeValue)
+                        const updatedText1 = node.nodeValue
+                            .replaceAll(',00', ',-')
+                        // Update the node content if there's a change
+                        if (updatedText1 !== node.nodeValue) {
+                            node.nodeValue = updatedText1;
+                        }
+                    }
+                }
+            });
+        });
+    };
+
     waitForElement(".single-product .product", ([producPage]) => {
         if (!document.querySelector('.wcsatt-options-wrapper')) {
             document.querySelector('body').classList.add(testInfo.className);
@@ -125,13 +154,18 @@
                                 customBtn.closest('.gmd-btn-wrapper').insertAdjacentElement('beforeend', cloneBtn)
                             }
                         }
+                        replaceEuroSignAndDecimals();
+
                     })
+
+
                     observer.observe(document.querySelector('.product'), {
                         childList: true,
                         subtree: true
                     })
                 }
 
+                replaceEuroSignAndDecimals()
                 handleButtonClick('.gmd-btn-wrapper .single_add_to_cart_button', '.product .single_add_to_cart_button');
 
                 if (document.querySelector('.gmd-price').innerText.length > 6) {
