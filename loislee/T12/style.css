@@ -1,11 +1,11 @@
 .gmd-12 #custom-sticky-atc {
   display: none !important;
 }
-.gmd-12 .gmd-active-ats#launcher, .gmd-12 .gmd-active-ats#to-top {
+.gmd-12 .gmd-active-ats#launcher, .gmd-12 .gmd-active-ats#to-top, .gmd-12 .gmd-active-ats.cky-revisit-bottom-left {
   bottom: 100px !important;
 }
 @media (max-width: 767px) {
-  .gmd-12 .gmd-active-ats#launcher, .gmd-12 .gmd-active-ats#to-top {
+  .gmd-12 .gmd-active-ats#launcher, .gmd-12 .gmd-active-ats#to-top, .gmd-12 .gmd-active-ats.cky-revisit-bottom-left {
     bottom: 150px !important;
   }
 }
@@ -138,7 +138,7 @@
 }
 .gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-btn-wrapper .single_add_to_cart_button {
   border-radius: 4px;
-  background: #7D5A4F;
+  background-color: #7D5A4F !important;
   padding: 11px;
   width: 100%;
   color: #FFF !important;
