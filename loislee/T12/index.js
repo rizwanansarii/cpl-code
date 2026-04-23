@@ -79,9 +79,10 @@
                         const selectors = [
                             document.querySelector('#launcher'),
                             document.querySelector('iframe[name="Messaging window"]'),
-                            document.querySelector('#launcher')?.closest('div').querySelector('div[aria-label]'),
-                            // document.querySelector('#launcher')?.closest('div').querySelector('div > iframe'),
-
+                            document.querySelector('[aria-label*="Ruby says"]'),
+                            document.querySelector('#to-top'),
+                            document.querySelector('iframe[title="Close message"]')?.closest('div')?.parentElement,
+                            document.querySelector('.cky-revisit-bottom-left'),
                         ];
 
                         selectors.forEach(selector => {

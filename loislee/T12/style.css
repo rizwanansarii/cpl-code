@@ -1,11 +1,11 @@
 .gmd-12 #custom-sticky-atc {
   display: none !important;
 }
-.gmd-12 .gmd-active-ats#launcher {
+.gmd-12 .gmd-active-ats#launcher, .gmd-12 .gmd-active-ats#to-top {
   bottom: 100px !important;
 }
 @media (max-width: 767px) {
-  .gmd-12 .gmd-active-ats#launcher {
+  .gmd-12 .gmd-active-ats#launcher, .gmd-12 .gmd-active-ats#to-top {
     bottom: 150px !important;
   }
 }

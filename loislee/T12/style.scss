@@ -4,7 +4,9 @@
     }
 
     .gmd-active-ats {
-        &#launcher {
+
+        &#launcher,
+        &#to-top {
             bottom: 100px !important;
 
             @media(max-width: 767px) {
