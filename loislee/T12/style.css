@@ -24,6 +24,9 @@
 .gmd-12 .gmd-sticky-ats-wrapper.gmd-active {
   display: block;
 }
+.gmd-12 .gmd-sticky-ats-wrapper .woocommerce-Price-currencySymbol {
+  display: none;
+}
 .gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-container {
   padding: 8px 20px;
   max-width: 1305px;
@@ -100,6 +103,18 @@
 }
 .gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-text-wrapper .gmd-price-stock-wrapper .gmd-price {
   margin-top: -2px;
+}
+.gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-text-wrapper .gmd-price-stock-wrapper .gmd-price ins {
+  text-decoration: none;
+}
+.gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-text-wrapper .gmd-price-stock-wrapper .gmd-price del {
+  font-size: 28px;
+  font-weight: 400;
+}
+@media (max-width: 767px) {
+  .gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-text-wrapper .gmd-price-stock-wrapper .gmd-price del {
+    font-size: 24px;
+  }
 }
 .gmd-12 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-text-wrapper .gmd-price-stock-wrapper .gmd-price .price {
   margin-bottom: 0;
