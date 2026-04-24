@@ -15,31 +15,22 @@
     }
 
     const replaceEuroSignAndDecimals = () => {
-        // Traverse all elements on the page
-        const elements = document.querySelectorAll('.gmd-sticky-ats-wrapper .woocommerce-Price-amount');
-        // Loop through each element
-        elements.forEach((element) => {
-            // Only process elements with child nodes of type Text
-            element.childNodes.forEach((node) => {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    // Replace € and ",00" in the text content
-                    const updatedText = node.nodeValue
-                        .replaceAll('€ ', '').replaceAll('€', '')
-                    // Update the node content if there's a change
-                    if (updatedText !== node.nodeValue) {
-                        node.nodeValue = updatedText;
-                    }
-                    if (node.nodeValue.includes(",00")) {
-                        console.log(element, node.nodeValue)
-                        const updatedText1 = node.nodeValue
-                            .replaceAll(',00', ',-')
-                        // Update the node content if there's a change
-                        if (updatedText1 !== node.nodeValue) {
-                            node.nodeValue = updatedText1;
-                        }
-                    }
-                }
-            });
+        const elements = document.querySelectorAll('.gmd-sticky-ats-wrapper .woocommerce-Price-amount bdi');
+
+        elements.forEach((bdi) => {
+            let text = bdi.textContent;
+
+            if (!text) return;
+
+            let updated = text
+                .replaceAll('€', '')
+                .replaceAll(',00', ',-')
+            // .trim();
+
+            // Only update if changed
+            if (updated !== text.trim()) {
+                bdi.textContent = updated;
+            }
         });
     };
 
@@ -155,7 +146,6 @@
                             }
                         }
                         replaceEuroSignAndDecimals();
-
                     })
 
 
@@ -173,15 +163,6 @@
                 }
             }
             loadTest();
-            const testMutation = new MutationObserver(() => {
-                if (!document.querySelector('.gmd-sticky-ats-wrapper')) {
-                    loadTest();
-                }
-            })
-            testMutation.observe(document.body, {
-                childList: true,
-                subtree: true,
-            })
         }
     })
 })();
