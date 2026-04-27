@@ -60,11 +60,13 @@
                     updateTitle(connectedTitle, `<span><span class="gmd-bold-text">Stap 2 — </span>Kies je set</span>`);
                     updateTitle(colorTitle, `<span><span class="gmd-bold-text">Stap 3 — </span>Selecteer je kleur</span>`);
 
-                    const description = document.querySelector('.main-product__product-information .title-and-reviews__text');
-                    const usps = document.querySelector('.product-information__usps');
-                    if (description && usps) {
-                        usps.insertAdjacentElement('afterend', description);
-                    }
+                    waitForElement('.main-product__product-information .title-and-reviews__text', () => {
+                        const description = document.querySelector('.main-product__product-information .title-and-reviews__text');
+                        const usps = document.querySelector('.product-information__usps');
+                        if (description && usps) {
+                            usps.insertAdjacentElement('afterend', description);
+                        }
+                    })
                 }
             }
         }
