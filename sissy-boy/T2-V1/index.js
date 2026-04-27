@@ -22,6 +22,12 @@
 
         style.innerHTML = `
             @media (max-width: 767px) {
+                .gmd-02-v1:has(.promobanners) .app .main {
+                    padding-top: 7.5rem;
+                }
+                .gmd-02-v1 .app .app__main {
+                    padding-top: 6.5rem;
+                }
                 .gmd-02-v1 .header__desktop-search {
                     margin-bottom: 0;
                 }

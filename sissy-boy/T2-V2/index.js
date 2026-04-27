@@ -22,6 +22,12 @@
 
         style.innerHTML = `
             @media (max-width: 767px) {
+                .gmd-02-v2:has(.promobanners) .app .main {
+                    padding-top: 7.5rem;
+                }
+                .gmd-02-v2 .app .app__main {
+                    padding-top: 6.5rem;
+                }
                 .gmd-02-v2 .header__desktop-search {
                     margin-bottom: 0;
                     justify-content: end;
@@ -31,6 +37,10 @@
                     max-width: fit-content;
                     border: none;
                     margin: 0 7px;
+                }
+                .gmd-02-v2 .header__desktop-search .search-fake svg {
+                    width: 20px;
+                    height: 20px;
                 }
                 .gmd-02-v2 .header__desktop-search .search-fake .search-fake__label {
                     display: none;
