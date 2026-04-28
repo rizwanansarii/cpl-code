@@ -121,7 +121,7 @@
 
         if (mainContainer.querySelector('.gmd-shipping-timeline')) return;
 
-        const statusEl = document.querySelector('#tab_details_eigenschappen .delivery-time');
+        const statusEl = document.querySelector('#tab_details_eigenschappen .delivery-time') || document.querySelector('.delivery-time .gmd-delivery-text');
         if (!statusEl) return;
 
         const statusText = statusEl.textContent.trim();
@@ -145,15 +145,17 @@
         target.insertAdjacentHTML(location, html);
     }
 
-    waitForElement(".catalog-product-view #tab_details_eigenschappen .delivery-time", () => {
+    waitForElement(".catalog-product-view .delivery-time", () => {
         document.querySelector('body').classList.add(testInfo.className)
 
         function loadTest() {
-            const targetMain = document.querySelector('#tab_details_eigenschappen .delivery-time');
-            const mainContainer = document.querySelector('#tab_details_eigenschappen');
-            if (!mainContainer.querySelector('.gmd-shipping-timeline')) {
-                renderShippingTimeline(targetMain, mainContainer, 'afterend');
-            }
+            waitForElement(".catalog-product-view #tab_details_eigenschappen .delivery-time", () => {
+                const targetMain = document.querySelector('#tab_details_eigenschappen .delivery-time');
+                const mainContainer = document.querySelector('#tab_details_eigenschappen');
+                if (!mainContainer.querySelector('.gmd-shipping-timeline')) {
+                    renderShippingTimeline(targetMain, mainContainer, 'afterend');
+                }
+            });
             waitForElement(".catalog-product-view .product-options-bottom .delivery-time", () => {
                 const mainContainer = document.querySelector('.product-options-bottom');
                 const deliveryText = document.querySelector('.product-options-bottom .delivery-time p');
