@@ -163,6 +163,12 @@
                             text-transform: none;
                             margin-top: 8px;
 
+                            .loader {
+                                path {
+                                    fill: #000;
+                                }
+                            }
+
                             &:hover {
                                 background: rgba(255, 255, 255, 0.00);
                             }

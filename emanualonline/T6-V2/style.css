@@ -143,6 +143,9 @@
   text-transform: none;
   margin-top: 8px;
 }
+.gmd-06-v2 .kuSearchResultsPageContainer .kuResults ul li .gmd-add-to-cart-btn button .loader path {
+  fill: #000;
+}
 .gmd-06-v2 .kuSearchResultsPageContainer .kuResults ul li .gmd-add-to-cart-btn button:hover {
   background: rgba(255, 255, 255, 0);
 }

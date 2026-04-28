@@ -46,6 +46,33 @@
         return `/checkout/cart/add/uenc/${uenc}/product/${productId}/`;
     }
 
+    async function addToCart(productId, productUrl) {
+        const formKey = getFormKey();
+        const endpoint = buildEndpoint(productId, productUrl);
+
+        const payload = new URLSearchParams();
+
+        payload.append('product', productId);
+        payload.append('item', productId);
+        payload.append('qty', '1');
+        payload.append('form_key', formKey);
+        payload.append('isAjax', '1');
+
+        const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: payload.toString(),
+            credentials: 'include'
+        });
+
+        const text = await res.text();
+
+        return text;
+    }
+
     async function openStripeModal() {
         try {
             const res = await fetch('/mcamstripe/checkout/?page=product', {
@@ -103,6 +130,10 @@
 
             modal.classList.add('active');
             document.body.classList.add('overflow-hidden');
+            setTimeout(() => {
+                document.querySelector('.gmd-buy-now.is-loading')?.classList.remove('is-loading');
+                document.querySelector('.gmd-buy-now .loader')?.remove();
+            }, 500);
 
             function closeModal() {
                 modal.classList.remove('active');
@@ -339,6 +370,15 @@
         if (!productId) return;
 
         btn.classList.add('is-loading');
+        btn.insertAdjacentHTML('afterbegin', `
+            <div class="absolute inset-0 flex justify-center items-center loader">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" xml:space="preserve" width="32" height="32">
+                    <path fill="#fff" d="M73 50c0-12.7-10.3-23-23-23S27 37.3 27 50m3.9 0c0-10.5 8.5-19.1 19.1-19.1S69.1 39.5 69.1 50">
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
+                    </path>
+                </svg>
+            </div>
+        `)
 
         try {
             await addToCart(productId, productUrl);
@@ -348,10 +388,13 @@
                 openStripeModal();
             }, 400);
 
+            // btn.classList.remove('is-loading');
+            // btn.querySelector('.loader')?.remove();
+
         } catch (err) {
             console.error(err);
         } finally {
-            btn.classList.remove('is-loading');
+            // btn.classList.remove('is-loading');
         }
 
     }, true);
