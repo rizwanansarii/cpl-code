@@ -1,7 +1,7 @@
 (() => {
     'use strict';
     const testInfo = {
-        className: 'gmd-06',
+        className: 'gmd-06-v2',
         debug: 0,
         testName: 'T6 | PLP, multivariant CTA test with Buy Now (vervolg T1)',
         testVersion: 'v1'
@@ -291,6 +291,9 @@
                             <div class="gmd-btn-wrapper">
                                 <div class="gmd-buy-now-btn">
                                     <button class="relative gmd-buy-now"><span>Buy Now</span></button>
+                                </div>
+                                <div class="gmd-add-to-cart-btn">
+                                    <button class="relative"><span>Add to cart</span></button>
                                 </div>
                                 <a href="${link}" class="gmd-view-details-link">View details</a>
                             </div>
