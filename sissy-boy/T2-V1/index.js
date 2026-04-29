@@ -34,7 +34,7 @@
 
                 .gmd-02-v1 .header__desktop-search .search-fake {
                     max-width: fit-content;
-                    border: none;
+                    padding: 0 8px;
                 }
             }
         `;
