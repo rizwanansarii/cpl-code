@@ -180,6 +180,26 @@
 
             }, 300);
 
+            document.addEventListener('click', (e) => {
+
+                const okBtn = e.target.closest('button[x-focus-first]');
+                if (!okBtn) return;
+
+                setTimeout(() => {
+
+                    const items = document.querySelectorAll('#popup-mini-cart li:not(.duplicate)');
+
+                    if (items.length === 0) {
+                        const modal = document.querySelector('#gmd-stripe-modal');
+
+                        modal?.classList.remove('active');
+                        document.body.classList.remove('overflow-hidden');
+                    }
+
+                }, 1000);
+
+            });
+
         } catch (e) {
             console.error('Stripe modal failed', e);
         }
