@@ -161,6 +161,25 @@
                 }
             });
 
+            setTimeout(() => {
+                const items = document.querySelectorAll('#popup-mini-cart li');
+
+                const seen = new Set();
+
+                items.forEach(el => {
+                    const name = el.querySelector('[x-html="item.product_name"]')?.textContent;
+
+                    if (!name) return;
+
+                    if (seen.has(name)) {
+                        el.classList.add('duplicate');
+                    } else {
+                        seen.add(name);
+                    }
+                });
+
+            }, 300);
+
         } catch (e) {
             console.error('Stripe modal failed', e);
         }

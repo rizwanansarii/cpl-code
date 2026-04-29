@@ -39,6 +39,9 @@
 .gmd-06-v2 #gmd-stripe-modal.active {
   display: block;
 }
+.gmd-06-v2 #gmd-stripe-modal .duplicate {
+  display: none;
+}
 @media (max-width: 767px) {
   .gmd-06-v2 .kuSearchResultsPageContainer .kuResults {
     margin-top: 24px;
