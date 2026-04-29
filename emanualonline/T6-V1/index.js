@@ -88,9 +88,9 @@
                 modal.id = 'gmd-stripe-modal';
 
                 modal.innerHTML = `
-                <div class="gmd-overlay"></div>
-                <div class="gmd-modal-content"></div>
-            `;
+                    <div class="gmd-overlay"></div>
+                    <div class="gmd-modal-content"></div>
+                `;
 
                 document.body.appendChild(modal);
 
@@ -105,7 +105,7 @@
             container.innerHTML = `
                 <div class="fixed inset-0 bg-black/50 z-[99]">
                     <div class="fixed flex justify-center items-center text-left z-40 inset-0">
-                        <div class="relative inline-block bg-white shadow-xl max-h-screen max-h-svh overflow-auto overscroll-y-contain border border-4 p-7 w-full max-w-[490px] h-full md:h-auto">
+                        <div class="relative inline-block bg-white shadow-xl max-h-screen max-h-svh overflow-auto overscroll-y-contain border border-4 p-7 w-full max-w-[490px] h-full md:h-auto">                            
                             <button class="close-btn absolute top-0 right-0 p-1 text-xl text-gray-600 hover:text-gray-800" aria-label="Close">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -117,14 +117,24 @@
                 </div>
             `;
 
-            container.querySelectorAll('script').forEach(oldScript => {
-                const s = document.createElement('script');
-                if (oldScript.src) s.src = oldScript.src;
-                else s.textContent = oldScript.textContent;
-                document.head.appendChild(s);
-            });
+            if (!modal.dataset.scriptsLoaded) {
+                container.querySelectorAll('script').forEach(oldScript => {
+                    const s = document.createElement('script');
 
-            if (window.Alpine) {
+                    if (oldScript.src) {
+                        if (document.querySelector(`script[src="${oldScript.src}"]`)) return;
+                        s.src = oldScript.src;
+                    } else {
+                        s.textContent = oldScript.textContent;
+                    }
+
+                    document.head.appendChild(s);
+                });
+
+                modal.dataset.scriptsLoaded = "true";
+            }
+
+            if (window.Alpine && !container.__x) {
                 Alpine.initTree(container);
             }
 
@@ -133,7 +143,7 @@
             setTimeout(() => {
                 document.querySelector('.gmd-buy-now.is-loading')?.classList.remove('is-loading');
                 document.querySelector('.gmd-buy-now .loader')?.remove();
-            }, 500);
+            }, 300);
 
             function closeModal() {
                 modal.classList.remove('active');
