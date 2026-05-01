@@ -55,6 +55,13 @@
             bar.classList.remove('progress-step-1', 'progress-step-2', 'progress-step-3');
 
             bar.classList.add(`progress-step-${activeIndex + 1}`);
+
+            const nextBtn = document.querySelector('button.continue span');
+            if (nextBtn) {
+                if (nextBtn.textContent.trim() == 'Weiter') {
+                    nextBtn.textContent = 'Weiter zur Zahlung'
+                }
+            }
         }
 
         updateSteps();
