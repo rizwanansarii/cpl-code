@@ -1,0 +1,144 @@
+.gmd-15 .opc-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  overflow: unset;
+  border: none;
+  padding: 0 31px;
+}
+@media (max-width: 767px) {
+  .gmd-15 .opc-progress-bar {
+    padding: 0;
+  }
+}
+.gmd-15 .opc-progress-bar::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: calc(100% - 117px);
+  background: #F3F3F3;
+  z-index: 0;
+}
+@media (max-width: 767px) {
+  .gmd-15 .opc-progress-bar::before {
+    width: calc(100% - 55px);
+  }
+}
+.gmd-15 .opc-progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 66px;
+  height: 2px;
+  background: #3EB01A;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+@media (max-width: 767px) {
+  .gmd-15 .opc-progress-bar::after {
+    left: 35px;
+  }
+}
+.gmd-15 .opc-progress-bar.progress-step-1::after {
+  width: 0%;
+}
+.gmd-15 .opc-progress-bar.progress-step-2::after {
+  width: calc(50% - 61px);
+}
+@media (max-width: 767px) {
+  .gmd-15 .opc-progress-bar.progress-step-2::after {
+    width: calc(50% - 30px);
+  }
+}
+.gmd-15 .opc-progress-bar.progress-step-3::after {
+  width: calc(100% - 61px);
+}
+@media (max-width: 767px) {
+  .gmd-15 .opc-progress-bar.progress-step-3::after {
+    width: calc(100% - 30px);
+  }
+}
+.gmd-15 .progress__item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  flex: unset;
+  height: auto;
+}
+.gmd-15 .progress__item .progress__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+  padding: 0;
+  color: #1F1F1F;
+  background: transparent;
+  height: auto;
+}
+.gmd-15 .progress__item .progress__title span:first-child {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 50%;
+  background: #F3F3F3;
+  color: #1F1F1F;
+  margin-bottom: 4px;
+}
+@media (max-width: 767px) {
+  .gmd-15 .progress__item .progress__title span:first-child {
+    margin-bottom: 0;
+  }
+}
+.gmd-15 .progress__item .progress__title span:last-child {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+@media (max-width: 767px) {
+  .gmd-15 .progress__item .progress__title span:last-child {
+    font-size: 14px;
+  }
+}
+.gmd-15 .progress__item--active::after {
+  display: none;
+}
+.gmd-15 .progress__item--active .progress__title {
+  color: #000;
+  font-weight: 600;
+}
+.gmd-15 .progress__item--active .progress__title span:first-child {
+  border: 2px solid #3EB01A;
+  color: #3EB01A;
+  background: #fff;
+}
+.gmd-15 .progress__item--active .progress__title span:last-child {
+  font-weight: 600;
+}
+.gmd-15 .progress__item--complete::after {
+  display: none;
+}
+.gmd-15 .progress__item--complete .progress__title span:first-child {
+  background: #3EB01A;
+  color: transparent;
+  position: relative;
+}
+.gmd-15 .progress__item--complete .progress__title span:first-child::after {
+  content: "";
+  color: #fff;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.53756 1.73674L9.09431 0.300375C9.30425 0.107956 9.58786 0 9.88343 0C10.179 0 10.4626 0.107956 10.6725 0.300375C10.7763 0.395795 10.8587 0.509245 10.9149 0.634203C10.9711 0.759161 11 0.893159 11 1.02849C11 1.16383 10.9711 1.29783 10.9149 1.42278C10.8587 1.54774 10.7763 1.66119 10.6725 1.75661L5.47941 6.54487L3.90117 8L0.326851 4.70332C0.223256 4.60792 0.141054 4.49453 0.084964 4.36968C0.028874 4.24482 0 4.11095 0 3.97575C0 3.84055 0.028874 3.70667 0.084964 3.58182C0.141054 3.45696 0.223256 3.34358 0.326851 3.24818C0.536379 3.0559 0.819595 2.948 1.11478 2.948C1.40996 2.948 1.69317 3.0559 1.9027 3.24818L3.90117 5.08973L7.53756 1.73674Z" fill="white"/></svg>');
+  height: 8px;
+  width: 11px;
+  position: absolute;
+}/*# sourceMappingURL=style.css.map */
