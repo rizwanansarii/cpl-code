@@ -4,103 +4,90 @@
         .product-info-main {
             padding-bottom: 0;
 
-            section[x-data] {
-                display: none;
-            }
-        }
-    }
+            .gmd-accordion {
 
-    .gmd-accordion {
-        overflow: hidden;
-        background: #fff;
-
-        @media (max-width: 767px) {
-            margin: 0 -24px;
-        }
-
-        &__item {
-            padding: 24px;
-            border-radius: 3px;
-            border-top: 1px solid #E7E7E7;
-            border-bottom: 1px solid #E7E7E7;
-            background: #FFF;
-        }
-
-        &__header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: #000;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 40px;
-            transition: background 0.2s ease;
-        }
-
-        &__icon {
-            padding: 0 10px 0 3px;
-
-            svg {
-                transition: transform 0.3s ease;
-            }
-
-            @media (max-width: 767px) {
-                padding: 0;
-            }
-        }
-
-        &__item.active {
-            .gmd-accordion__icon {
-                svg {
-                    transform: rotate(180deg);
+                @media (max-width: 767px) {
+                    margin: 0 -24px;
                 }
-            }
-        }
 
-        &__content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
-            background: #fff;
-
-            div[x-ref='description'] {
-                height: auto !important;
-                padding: 0;
-            }
-
-            div[x-show='isVisible'] {
-                display: none;
-            }
-
-            #shopper_review_page {
-                padding: 0;
-            }
-
-            #review_header {
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .video-description {
-                padding: 0;
-            }
-
-            &-inner {
-                font-size: 14px;
-                line-height: 1.6;
-                color: #333;
-
-                p {
-                    margin-bottom: 12px;
+                .old-heading-wrapper {
+                    display: none;
                 }
-            }
-        }
 
-        &__item.active {
-            .gmd-accordion__content {
-                max-height: fit-content;
-                margin-top: 6px;
+                .gmd-accordion-tab {
+                    padding: 24px;
+                    display: block !important;
+                    border-radius: 3px;
+                    border-top: 1px solid #E7E7E7;
+                    border-bottom: 1px solid #E7E7E7;
+                    background: #FFF;
+
+                    .gmd-heading {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        cursor: pointer;
+                        color: #000;
+                        font-size: 18px;
+                        font-weight: 700;
+                        line-height: 40px;
+                        transition: background 0.2s ease;
+                    }
+
+                    .gmd-accordion-icon {
+                        padding: 0 10px 0 3px;
+
+                        svg {
+                            transition: transform 0.3s ease;
+                        }
+
+                        @media (max-width: 767px) {
+                            padding: 0;
+                        }
+                    }
+
+                    >div {
+                        display: none;
+                    }
+
+                    &.gmd-active {
+                        >div {
+                            display: block;
+                        }
+
+                        .gmd-accordion-icon {
+                            svg {
+                                transform: rotate(180deg);
+                            }
+                        }
+                    }
+
+                    #shopper_review_page,
+                    .answerbase-widget,
+                    div[x-ref="description"] {
+                        padding: 0 !important;
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+                        margin-top: 6px !important;
+                    }
+
+                    .video-container {
+                        margin-top: 6px !important;
+                    }
+
+                    .video-description,
+                    #review_header {
+                        padding: 0 !important;
+                    }
+
+                    #ab-shopperapproved {
+                        text-align: right;
+                    }
+
+                    #ab-shopperapproved-logo {
+                        float: none !important;
+                    }
+                }
             }
         }
     }
