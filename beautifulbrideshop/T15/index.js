@@ -30,6 +30,10 @@
 
                 const text = label.textContent.trim();
 
+                title?.querySelector('span:first-child')?.addEventListener('click', () => {
+                    label?.click();
+                })
+
                 if (text.includes('Prüfung')) {
                     label.textContent = 'Zahlung';
                 }
