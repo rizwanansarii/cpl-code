@@ -98,9 +98,28 @@
                 background: #F3F3F3;
                 color: #1F1F1F;
                 margin-bottom: 4px;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    height: 24px;
+                    width: 24px;
+                    padding: 0 5px;
+                    background: #fff;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: -1;
+                }
 
                 @media (max-width: 767px) {
                     margin-bottom: 0;
+
+                    &::before {
+                        padding: 0 4px;
+                    }
                 }
             }
 
@@ -122,13 +141,17 @@
         }
 
         .progress__title {
-            color: #000;
+            color: #1F1F1F;
             font-weight: 600;
 
             span:first-child {
                 border: 2px solid #3EB01A;
                 color: #3EB01A;
                 background: #fff;
+
+                &::before {
+                    padding: 0;
+                }
             }
 
             span:last-child {
