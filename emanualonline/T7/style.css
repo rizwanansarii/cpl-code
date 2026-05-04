@@ -10,6 +10,7 @@
   display: none;
 }
 .gmd-07 .columns .product-info-main .gmd-accordion .gmd-accordion-tab {
+  cursor: pointer;
   padding: 24px;
   display: block !important;
   border-radius: 3px;
@@ -41,6 +42,9 @@
 }
 .gmd-07 .columns .product-info-main .gmd-accordion .gmd-accordion-tab > div {
   display: none;
+}
+.gmd-07 .columns .product-info-main .gmd-accordion .gmd-accordion-tab.gmd-active {
+  cursor: unset;
 }
 .gmd-07 .columns .product-info-main .gmd-accordion .gmd-accordion-tab.gmd-active > div {
   display: block;

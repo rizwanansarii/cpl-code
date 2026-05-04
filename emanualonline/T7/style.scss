@@ -15,6 +15,7 @@
                 }
 
                 .gmd-accordion-tab {
+                    cursor: pointer;
                     padding: 24px;
                     display: block !important;
                     border-radius: 3px;
@@ -51,6 +52,8 @@
                     }
 
                     &.gmd-active {
+                        cursor: unset;
+
                         >div {
                             display: block;
                         }

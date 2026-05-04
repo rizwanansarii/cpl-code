@@ -14,6 +14,11 @@
             callback(elements) : setTimeout(() => waitForElement(waitFor, callback, minElements, isVariable, timer - frequency), frequency);
     }
 
+    function isFullyInViewport(el) {
+        const rect = el.getBoundingClientRect(); return (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight));
+    }
+
+
     waitForElement(".catalog-product-view .price-final_price.price-box", ([]) => {
         document.querySelector('body').classList.add(testInfo.className);
 
@@ -35,12 +40,18 @@
                                 </span>
                             </h3>`
                         );
-                        tab.querySelector('.gmd-heading').addEventListener('click', () => {
+                        tab.addEventListener('click', () => {
                             const parent = tab.closest('.gmd-accordion');
                             parent.querySelectorAll('.gmd-accordion-tab').forEach(el => {
                                 el.classList.remove('gmd-active');
                             });
                             tab.classList.add('gmd-active');
+                            if (!isFullyInViewport(tab.querySelector('.gmd-heading'))) {
+                                tab.querySelector('.gmd-heading').scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "center"
+                                });
+                            }
                             parent.querySelector(`label#${CSS.escape(tab.id)}`).click();
                         });
                     }
