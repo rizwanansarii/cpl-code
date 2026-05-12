@@ -349,7 +349,7 @@
                             <div>
                                 <div class="datepicker">
                                     <div class="datepicker__header">
-                                        <h3 class="datepicker__title">April 2026</h3><button type="button"
+                                        <h3 class="datepicker__title">Mei 2026</h3><button type="button"
                                             class="button button--icon button--small button--outline"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                 <path d="M9.44445 6.11108H5.2278L7.06112 4.28333C7.16573 4.17872 7.22451 4.03683 7.22451 3.88888C7.22451 3.74094 7.16573 3.59905 7.06112 3.49444C6.95651 3.38983 6.81462 3.33105 6.66667 3.33105C6.51873 3.33105 6.37684 3.38983 6.27223 3.49444L3.49446 6.27219C3.44388 6.32503 3.40423 6.38736 3.3778 6.45553C3.32223 6.5908 3.32223 6.74253 3.3778 6.87775C3.40423 6.94597 3.44388 7.00825 3.49446 7.06108L6.27223 9.83886C6.3239 9.89097 6.38534 9.9323 6.45301 9.96047C6.52073 9.98869 6.59334 10.0032 6.66667 10.0032C6.74001 10.0032 6.81262 9.98869 6.88034 9.96047C6.94806 9.9323 7.00951 9.89097 7.06112 9.83886C7.11317 9.78725 7.15451 9.7258 7.18273 9.65808C7.21095 9.59042 7.22545 9.51781 7.22545 9.44442C7.22545 9.37108 7.21095 9.29847 7.18273 9.2308C7.15451 9.16308 7.11317 9.10164 7.06112 9.04997L5.2278 7.22219H9.44445C9.59178 7.22219 9.73312 7.16369 9.83728 7.05947C9.94151 6.9553 10 6.81403 10 6.66664C10 6.5193 9.94151 6.37803 9.83728 6.2738C9.73312 6.16964 9.59178 6.11108 9.44445 6.11108Z" fill="white"/>
                                             </svg></button><button type="button" class="button button--icon button--small button--outline"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -366,6 +366,8 @@
                                         <div>Zo</div>
                                     </div>
                                     <div class="datepicker__grid">
+                                        <div class="datepicker__day available selected placeholder"></div>
+                                        <div class="datepicker__day available selected placeholder"></div>
                                         <div class="datepicker__day available selected placeholder"></div>
                                         <div class="datepicker__day available selected placeholder"></div>
                                         <div class="datepicker__day available">1</div>
@@ -398,6 +400,7 @@
                                         <div class="datepicker__day available">28</div>
                                         <div class="datepicker__day available">29</div>
                                         <div class="datepicker__day available">30</div>
+                                        <div class="datepicker__day available">31</div>
                                     </div>
                                 </div>
                             </div>
@@ -478,11 +481,11 @@
                         document.querySelector('.gmd-new-fields-wrapper input[name="huisnummer"]').dispatchEvent(new Event('blur', { bubbles: true }));
                     })
 
-                    const clonelabel = document.querySelector('.dummy .planning__label').cloneNode(true)
-                    const cloneInfo = document.querySelector('.dummy .planning__betaling-info').cloneNode(true)
+                    // const clonelabel = document.querySelector('.dummy .planning__label').cloneNode(true)
+                    // const cloneInfo = document.querySelector('.dummy .planning__betaling-info').cloneNode(true)
 
-                    document.querySelector('.hero-new__buttons').insertAdjacentElement('beforebegin', clonelabel)
-                    document.querySelector('.hero-new__buttons').insertAdjacentElement('beforebegin', cloneInfo)
+                    // document.querySelector('.hero-new__buttons').insertAdjacentElement('beforebegin', clonelabel)
+                    // document.querySelector('.hero-new__buttons').insertAdjacentElement('beforebegin', cloneInfo)
 
                     waitForElement('.textlink', () => {
                         document.querySelector('.textlink').addEventListener('click', (e) => {

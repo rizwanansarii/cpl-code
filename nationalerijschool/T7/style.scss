@@ -19,15 +19,15 @@
         overflow: unset !important;
     }
 
-    .hero-new__content {
-        .planning__label {
-            color: #fff;
-        }
+    // .hero-new__content {
+    //     .planning__label {
+    //         color: #fff;
+    //     }
 
-        .planning__betaling-info {
-            color: #fff;
-        }
-    }
+    //     .planning__betaling-info {
+    //         color: #fff;
+    //     }
+    // }
 
     .hero-new__cta-wrapper {
 
@@ -53,13 +53,26 @@
             background: none;
         }
 
+        .planning__label,
+        .planning__betaling-info {
+            color: #fff;
+        }
+
+        .planning__label {
+            font-size: 16px;
+        }
+
+        .planning__betaling-info {
+            font-size: 14px;
+        }
+
         .planning-modal__close,
         // form>.planning__postcode .planning__search,
         .planning__search,
         form .planning__section:has(.days, .planning__betaling-info) .planning__subtitle,
-        .planning__betaling-info,
-        .planning__label,
-        .planning__betaling-info,
+        // .planning__betaling-info,
+        // .planning__label,
+        // .planning__betaling-info,
         .planning__spoed,
         .planning__usps,
         .planning__payment-logos,

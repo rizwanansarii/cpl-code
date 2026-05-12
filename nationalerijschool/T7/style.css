@@ -1,0 +1,274 @@
+.gmd-07 .hero-new__form,
+.gmd-07 .planning-modal__overlay,
+.gmd-07 .hero-new__buttons {
+  display: none;
+}
+.gmd-07 .hero-new__row {
+  align-items: flex-start;
+}
+.gmd-07 .planning-modal {
+  position: unset;
+  overflow-y: unset;
+}
+.gmd-07:has(.planning-modal) {
+  overflow: unset !important;
+}
+.gmd-07 .hero-new__cta-wrapper .usp-list {
+  margin-bottom: 25px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning-modal {
+  padding: 0;
+  margin: 0 -5px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning-modal form .gmd-info {
+  color: #fff !important;
+  margin-top: 10px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning-modal__content {
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__label,
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-info {
+  color: #fff;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__label {
+  font-size: 16px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-info {
+  font-size: 14px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning-modal__close,
+.gmd-07 .hero-new__cta-wrapper .planning__search,
+.gmd-07 .hero-new__cta-wrapper form .planning__section:has(.days, .planning__betaling-info) .planning__subtitle,
+.gmd-07 .hero-new__cta-wrapper .planning__spoed,
+.gmd-07 .hero-new__cta-wrapper .planning__usps,
+.gmd-07 .hero-new__cta-wrapper .planning__payment-logos,
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-korting,
+.gmd-07 .hero-new__cta-wrapper .dummy .planning__postcode,
+.gmd-07 .hero-new__cta-wrapper form > .planning__postcode,
+.gmd-07 .hero-new__cta-wrapper form:has(.dummy.d-block) > .planning__section,
+.gmd-07 .hero-new__cta-wrapper .thankyou__svg-wrapper,
+.gmd-07 .hero-new__cta-wrapper .days {
+  display: none;
+}
+.gmd-07 .hero-new__cta-wrapper .gmd-new-fields-wrapper .planning__search {
+  padding: 0.75rem;
+}
+.gmd-07 .hero-new__cta-wrapper .dummy .datepicker,
+.gmd-07 .hero-new__cta-wrapper .dummy .planning__section {
+  opacity: 0.5;
+}
+.gmd-07 .hero-new__cta-wrapper .dummy input,
+.gmd-07 .hero-new__cta-wrapper .dummy button {
+  pointer-events: none;
+}
+.gmd-07 .hero-new__cta-wrapper .planning-modal__inner {
+  padding: 0;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__section {
+  border: none;
+  padding: 0;
+  margin-top: 15px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning > .planning__subtitle {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__subtitle {
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__section:has(.timeslots) .planning__subtitle {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker {
+  margin-top: 0;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker__title {
+  text-align: right;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+}
+.gmd-07 .hero-new__cta-wrapper .button--outline {
+  border-radius: 8px;
+  border: 0.667px solid rgba(255, 255, 255, 0.25);
+  padding: 4.5px;
+}
+.gmd-07 .hero-new__cta-wrapper .button--outline svg {
+  fill: #fff;
+  height: auto;
+  width: auto;
+  flex: auto;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker__weekdays {
+  color: #FFF;
+  font-size: 16px;
+  line-height: 14px;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker__grid {
+  gap: 5px;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker__day.available.selected {
+  border: 1px solid #0CC883;
+  background: #FFF;
+  color: #15A872;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker__day.almost-full.selected {
+  background: #FFF;
+  color: #c5a83e;
+  border-color: #f3cd45;
+}
+.gmd-07 .hero-new__cta-wrapper .datepicker__day {
+  padding: 3px 0;
+}
+.gmd-07 .hero-new__cta-wrapper .timeslots {
+  gap: 4px;
+}
+.gmd-07 .hero-new__cta-wrapper .timeslots__item {
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 7px 5.5px;
+  flex: unset;
+}
+.gmd-07 .hero-new__cta-wrapper .timeslots__item.timeslots__item--disabled {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.5;
+  background: #833631;
+}
+.gmd-07 .hero-new__cta-wrapper .timeslots__item.timeslots__item--active {
+  border: 1px solid rgba(234, 91, 19, 0.2509803922);
+  color: #833631;
+  background: #FFF;
+}
+.gmd-07 .hero-new__cta-wrapper .form-flex:has([name=voornaam]) {
+  gap: 6px 0;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__betaling {
+  border-radius: 16px;
+  border: 1px solid #FFF;
+  margin-top: 14px;
+  padding: 4px;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-optie {
+  padding: 8px 5px;
+  justify-content: center;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-optie.planning__betaling-optie--active {
+  border-radius: 13px;
+  background: #EA5B13;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-label {
+  color: #FFF;
+  text-align: center;
+  font-weight: 600;
+}
+@media (max-width: 1023px) {
+  .gmd-07 .hero-new__cta-wrapper .planning__betaling-label {
+    font-size: 15px;
+  }
+}
+@media (max-width: 879px) {
+  .gmd-07 .hero-new__cta-wrapper .planning__betaling-label {
+    font-size: 13px;
+  }
+}
+@media (max-width: 374px) {
+  .gmd-07 .hero-new__cta-wrapper .planning__betaling-label {
+    font-size: 12px;
+  }
+}
+.gmd-07 .hero-new__cta-wrapper .planning__betaling-prijs {
+  color: #FFF;
+  text-align: center;
+  font-weight: 400;
+  margin-left: 2px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__submit {
+  margin-top: 16px;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__confirm {
+  color: #FFF;
+}
+.gmd-07 .hero-new__cta-wrapper .planning__confirm span {
+  color: #FFF;
+}
+.gmd-07 .hero-new__cta-wrapper .dummy {
+  display: none;
+}
+.gmd-07 .hero-new__cta-wrapper .dummy.d-block {
+  display: block;
+}
+.gmd-07 .hero-new__cta-wrapper .thankyou__subtitle,
+.gmd-07 .hero-new__cta-wrapper .thankyou__step-title,
+.gmd-07 .hero-new__cta-wrapper .thankyou__step-text,
+.gmd-07 .hero-new__cta-wrapper .thankyou__step-confirm,
+.gmd-07 .hero-new__cta-wrapper .thankyou__step-confirm span {
+  color: #fff;
+}
+.gmd-07 .hero-new__cta-wrapper .gmd-extra-info-text {
+  color: #fff;
+  text-align: center;
+  margin-top: 8px;
+}
+@media (max-width: 767px) {
+  .gmd-07 .hero-new__cta-wrapper .usp-list {
+    margin-bottom: 49px;
+  }
+  .gmd-07 .hero-new__cta-wrapper .planning > .planning__subtitle {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .gmd-07 .hero-new__cta-wrapper .planning__subtitle {
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: -0.32px;
+  }
+  .gmd-07 .hero-new__cta-wrapper .form-flex > div:has([name=postcode]) {
+    width: 100%;
+  }
+  .gmd-07 .hero-new__cta-wrapper .form-flex > div:has([name=huisnummer]),
+  .gmd-07 .hero-new__cta-wrapper .form-flex > div:has([name=toevoeging]),
+  .gmd-07 .hero-new__cta-wrapper .form-flex > div:has([name=voornaam]),
+  .gmd-07 .hero-new__cta-wrapper .form-flex > div:has([name=achternaam]) {
+    width: 50%;
+  }
+  .gmd-07 .hero-new__cta-wrapper .form-flex > div:has([name=postcode]) {
+    width: 100%;
+  }
+  .gmd-07 .hero-new__cta-wrapper .planning__section {
+    margin-top: 16px;
+  }
+  .gmd-07 .hero-new__cta-wrapper .datepicker__grid {
+    gap: 5px 6px;
+  }
+  .gmd-07 .hero-new__cta-wrapper .timeslots {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+  }
+  .gmd-07 .hero-new__cta-wrapper .timeslots::-webkit-scrollbar {
+    display: none;
+  }
+  .gmd-07 .hero-new__cta-wrapper .timeslots__item {
+    padding: 7px 9.5px;
+  }
+}/*# sourceMappingURL=style.css.map */
