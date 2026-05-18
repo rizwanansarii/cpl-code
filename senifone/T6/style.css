@@ -204,7 +204,7 @@
 }
 .gmd-06 .gmd-buy-now-wrapper .price-area .was-price {
   color: #767676;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 24px;
   text-decoration-line: line-through;
@@ -212,7 +212,7 @@
 }
 .gmd-06 .gmd-buy-now-wrapper .price-area .advice {
   color: #767676;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 24px;
   order: 2;
@@ -408,7 +408,7 @@
 }
 .gmd-06 .add-to-cart-holder .gmd-was-price-wrapper {
   color: #767676;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 24px;
   display: flex;
