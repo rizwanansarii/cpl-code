@@ -31,23 +31,23 @@
 
     const content = {
         nl: {
-            recommendedLabel: `MEEST GEKOZEN`,
+            recommendedLabel: `De populairste keuze`,
             adviceLabel: `Adviesprijs`,
             payIconLabel: `Veilig betalen met`,
             discountLabel: `Je bespaart`,
             btnColloapseLabel: `Bekijk meer`,
             btnExpandLabel: `Bekijk minder`,
-            firstVariant: [`Geschikt voor basisgebruik:`, `bellen en af en toe een appje.`],
+            firstVariant: [`Geschikt voor basisgebruik:`, `bellen en af en toe een appje.`, `Let op:`, `minder opslag, langzamer, sneller vol`],
             secondVariant: [`Optimaal gebruik:`, `Ruimte voor al uw WhatsApp-berichten, foto's van de kleinkinderen, filmpjes en spelletjes. Sneller, soepeler en raakt niet snel vol.`]
         },
         de: {
-            recommendedLabel: `MEIST AUSGEWÄHLT`,
+            recommendedLabel: `Die beliebteste Wahl`,//`MEIST AUSGEWÄHLT`,
             adviceLabel: `UVP`,
             payIconLabel: `Bezahlen Sie sicher mit`,
             discountLabel: `Du sparst`,
             btnColloapseLabel: `Mehr anzeigen`,
             btnExpandLabel: `Weniger anzeigen`,
-            firstVariant: [`Geeignet für die grundlegende Nutzung:`, `telefonieren und gelegentlich eine App.`],
+            firstVariant: [`Geeignet für die grundlegende Nutzung:`, `telefonieren und gelegentlich eine App.`, `Bitte beachten Sie:`, `weniger Speicher, langsamer, voll schneller.`],
             secondVariant: [`Optimale Nutzung:`, `Platz für all Ihre WhatsApp-Nachrichten, Fotos der Enkelkinder, Filme und Spiele. Schneller, flüssiger und nicht so schnell voll.`]
         }
     };
@@ -117,10 +117,10 @@
 
         if (!document.querySelector('.gmd-recommended-badge')) {
             const recommendedLabel = document.querySelector('.option-selector__btns .opt-label:last-child');
-            document.querySelector('.option-selector__btns .opt-label:nth-of-type(1) .opt-label__description-text').insertAdjacentHTML('afterend', `<span class="gmd-description"><div class="gmd-bold-text">${content[lang].firstVariant[0]}</div>${content[lang].firstVariant[1]}</span>`)
+            document.querySelector('.option-selector__btns .opt-label:nth-of-type(1) .opt-label__description-text').insertAdjacentHTML('afterend', `<div class="gmd-description"><div class="gmd-text-wrapper"><div class="gmd-bold-text">${content[lang].firstVariant[0]}</div>${content[lang].firstVariant[1]}</div><div class="gmd-text-wrapper"><span class="gmd-bold-text">${content[lang].firstVariant[2]}</span> ${content[lang].firstVariant[3]}</div></div>`)
 
             document.querySelector('.option-selector__btns .opt-label:nth-of-type(2)').insertAdjacentHTML('afterbegin', `<div class="gmd-recommended-badge">${content[lang].recommendedLabel}</div>`)
-            document.querySelector('.option-selector__btns .opt-label:nth-of-type(2) .opt-label__description-text').insertAdjacentHTML('afterend', `<span class="gmd-description"><div class="gmd-bold-text">${content[lang].secondVariant[0]}</div>${content[lang].secondVariant[1]}</span>`)
+            document.querySelector('.option-selector__btns .opt-label:nth-of-type(2) .opt-label__description-text').insertAdjacentHTML('afterend', `<div class="gmd-description"><div class="gmd-text-wrapper"><div class="gmd-bold-text">${content[lang].secondVariant[0]}</div>${content[lang].secondVariant[1]}</div></div>`)
         }
 
         waitForElement('.add-to-cart-holder .cart-secure-checkout', () => {
