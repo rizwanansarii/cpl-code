@@ -427,7 +427,8 @@
 .gmd-06 .add-to-cart-holder .gmd-was-price-wrapper .gmd-was-price {
   text-decoration: line-through;
 }
-.gmd-06 .add-to-cart-holder .gmd-was-price-wrapper .gmd-total-amount {
+.gmd-06 .add-to-cart-holder .gmd-was-price-wrapper .gmd-total-amount,
+.gmd-06 .add-to-cart-holder .gmd-was-price-wrapper .gmd-total-amount-wrapper {
   color: #0F0F0F;
   font-size: 21px;
   font-weight: 800;

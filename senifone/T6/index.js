@@ -34,6 +34,7 @@
             recommendedLabel: `De populairste keuze`,
             adviceLabel: `Adviesprijs`,
             payIconLabel: `Veilig betalen met`,
+            totalAmountLabel: `Totaal:`,
             discountLabel: `Je bespaart`,
             btnColloapseLabel: `Bekijk meer`,
             btnExpandLabel: `Bekijk minder`,
@@ -44,6 +45,7 @@
             recommendedLabel: `Die beliebteste Wahl`,//`MEIST AUSGEWÄHLT`,
             adviceLabel: `UVP`,
             payIconLabel: `Bezahlen Sie sicher mit`,
+            totalAmountLabel: `Gesamt:`,
             discountLabel: `Du sparst`,
             btnColloapseLabel: `Mehr anzeigen`,
             btnExpandLabel: `Weniger anzeigen`,
@@ -150,7 +152,7 @@
                                 <div class="gmd-advice-wrapper">
                                     <span class="gmd-advice">${content[lang].adviceLabel}</span>
                                     <span class="gmd-was-price">€${formatPrice(wasPrice)}</span>
-                                    <div class="gmd-total-amount">${currentPrice.innerHTML}</div>
+                                    <div class="gmd-total-amount-wrapper">${content[lang].totalAmountLabel} <span class="gmd-total-amount">${currentPrice.innerHTML}</span></div>
                                 </div>
                                 <div class="gmd-discount-wrapper">${content[lang].discountLabel} <span class="gmd-discount-amount">${discountAmount.innerHTML}<div>
                             </div>`
