@@ -1,4 +1,9 @@
 .gmd-34 {
+    &:has(.gmd-mega-menu.is-open) {
+        .needsclick[class*="kl-teaser"] {
+            z-index: 9 !important;
+        }
+    }
 
     #header:has(.gmd-mega-menu.is-open) {
         .gmd-navigation-toggle-wrapper {
@@ -131,7 +136,7 @@
             }
 
             @media(max-width: 479px) {
-                max-width: 100%;
+                max-width: 100% !important;
                 width: 100%;
             }
         }

@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.gmd-34:has(.gmd-mega-menu.is-open) .needsclick[class*=kl-teaser] {
+  z-index: 9 !important;
+}
 .gmd-34 #header:has(.gmd-mega-menu.is-open) .gmd-navigation-toggle-wrapper .gmd-toggle svg {
   transform: rotate(-180deg);
 }
@@ -119,7 +122,7 @@
 }
 @media (max-width: 479px) {
   .gmd-34 .gmd-mega-menu .gmd-mega-inner {
-    max-width: 100%;
+    max-width: 100% !important;
     width: 100%;
   }
 }

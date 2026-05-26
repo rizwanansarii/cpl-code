@@ -18,10 +18,10 @@
 
         const MENU_IMAGES = {
             'wk-2026': 'https://www.voetbalshirtskoning.nl/img/gsy1lbof0hDnQAkR-C9PD8OutUbW3Pq2Oei2kumDgU4/resize:fit:700:560/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvZS9rL2VrLTg4LXNoaXJ0LXRodWlzLTE5ODgta2luZC12b2x3YXNzZW5lbl8yLmpwZz93aWR0aD03MDAmaGVpZ2h0PTU2MA.jpg',
-            'voetbaltenues': 'https://voetbalshirtskoning.nl/img/oZoa4Apa9aix9Z04LSlATJW0EQKVpVp1BQaBPyMxjSQ/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvZi9jL2ZjLWJhcmNlbG9uYS12b2V0YmFsdGVudWUtbGFtaW5lLXlhbWFsLWtpbmQtMjAyNS0yMDI2LmpwZz93aWR0aD0zMDAmaGVpZ2h0PTMwMA.jpg',
-            'voetbalshirts': 'https://voetbalshirtskoning.nl/img/YRKaBGa7aa1Me0E1gUjihQwPg-u8UxV-ZRUracr-71k/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3Qvbi9lL25lZGVybGFuZHMtZWxmdGFsLXZvZXRiYWx0ZW51ZS11aXQta2luZC12b2x3YXNzZW5lbi5qcGc_d2lkdGg9MzAwJmhlaWdodD0zMDA.jpg',
+            'voetbaltenues': 'https://www.voetbalshirtskoning.nl/img/r54FxEavMqsiRp5UjoXs_XzD0o9UBhs2IPUjL_lrUX8/resize:fit:700:560/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvcC9vL3BvcnR1Z2FsLXZvZXRiYWx0ZW51ZS1yb25hbGRvLWtpbmQtdm9sd2Fzc2VuZW4uanBnP3dpZHRoPTcwMCZoZWlnaHQ9NTYw.jpg',
+            'voetbalshirts': 'https://www.voetbalshirtskoning.nl/img/HNDYQQkLffHzt3tMkigp73qOPZA8FV4fpyiOYSXbsZ4/resize:fit:700:560/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3Qvbi9lL25lZGVybGFuZHMtZWxmdGFsLXNoaXJ0LXRodWlzLWVpZ2VuLW5hYW0tendhcnQtb3JhbmplLWtpbmQtc2VuaW9yLmpwZz93aWR0aD03MDAmaGVpZ2h0PTU2MA.jpg',
             'trainingspakken': 'https://voetbalshirtskoning.nl/img/1B-cGY3-QSArmoqkYfcriSFYUUp6PTovVckc1FgbQbA/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvZi9jL2ZjLWJhcmNlbG9uYS10cmFpbmluZ3NwYWsta2luZC16d2FydC5qcGc_d2lkdGg9MzAwJmhlaWdodD0zMDA.jpg',
-            'fanshop': 'https://voetbalshirtskoning.nl/img/utiYQEvR_OzTLONoOYWF4sPmgA7hvIgk6Ns0zbMOlso/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvcC9vL3BvcnR1Z2FsLXZvZXRiYWx0ZW51ZS1yb25hbGRvLWtpbmQtdm9sd2Fzc2VuZW4uanBnP3dpZHRoPTMwMCZoZWlnaHQ9MzAw.jpg',
+            'fanshop': 'https://www.voetbalshirtskoning.nl/img/1gh6cGhDlm9rbWQBQ1rZGh6mTTT8PkvzcmUnkArSB8c/resize:fit:700:560/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3Qvcy9wL3NwYW5qZS15YW1hbC12b2V0YmFsdGVudWUta2luZGVyZW4tdm9sd2Fzc2VuZW4uanBnP3dpZHRoPTcwMCZoZWlnaHQ9NTYw.jpg',
             'voetbaldoelen': 'https://voetbalshirtskoning.nl/img/0EzGtleJ9gnfIp47WXIU8MQCyoHGY9zFGjtbDENoo0U/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvaC9vL2hvb2ZkYWZiZWVsZGluZy0xXzFfLmpwZz93aWR0aD0zMDAmaGVpZ2h0PTMwMA.jpg',
             'voetbalsokken': 'https://voetbalshirtskoning.nl/img/jWkqYxvI6k29KydGCPctoXBRJ99uq9bxo8tmtziQeCI/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3Qvbi9lL25lZGVybGFuZHMtZWxmdGFsLXZvZXRiYWxzb2trZW4tb3JhbmplLmpwZz93aWR0aD0zMDAmaGVpZ2h0PTMwMA.jpg',
             'voetballen': 'https://voetbalshirtskoning.nl/img/zPhj2ZgUrhbd7QRRYrxO4KdHzYlbIWtCs8t5A_xaaIQ/resize:fit:300:300/aHR0cHM6Ly93d3cudm9ldGJhbHNoaXJ0c2tvbmluZy5ubC9tZWRpYS9jYXRhbG9nL3Byb2R1Y3QvYy9oL2NoYW1waW9ucy1sZWFndWUtZnJvc3Qtdm9ldGJhbC12b29ya2FudC5qcGc_d2lkdGg9MzAwJmhlaWdodD0zMDA.jpg',
@@ -216,7 +216,38 @@
             });
         }
 
-        function buildMenuJSON() {
+        async function buildMenuJSON() {
+
+            const result = [];
+
+            const res = await fetch(
+                '/theme-module/block/mobileMenu'
+            );
+
+            const data = await res.json();
+
+            const html = data.menuHtml;
+
+            const parser = new DOMParser();
+
+            const doc = parser.parseFromString(
+                html,
+                'text/html'
+            );
+
+            doc.querySelectorAll(
+                '.mobile-nav-wrapper .level-0.menu-item'
+            ).forEach(item => {
+
+                // ONLY ROOT ITEMS
+                if (item.closest('.submenu')) return;
+
+                const parsed = parseMenuItem(item);
+
+                if (parsed) {
+                    result.push(parsed);
+                }
+            });
 
             function parseMenuItem(item) {
 
@@ -270,38 +301,20 @@
                         obj.children = children;
                     }
                 }
-
                 return obj;
             }
 
-            const result = [];
-
-            // FIXED SELECTOR
-            document.querySelectorAll(
-                '#mobile-menu .mobile-menu-catalog-nav-root .level-0.menu-item'
-            ).forEach(item => {
-
-                // only real root items
-                if (item.closest('.submenu')) return;
-
-                const parsed = parseMenuItem(item);
-
-                if (parsed) {
-                    result.push(parsed);
-                }
-            });
-
             return result;
         }
-        document.querySelector('#mobile-menu-toggler')?.click();
 
         let MENU_DATA;
-        setTimeout(() => {
+        (async () => {
 
-            MENU_DATA = buildMenuJSON();
-            document.querySelector('a[aria-label="Close mobile menu"]')?.click();
+            MENU_DATA = await buildMenuJSON();
+
             attachToNav();
-        }, 500);
+
+        })();
 
         /* ── Build the mega menu DOM ─────────────────────────────── */
         function buildMegaMenu() {
@@ -335,236 +348,154 @@
                 }
             }
 
-            const menu = document.createElement('div');
-            menu.className = 'gmd-mega-menu';
-            menu.id = 'gmd-mega-menu';
+            if (!document.querySelector('.gmd-mega-menu')) {
+                const menu = document.createElement('div');
+                menu.className = 'gmd-mega-menu';
+                menu.id = 'gmd-mega-menu';
 
-            // Left column
-            const left = document.createElement('div');
-            left.className = 'gmd-mega-left';
+                // Left column
+                const left = document.createElement('div');
+                left.className = 'gmd-mega-left';
 
-            const mobileTop = document.createElement('div');
+                const mobileTop = document.createElement('div');
 
-            mobileTop.className = 'gmd-mobile-top';
+                mobileTop.className = 'gmd-mobile-top';
 
-            mobileTop.innerHTML = `
-                <button class="gmd-mobile-close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <path d="M10 30L30 10M10 10L30 30" stroke="#4B5563" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            `;
-
-            left.appendChild(mobileTop);
-
-            mobileTop.querySelector('.gmd-mobile-close')
-                .addEventListener('click', () => {
-                    document.querySelector('#gmd-mega-menu')
-                        ?.classList.remove('is-open');
-
-                    document.querySelector('#gmd-mega-menu')
-                        ?.classList.remove('gmd-submenu-mobile-open');
-                });
-
-            const heading = document.createElement('div');
-            heading.className = 'gmd-mega-left__heading';
-            heading.textContent = 'Categorie';
-            left.appendChild(heading);
-
-            // Right column
-            const right = document.createElement('div');
-            right.className = 'gmd-mega-right';
-
-            // let firstActiveSet = false;
-
-            MENU_DATA.forEach(cat => {
-
-                const hasSubmenu = cat.children?.length;
-
-                // ─────────────────────────────────────────
-                // CATEGORY ITEM
-                // ─────────────────────────────────────────
-
-                const item = document.createElement('a');
-
-                item.className =
-                    'gmd-cat-item' +
-                    (hasSubmenu ? '' : ' gmd-cat-item--direct');
-
-                item.href = cat.href;
-
-                item.dataset.key = cat.key;
-
-                // ─────────────────────────────────────────
-                // IMAGE
-                // ─────────────────────────────────────────
-
-                const img = document.createElement('img');
-
-                img.className = 'gmd-cat-item__img';
-
-                img.alt = cat.label;
-
-                if (cat.image) {
-
-                    img.src = cat.image;
-
-                } else {
-
-                    const origNav = findNavItem(cat.label);
-
-                    const origSrc = getOriginalImg(origNav);
-
-                    img.src = origSrc || '';
-
-                    if (!origSrc) {
-                        img.style.visibility = 'hidden';
-                    }
-                }
-
-                // ─────────────────────────────────────────
-                // LABEL
-                // ─────────────────────────────────────────
-
-                const label = document.createElement('span');
-
-                label.className = 'gmd-cat-item__label';
-
-                label.textContent = cat.label;
-
-                item.appendChild(img);
-
-                item.appendChild(label);
-
-                // ─────────────────────────────────────────
-                // ARROW
-                // ─────────────────────────────────────────
-
-                if (hasSubmenu) {
-
-                    const arrow = document.createElement('span');
-
-                    arrow.className = 'gmd-cat-item__arrow';
-
-                    arrow.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M6 3.33325L10.6667 7.99992L6 12.6666" stroke="#4B5563" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                mobileTop.innerHTML = `
+                    <button class="gmd-mobile-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M10 30L30 10M10 10L30 30" stroke="#4B5563" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    `;
+                    </button>
+                `;
 
-                    item.appendChild(arrow);
-                }
+                left.appendChild(mobileTop);
 
-                // ─────────────────────────────────────────
-                // DESKTOP HOVER
-                // ─────────────────────────────────────────
+                mobileTop.querySelector('.gmd-mobile-close')
+                    .addEventListener('click', () => {
+                        document.querySelector('#gmd-mega-menu')
+                            ?.classList.remove('is-open');
 
-                item.addEventListener('mouseenter', () => {
+                        document.querySelector('#gmd-mega-menu')
+                            ?.classList.remove('gmd-submenu-mobile-open');
+                    });
 
-                    if (window.innerWidth <= 1023) return;
+                const heading = document.createElement('div');
+                heading.className = 'gmd-mega-left__heading';
+                heading.textContent = 'Categorie';
+                left.appendChild(heading);
 
-                    // REMOVE ALL ACTIVE STATES
-                    left.querySelectorAll('.gmd-cat-item')
-                        .forEach(i => i.classList.remove('is-active'));
+                // Right column
+                const right = document.createElement('div');
+                right.className = 'gmd-mega-right';
 
-                    right.querySelectorAll(':scope > .gmd-submenu')
-                        .forEach(s => s.classList.remove('is-active'));
+                // let firstActiveSet = false;
 
-                    // ALWAYS ACTIVE CURRENT LEFT ITEM
-                    item.classList.add('is-active');
+                MENU_DATA.forEach(cat => {
 
-                    document.querySelector('.gmd-mega-right').innerHTML = '';
-
-                    // IF NO SUBMENU
-                    // STOP HERE
-                    if (!hasSubmenu) {
-                        return;
-                    }
-
-                    // RENDER SUBMENU
-                    renderSubmenuColumn(
-                        cat.children,
-                        1,
-                        cat.label
-                    );
-                });
-
-                // ─────────────────────────────────────────
-                // MOBILE CLICK
-                // ─────────────────────────────────────────
-
-                item.addEventListener('click', e => {
-
-                    if (window.innerWidth >= 1023) {
-
-                        if (hasSubmenu) {
-                            e.preventDefault();
-                        }
-
-                        return;
-                    }
-
-                    if (!hasSubmenu) return;
-
-                    e.preventDefault();
-
-                    left.querySelectorAll('.gmd-cat-item')
-                        .forEach(i => i.classList.remove('is-active'));
-
-                    right.querySelectorAll(':scope > .gmd-submenu')
-                        .forEach(s => s.classList.remove('is-active'));
-
-                    item.classList.add('is-active');
-
-                    document.querySelector('.gmd-mega-right').innerHTML = '';
-
-                    renderSubmenuColumn(
-                        cat.children,
-                        1,
-                        cat.label,
-                        'Categorie'
-                    );
-
-                    menu.classList.add('gmd-submenu-mobile-open');
-                });
-
-                // ─────────────────────────────────────────
-                // APPEND LEFT ITEM
-                // ─────────────────────────────────────────
-
-                left.appendChild(item);
-
-                // ─────────────────────────────────────────
-                // SUBMENU PANEL
-                // ─────────────────────────────────────────
-
-                if (hasSubmenu) {
-
-                    const panel = document.createElement('div');
-
-                    panel.className = 'gmd-submenu';
-
-                    panel.dataset.submenu = cat.key;
-
-                    // TITLE
-                    const title = document.createElement('div');
-
-                    title.className = 'gmd-submenu__title';
-
-                    title.textContent = cat.label;
-
-                    panel.appendChild(title);
+                    const hasSubmenu = cat.children?.length;
 
                     // ─────────────────────────────────────────
-                    // RECURSIVE CHILDREN
+                    // CATEGORY ITEM
+                    // ─────────────────────────────────────────
+
+                    const item = document.createElement('a');
+
+                    item.className =
+                        'gmd-cat-item' +
+                        (hasSubmenu ? '' : ' gmd-cat-item--direct');
+
+                    item.href = cat.href;
+
+                    item.dataset.key = cat.key;
+
+                    // ─────────────────────────────────────────
+                    // IMAGE
+                    // ─────────────────────────────────────────
+
+                    const img = document.createElement('img');
+
+                    img.className = 'gmd-cat-item__img';
+
+                    img.alt = cat.label;
+
+                    if (cat.image) {
+
+                        img.src = cat.image;
+
+                    } else {
+
+                        const origNav = findNavItem(cat.label);
+
+                        const origSrc = getOriginalImg(origNav);
+
+                        img.src = origSrc || '';
+
+                        if (!origSrc) {
+                            img.style.visibility = 'hidden';
+                        }
+                    }
+
+                    // ─────────────────────────────────────────
+                    // LABEL
+                    // ─────────────────────────────────────────
+
+                    const label = document.createElement('span');
+
+                    label.className = 'gmd-cat-item__label';
+
+                    label.textContent = cat.label;
+
+                    item.appendChild(img);
+
+                    item.appendChild(label);
+
+                    // ─────────────────────────────────────────
+                    // ARROW
+                    // ─────────────────────────────────────────
+
+                    if (hasSubmenu) {
+
+                        const arrow = document.createElement('span');
+
+                        arrow.className = 'gmd-cat-item__arrow';
+
+                        arrow.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 3.33325L10.6667 7.99992L6 12.6666" stroke="#4B5563" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        `;
+
+                        item.appendChild(arrow);
+                    }
+
+                    // ─────────────────────────────────────────
+                    // DESKTOP HOVER
                     // ─────────────────────────────────────────
 
                     item.addEventListener('mouseenter', () => {
 
                         if (window.innerWidth <= 1023) return;
 
+                        // REMOVE ALL ACTIVE STATES
+                        left.querySelectorAll('.gmd-cat-item')
+                            .forEach(i => i.classList.remove('is-active'));
+
+                        right.querySelectorAll(':scope > .gmd-submenu')
+                            .forEach(s => s.classList.remove('is-active'));
+
+                        // ALWAYS ACTIVE CURRENT LEFT ITEM
+                        item.classList.add('is-active');
+
                         document.querySelector('.gmd-mega-right').innerHTML = '';
 
+                        // IF NO SUBMENU
+                        // STOP HERE
+                        if (!hasSubmenu) {
+                            return;
+                        }
+
+                        // RENDER SUBMENU
                         renderSubmenuColumn(
                             cat.children,
                             1,
@@ -572,41 +503,126 @@
                         );
                     });
 
-                    right.appendChild(panel);
-                }
-            });
+                    // ─────────────────────────────────────────
+                    // MOBILE CLICK
+                    // ─────────────────────────────────────────
 
-            const innerWrapper = document.createElement('div');
+                    item.addEventListener('click', e => {
 
-            innerWrapper.className = 'gmd-mega-inner columns';
+                        if (window.innerWidth >= 1023) {
 
-            innerWrapper.appendChild(left);
-            innerWrapper.appendChild(right);
+                            if (hasSubmenu) {
+                                e.preventDefault();
+                            }
 
-            menu.appendChild(innerWrapper);
+                            return;
+                        }
 
-            // MOBILE OVERLAY CLICK CLOSE
-            menu.addEventListener('click', (e) => {
+                        if (!hasSubmenu) return;
 
-                // ONLY MOBILE
-                if (window.innerWidth > 1023) return;
+                        e.preventDefault();
 
-                // CLICKED OUTSIDE MENU PANEL
-                if (!innerWrapper.contains(e.target)) {
+                        left.querySelectorAll('.gmd-cat-item')
+                            .forEach(i => i.classList.remove('is-active'));
 
-                    menu.classList.remove('is-open');
+                        right.querySelectorAll(':scope > .gmd-submenu')
+                            .forEach(s => s.classList.remove('is-active'));
 
-                    menu.classList.remove(
-                        'gmd-submenu-mobile-open'
-                    );
+                        item.classList.add('is-active');
 
-                    document.body.classList.remove(
-                        'gmd-overflow-hidden'
-                    );
-                }
-            });
+                        document.querySelector('.gmd-mega-right').innerHTML = '';
 
-            return menu;
+                        renderSubmenuColumn(
+                            cat.children,
+                            1,
+                            cat.label,
+                            'Categorie'
+                        );
+
+                        menu.classList.add('gmd-submenu-mobile-open');
+                    });
+
+                    // ─────────────────────────────────────────
+                    // APPEND LEFT ITEM
+                    // ─────────────────────────────────────────
+
+                    left.appendChild(item);
+
+                    // ─────────────────────────────────────────
+                    // SUBMENU PANEL
+                    // ─────────────────────────────────────────
+
+                    if (hasSubmenu) {
+
+                        const panel = document.createElement('div');
+
+                        panel.className = 'gmd-submenu';
+
+                        panel.dataset.submenu = cat.key;
+
+                        // TITLE
+                        const title = document.createElement('div');
+
+                        title.className = 'gmd-submenu__title';
+
+                        title.textContent = cat.label;
+
+                        panel.appendChild(title);
+
+                        // ─────────────────────────────────────────
+                        // RECURSIVE CHILDREN
+                        // ─────────────────────────────────────────
+
+                        item.addEventListener('mouseenter', () => {
+
+                            if (window.innerWidth <= 1023) return;
+
+                            document.querySelector('.gmd-mega-right').innerHTML = '';
+
+                            renderSubmenuColumn(
+                                cat.children,
+                                1,
+                                cat.label
+                            );
+                        });
+
+                        right.appendChild(panel);
+                    }
+                });
+
+                const innerWrapper = document.createElement('div');
+
+                innerWrapper.className = 'gmd-mega-inner columns';
+
+                innerWrapper.appendChild(left);
+                innerWrapper.appendChild(right);
+
+                menu.appendChild(innerWrapper);
+
+                // MOBILE OVERLAY CLICK CLOSE
+                menu.addEventListener('click', (e) => {
+
+                    // ONLY MOBILE
+                    if (window.innerWidth > 1023) return;
+
+                    // CLICKED OUTSIDE MENU PANEL
+                    if (!innerWrapper.contains(e.target)) {
+
+                        menu.classList.remove('is-open');
+
+                        menu.classList.remove(
+                            'gmd-submenu-mobile-open'
+                        );
+
+                        document.body.classList.remove(
+                            'gmd-overflow-hidden'
+                        );
+                    }
+                });
+
+                return menu;
+            }
+
         }
 
         /* ── Attach menu to nav trigger ─────────────────────────── */
