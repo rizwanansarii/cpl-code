@@ -1,7 +1,7 @@
 (() => {
     'use strict';
     const testInfo = {
-        className: 'gmd-34',
+        className: 'gmd-31',
         debug: 0,
         testName: "T31 | Toevoegen van afbeeldingen aan de categorieën in het menu",
         testVersion: 'v1'
