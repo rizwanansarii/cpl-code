@@ -146,17 +146,56 @@
                         : 'mouseenter';
 
                 item.addEventListener(triggerEvent, (e) => {
-                    if (window.innerWidth <= 1023 && link.children?.length) {
-                        e.preventDefault();
-                    }
+
+                    // ACTIVE STATE
                     [...column.children]
                         .forEach(el => el.classList.remove('is-active'));
 
                     item.classList.add('is-active');
 
-                    // RENDER NEXT LEVEL
+                    // REMOVE NEXT LEVELS
+                    document.querySelectorAll('.gmd-submenu-column')
+                        .forEach(col => {
+
+                            if (+col.dataset.level > level) {
+                                col.remove();
+                            }
+                        });
+
+                    // HAS CHILDREN
                     if (link.children?.length) {
 
+                        // MOBILE
+                        if (window.innerWidth <= 1023) {
+
+                            // FIRST CLICK = OPEN SUBMENU
+                            if (!item.classList.contains('is-opened')) {
+
+                                e.preventDefault();
+
+                                // RESET OTHER OPENED ITEMS
+                                column.querySelectorAll('.is-opened')
+                                    .forEach(el => {
+                                        el.classList.remove('is-opened');
+                                    });
+
+                                item.classList.add('is-opened');
+
+                                renderSubmenuColumn(
+                                    link.children,
+                                    level + 1,
+                                    link.label,
+                                    title || 'Categorie'
+                                );
+
+                                return;
+                            }
+
+                            // SECOND CLICK = REDIRECT
+                            return;
+                        }
+
+                        // DESKTOP HOVER
                         renderSubmenuColumn(
                             link.children,
                             level + 1,
@@ -434,20 +473,20 @@
                     // ALWAYS ACTIVE CURRENT LEFT ITEM
                     item.classList.add('is-active');
 
+                    document.querySelector('.gmd-mega-right').innerHTML = '';
+
                     // IF NO SUBMENU
                     // STOP HERE
                     if (!hasSubmenu) {
                         return;
                     }
 
-                    // SHOW MATCHING SUBMENU
-                    const sub = right.querySelector(
-                        `[data-submenu="${cat.key}"]`
+                    // RENDER SUBMENU
+                    renderSubmenuColumn(
+                        cat.children,
+                        1,
+                        cat.label
                     );
-
-                    if (sub) {
-                        sub.classList.add('is-active');
-                    }
                 });
 
                 // ─────────────────────────────────────────
@@ -545,6 +584,27 @@
             innerWrapper.appendChild(right);
 
             menu.appendChild(innerWrapper);
+
+            // MOBILE OVERLAY CLICK CLOSE
+            menu.addEventListener('click', (e) => {
+
+                // ONLY MOBILE
+                if (window.innerWidth > 1023) return;
+
+                // CLICKED OUTSIDE MENU PANEL
+                if (!innerWrapper.contains(e.target)) {
+
+                    menu.classList.remove('is-open');
+
+                    menu.classList.remove(
+                        'gmd-submenu-mobile-open'
+                    );
+
+                    document.body.classList.remove(
+                        'gmd-overflow-hidden'
+                    );
+                }
+            });
 
             return menu;
         }
