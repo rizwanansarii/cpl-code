@@ -21,30 +21,30 @@
 
     async function swapCardsElement() {
         const cards = document.querySelectorAll('.\\#collection-inner .\\#collection-grid .\\#product-card');
-        cards.forEach((card) => {
-            const badges = card.querySelector('.\\#product-card-badges');
-            const caption = card.querySelector('.\\#product-card-caption');
-            if (!caption.querySelector('.\\#product-card-badges') && badges) {
-                caption.insertAdjacentElement('afterbegin', badges);
-                const text = badges.querySelector('.\\#product-card-badge').textContent.replace(/\s+/g, ' ').trim();
-                const match = text.match(/^(\d+%)\s+(Goedkoper)\s+(dan elders)$/i);
+        // cards.forEach((card) => {
+        //     const badges = card.querySelector('.\\#product-card-badges');
+        //     const caption = card.querySelector('.\\#product-card-caption');
+        //     if (!caption.querySelector('.\\#product-card-badges') && badges) {
+        //         caption.insertAdjacentElement('afterbegin', badges);
+        //         const text = badges.querySelector('.\\#product-card-badge').textContent.replace(/\s+/g, ' ').trim();
+        //         const match = text.match(/^(\d+%)\s+(Goedkoper)\s+(dan elders)$/i);
 
-                if (match) {
-                    const [, percentage, goedkoper, elders] = match;
+        //         if (match) {
+        //             const [, percentage, goedkoper, elders] = match;
 
-                    badges.querySelector('.\\#product-card-badge').innerHTML = `
-                        <span class="percentage">${percentage}</span>
-                        <span class="first-half">${goedkoper}</span>
-                        <span class="second-half">${elders}</span>
-                    `;
-                }
+        //             badges.querySelector('.\\#product-card-badge').innerHTML = `
+        //                 <span class="percentage">${percentage}</span>
+        //                 <span class="first-half">${goedkoper}</span>
+        //                 <span class="second-half">${elders}</span>
+        //             `;
+        //         }
 
-                const rating = card.querySelector('.\\#product-card-rating-stars')
-                if (rating) {
-                    calculateRating(card);
-                }
-            }
-        })
+        //         const rating = card.querySelector('.\\#product-card-rating-stars')
+        //         if (rating) {
+        //             calculateRating(card);
+        //         }
+        //     }
+        // })
 
         const dealsMap = await getSuperDeals();
 
@@ -82,31 +82,31 @@
         });
     }
 
-    function calculateRating(card) {
-        const stars = card.querySelectorAll('.\\#product-card-rating-stars use');
+    // function calculateRating(card) {
+    //     const stars = card.querySelectorAll('.\\#product-card-rating-stars use');
 
-        let rating = 0;
+    //     let rating = 0;
 
-        stars.forEach(star => {
-            const href = star.getAttribute('href') || '';
+    //     stars.forEach(star => {
+    //         const href = star.getAttribute('href') || '';
 
-            if (href.includes('star-half')) {
-                rating += 0.5;
-            } else if (href.includes('star-empty')) {
-                rating += 0;
-            } else if (href.includes('star')) {
-                rating += 1;
-            }
-        });
+    //         if (href.includes('star-half')) {
+    //             rating += 0.5;
+    //         } else if (href.includes('star-empty')) {
+    //             rating += 0;
+    //         } else if (href.includes('star')) {
+    //             rating += 1;
+    //         }
+    //     });
 
-        if (!card.querySelector('.gmd-star-count')) {
-            card.querySelector('.\\#product-card-rating-stars').insertAdjacentHTML('afterend', `<div class="gmd-star-count">${rating}</div>`)
-            const ratingCount = card.querySelector('.\\#product-card-rating-counter').innerHTML.trim();
-            card.querySelector('.\\#product-card-rating-counter').innerHTML = `(${ratingCount})`;
-        }
+    //     if (!card.querySelector('.gmd-star-count')) {
+    //         card.querySelector('.\\#product-card-rating-stars').insertAdjacentHTML('afterend', `<div class="gmd-star-count">${rating}</div>`)
+    //         const ratingCount = card.querySelector('.\\#product-card-rating-counter').innerHTML.trim();
+    //         card.querySelector('.\\#product-card-rating-counter').innerHTML = `(${ratingCount})`;
+    //     }
 
-        return rating;
-    }
+    //     return rating;
+    // }
 
     async function getSuperDeals() {
         const res = await fetch('https://prijzenstorm.nl/collections/super-deals/products.json');
