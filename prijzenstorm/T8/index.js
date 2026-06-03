@@ -75,7 +75,9 @@
 
             const cardTitle = card.querySelector('.\\#product-card-title')
             if (cardTitle) {
-                cardTitle.textContent = card.textContent.replace(/^Super Deal\s*=\s*/i, '');
+                if (cardTitle.textContent.trim().includes('Super Deal =')) {
+                    cardTitle.textContent = cardTitle.textContent.replace(/^Super Deal\s*=\s*/i, '');
+                }
             }
             card.querySelector('.\\#product-card-media').insertAdjacentHTML('afterbegin', `
                 <div class="gmd-badge-wrapper">
