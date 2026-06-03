@@ -73,6 +73,10 @@
 
             const save = dealsMap[handle].save.replace('.', ',');
 
+            const cardTitle = card.querySelector('.\\#product-card-title')
+            if (cardTitle) {
+                cardTitle.textContent = card.textContent.replace(/^Super Deal\s*=\s*/i, '');
+            }
             card.querySelector('.\\#product-card-media').insertAdjacentHTML('afterbegin', `
                 <div class="gmd-badge-wrapper">
                     <span class="gmd-badge">SUPERDEAL</span>
