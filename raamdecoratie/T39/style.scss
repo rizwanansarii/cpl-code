@@ -527,6 +527,7 @@
         }
 
         .gmd-submenu__title {
+            display: block;
             color: #111827;
             font-size: 18px;
             font-weight: 600;
@@ -601,6 +602,16 @@
 
         #user-menu-wrapper-regular {
             min-width: auto;
+        }
+    }
+
+    .header-container {
+        .logo-wrapper {
+            .logo {
+                img {
+                    min-height: auto;
+                }
+            }
         }
     }
 }

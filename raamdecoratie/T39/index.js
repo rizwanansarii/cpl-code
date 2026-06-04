@@ -243,7 +243,7 @@
             return img ? img.src : '';
         }
 
-        function renderSubmenuColumn(items, level = 1, title = '', backLabel = 'Alle categorieën') {
+        function renderSubmenuColumn(items, level = 1, title = '', backLabel = 'Alle categorieën', href) {
             // REMOVE SAME + NEXT LEVELS
             document.querySelectorAll('.gmd-submenu-column')
                 .forEach(col => {
@@ -304,9 +304,11 @@
 
             if (title) {
 
-                const heading = document.createElement('div');
+                const heading = document.createElement('a');
 
                 heading.className = 'gmd-submenu__title';
+
+                heading.href = href;
 
                 heading.textContent = title;
 
@@ -378,7 +380,8 @@
                                     link.children,
                                     level + 1,
                                     link.label,
-                                    title || 'Alle categorieën'
+                                    title || 'Alle categorieën',
+                                    link.href
                                 );
 
                                 return;
@@ -393,7 +396,8 @@
                             link.children,
                             level + 1,
                             link.label,
-                            title || 'Alle categorieën'
+                            title || 'Alle categorieën',
+                            link.href
                         );
                     }
                 });
@@ -545,11 +549,11 @@
                 mobileTop.innerHTML = `
                     <div class="gmd-mobile-header">
 
-                        <button class="gmd-mobile-close">
+                        <div class="gmd-mobile-close">
                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" viewBox="0 0 44 45" fill="none">
                                 <path d="M29.9062 15.5898L28.6602 14.3438L22 21.0039L15.3398 14.3438L14.0938 15.5898L20.7539 22.25L14.0938 28.9102L15.3398 30.1562L22 23.4961L28.6602 30.1562L29.9062 28.9102L23.2461 22.25L29.9062 15.5898Z" fill="#2D2D2D"/>
                             </svg>
-                        </button>
+                        </div>
 
                         <div class="gmd-mobile-account">
                             ${myAcc.cloneNode(true).outerHTML}
@@ -698,7 +702,9 @@
                         renderSubmenuColumn(
                             cat.children,
                             1,
-                            cat.label
+                            cat.label,
+                            title || 'Alle categorieën',
+                            cat.href
                         );
                     });
 
@@ -735,7 +741,8 @@
                             cat.children,
                             1,
                             cat.label,
-                            'Alle categorieën'
+                            'Alle categorieën',
+                            cat.href
                         );
 
                         menu.classList.add('gmd-submenu-mobile-open');
@@ -781,7 +788,9 @@
                             renderSubmenuColumn(
                                 cat.children,
                                 1,
-                                cat.label
+                                cat.label,
+                                'Alle categorieën',
+                                cat.href
                             );
                         });
 
