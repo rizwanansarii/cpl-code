@@ -1,0 +1,17 @@
+.gmd-09 {
+    #main {
+        >.collection__sub {
+            display: none;
+        }
+    }
+
+    .header {
+        .collection__sub {
+            background: #fff;
+
+            @media(max-width: 999px) {
+                display: none;
+            }
+        }
+    }
+}
