@@ -268,12 +268,12 @@
 
             if (window.innerWidth <= 769) {
 
-                const backBtn = document.createElement('button');
+                const backBtn = document.createElement('div');
 
                 backBtn.className = 'gmd-back-btn';
 
                 backBtn.innerHTML = `
-                    <span>
+                    <span class="gmd-btn-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" style="transform: rotate(180deg);">
                             <path d="M6 3.33325L10.6667 7.99992L6 12.6666" stroke="#4B5563" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -529,7 +529,7 @@
 
             if (!document.querySelector('.gmd-mega-menu')) {
                 const langDropDown = document.querySelector('#lang-switcher-wrapper-regular')?.closest('.item');
-                const myAcc = document.querySelector('.my-account-links-wrapper');
+                const myAcc = document.querySelector('.menu-header-mobile .my-account');
                 const menu = document.createElement('div');
                 menu.className = 'gmd-mega-menu';
                 menu.id = 'gmd-mega-menu';
@@ -546,18 +546,8 @@
                     <div class="gmd-mobile-header">
 
                         <button class="gmd-mobile-close">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                width="40"
-                                height="40"
-                                viewBox="0 0 40 40"
-                                fill="none">
-                                <path
-                                    d="M10 30L30 10M10 10L30 30"
-                                    stroke="#4B5563"
-                                    stroke-width="3.33333"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" viewBox="0 0 44 45" fill="none">
+                                <path d="M29.9062 15.5898L28.6602 14.3438L22 21.0039L15.3398 14.3438L14.0938 15.5898L20.7539 22.25L14.0938 28.9102L15.3398 30.1562L22 23.4961L28.6602 30.1562L29.9062 28.9102L23.2461 22.25L29.9062 15.5898Z" fill="#2D2D2D"/>
                             </svg>
                         </button>
 
@@ -851,7 +841,7 @@
             }
 
             // Make nav wrapper relative for absolute positioning
-            navBar.style.position = 'relative';
+            // navBar.style.position = 'relative';
 
             const megaMenu = buildMegaMenu();
             navBar.appendChild(megaMenu);
