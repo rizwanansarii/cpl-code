@@ -606,6 +606,8 @@
     }
 
     .header-container {
+        z-index: 9999999;
+
         .logo-wrapper {
             .logo {
                 img {
