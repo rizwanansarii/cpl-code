@@ -201,6 +201,7 @@
   }
   .gmd-39 .gmd-mega-menu .gmd-mega-left .gmd-extra-links li {
     margin-bottom: 18px;
+    cursor: auto;
   }
   .gmd-39 .gmd-mega-menu .gmd-mega-left .gmd-extra-links li a {
     opacity: 0.6;
