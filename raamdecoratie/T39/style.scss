@@ -606,6 +606,10 @@
 }
 
 @media (max-width: 769px) {
+    .header-container {
+        cursor: auto;
+    }
+
     html:has(.gmd-mega-menu.is-open) {
         overflow: hidden;
     }
