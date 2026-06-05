@@ -20,9 +20,23 @@
         const subCategory = document.querySelector('.collection__sub');
         const header = document.querySelector('.shopify-section--header');
         if (subCategory) {
-            if (header && !header.querySelector('.collection__sub')) {
-                header.querySelector('.header').insertAdjacentElement('beforeend', subCategory.cloneNode(true))
+            function checkSticky() {
+
+                const stickyTop =
+                    window.innerWidth <= 999
+                        ? 201
+                        : 219;
+
+                subCategory.classList.toggle(
+                    'gmd-is-sticky',
+                    subCategory.getBoundingClientRect().top <= stickyTop
+                );
             }
+
+            window.addEventListener('scroll', checkSticky);
+            window.addEventListener('resize', checkSticky);
+
+            checkSticky();
             const drawer = document.querySelector('facet-drawer');
             if (drawer) {
                 const shadow = drawer.shadowRoot;
@@ -90,16 +104,5 @@
                 }
             }
         }
-
-
-
-        // const observer = new MutationObserver(() => {
-        // });
-
-        // observer.observe(target, {
-        //     childList: true,
-        //     subtree: true
-        // });
-
     });
 })();

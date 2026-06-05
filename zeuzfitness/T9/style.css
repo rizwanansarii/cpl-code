@@ -1,11 +1,14 @@
-.gmd-09 #main > .collection__sub {
-  display: none;
+.gmd-09 #main .collection__sub {
+  position: sticky;
+  top: 219px;
+  background: #FFF;
+  z-index: 9;
 }
-.gmd-09 .header .collection__sub {
-  background: #fff;
+.gmd-09 #main .collection__sub.gmd-is-sticky {
+  border-bottom: 1px solid #EDEDED;
 }
 @media (max-width: 999px) {
-  .gmd-09 .header .collection__sub {
-    display: none;
+  .gmd-09 #main .collection__sub {
+    position: unset;
   }
 }/*# sourceMappingURL=style.css.map */

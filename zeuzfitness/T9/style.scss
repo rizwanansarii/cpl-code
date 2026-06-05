@@ -1,16 +1,17 @@
 .gmd-09 {
     #main {
-        >.collection__sub {
-            display: none;
-        }
-    }
-
-    .header {
         .collection__sub {
-            background: #fff;
+            position: sticky;
+            top: 219px;
+            background: #FFF;
+            z-index: 9;
+
+            &.gmd-is-sticky {
+                border-bottom: 1px solid #EDEDED;
+            }
 
             @media(max-width: 999px) {
-                display: none;
+                position: unset;
             }
         }
     }
