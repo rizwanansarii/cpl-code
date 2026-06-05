@@ -995,8 +995,8 @@
                                 closeMenu();
 
                             } else {
-
                                 openMenu();
+                                window.scrollTo(0, 0);
                             }
                         }
                     );
