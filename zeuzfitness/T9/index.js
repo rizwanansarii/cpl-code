@@ -98,6 +98,23 @@
                         .collection__sub-wrapper--desktop {
                             display: none;
                         }
+                        .collection__sub-wrapper::-webkit-scrollbar-track {
+                            background: #2e2e2e1a;
+                        }
+                        .collection__sub-wrapper::-webkit-scrollbar-thumb {
+                            background-color: #2e2e2e;
+                            border-radius: 2px;
+                            height: 3px;
+                        }
+                        .collection__sub-wrapper::-webkit-scrollbar-button {
+                            display: none;
+                            -webkit-appearance: none;
+                            appearance: none;
+                        }
+                        .collection__sub-wrapper::-webkit-scrollbar {
+                            height: 3px;
+                            background-color: #2e2e2e1a;
+                        }
                     `;
 
                     shadow.prepend(style);
