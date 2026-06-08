@@ -1,0 +1,33 @@
+.gmd-12 .\#product .\#product-price .\#price-item.\@on-sale {
+  background: #EB1707;
+}
+.gmd-12 .\#product .\#price-item.\@regular.\@on-sale .\#price-value {
+  color: #FFF !important;
+}
+.gmd-12 .\#product .\#price-item.\@regular .\#price-value {
+  color: #EB1707 !important;
+}
+.gmd-12 .\#product .\#price-item.\@compare::after {
+  background: #EB1707;
+}
+.gmd-12 .\#product .\#price-item.\@compare .\#price-value {
+  color: #EB1707 !important;
+}
+.gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .\#product-price .\#price-item.\@on-sale {
+  background: #EB1707;
+}
+.gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .\#price-item.\@regular.\@on-sale .\#price-value {
+  color: #FFF !important;
+}
+.gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .\#price-item.\@regular .\#price-value {
+  color: #EB1707 !important;
+}
+.gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .\#price-item.\@compare::after {
+  background: #EB1707;
+}
+.gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .\#price-item.\@compare .\#price-value {
+  color: #EB1707 !important;
+}
+.gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-left-wrapper .gmd-text-wrapper .gmd-price-stock-wrapper .gmd-price .\#product-price .\#price-item.\@compare .\#price-value {
+  color: #EB1707 !important;
+}/*# sourceMappingURL=style.css.map */
