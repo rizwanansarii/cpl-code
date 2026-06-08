@@ -27,6 +27,13 @@
                 color: #EB1707 !important;
             }
         }
+
+        .\#grid.\@type\:template.\#product-grid {
+            .\#price-item.\@compare * {
+                color: #EB1707 !important;
+            }
+
+        }
     }
 
     .gmd-02 {

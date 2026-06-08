@@ -13,6 +13,9 @@
 .gmd-12 .\#product .\#price-item.\@compare .\#price-value {
   color: #EB1707 !important;
 }
+.gmd-12 .\#product .\#grid.\@type\:template.\#product-grid .\#price-item.\@compare * {
+  color: #EB1707 !important;
+}
 .gmd-12 .gmd-02 .gmd-sticky-ats-wrapper .\#product-price .\#price-item.\@on-sale {
   background: #EB1707;
 }
