@@ -1,5 +1,6 @@
 .gmd-12 .\#product .\#product-price .\#price-item.\@on-sale {
   background: #EB1707;
+  padding: 8px 20px 12px 20px;
 }
 .gmd-12 .\#product .\#price-item.\@regular.\@on-sale .\#price-value {
   color: #FFF !important;
