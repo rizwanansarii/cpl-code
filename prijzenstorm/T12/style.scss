@@ -4,9 +4,20 @@
             .\#price-item.\@on-sale {
                 background: #EB1707;
                 padding: 8px 20px 12px 20px;
+                font-size: 40px !important;
+                border-radius: 10px !important;
 
                 @media (max-width: 600px) {
                     padding: 8px 16px 12px 16px;
+                    font-size: 28px !important;
+                }
+
+                .dcml {
+                    top: 3px;
+
+                    @media (max-width: 600px) {
+                        font-size: 14px;
+                    }
                 }
             }
         }
@@ -20,16 +31,45 @@
         .\#price-item.\@regular {
             .\#price-value {
                 color: #EB1707 !important;
+                font-size: 40px !important;
+
+                @media (max-width: 600px) {
+                    font-size: 28px !important;
+                }
+
+                .dcml {
+                    top: 3px;
+
+                    @media (max-width: 600px) {
+                        font-size: 14px;
+                    }
+                }
             }
         }
 
         .\#price-item.\@compare {
+            top: 1px;
+
             &::after {
                 background: #EB1707;
+
+                @media (max-width: 600px) {
+                    top: 19px;
+                }
             }
 
             .\#price-value {
                 color: #EB1707 !important;
+                font-size: 26px !important;
+
+                @media (max-width: 600px) {
+                    font-size: 22px !important;
+                }
+
+            }
+
+            .dcml {
+                font-size: 14px;
             }
         }
 
