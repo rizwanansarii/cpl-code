@@ -47,15 +47,20 @@
             }
         }
 
+        .\#grid.\@type\:template.\#product-grid {
+            .\#price-item.\@compare::after {
+                @media (max-width: 600px) {
+                    top: 19px;
+                }
+
+            }
+        }
+
         .\#price-item.\@compare {
             top: 1px;
 
             &::after {
                 background: #EB1707;
-
-                @media (max-width: 600px) {
-                    top: 19px;
-                }
             }
 
             .\#price-value {

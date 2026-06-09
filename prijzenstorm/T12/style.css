@@ -38,16 +38,16 @@
     font-size: 14px;
   }
 }
+@media (max-width: 600px) {
+  .gmd-12 .\#product .\#grid.\@type\:template.\#product-grid .\#price-item.\@compare::after {
+    top: 19px;
+  }
+}
 .gmd-12 .\#product .\#price-item.\@compare {
   top: 1px;
 }
 .gmd-12 .\#product .\#price-item.\@compare::after {
   background: #EB1707;
-}
-@media (max-width: 600px) {
-  .gmd-12 .\#product .\#price-item.\@compare::after {
-    top: 19px;
-  }
 }
 .gmd-12 .\#product .\#price-item.\@compare .\#price-value {
   color: #EB1707 !important;
