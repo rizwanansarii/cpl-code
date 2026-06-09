@@ -1,3 +1,6 @@
+.gmd-09 #main:has(.gmd-is-sticky) .collection__facets-scroller {
+  top: 366px !important;
+}
 .gmd-09 #main .collection__sub {
   position: sticky;
   top: 219px;
