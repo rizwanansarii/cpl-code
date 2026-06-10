@@ -1,5 +1,14 @@
 .gmd-09 #main:has(.gmd-is-sticky) .collection__facets-scroller {
-  top: 366px !important;
+  top: 306px !important;
+}
+.gmd-09 #main .gmd-custom-filter-text {
+  padding: 25px 0;
+}
+.gmd-09 #main .collection__facets-scroller {
+  margin-top: -75px;
+}
+.gmd-09 #main .collection__top-bar .collection__top-filter {
+  visibility: hidden;
 }
 .gmd-09 #main .collection__sub {
   position: sticky;
