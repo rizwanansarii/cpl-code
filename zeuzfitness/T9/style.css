@@ -4,7 +4,7 @@
 .gmd-09 #main .gmd-custom-filter-text {
   padding: 25px 0;
 }
-.gmd-09 #main .collection__facets-scroller {
+.gmd-09 #main .collection__facets-scroller:has(.collection__top-filter) {
   margin-top: -75px;
 }
 .gmd-09 #main .collection__sub {

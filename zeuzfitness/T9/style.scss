@@ -11,7 +11,7 @@
             padding: 25px 0;
         }
 
-        .collection__facets-scroller {
+        .collection__facets-scroller:has(.collection__top-filter) {
             margin-top: -75px;
         }
 
