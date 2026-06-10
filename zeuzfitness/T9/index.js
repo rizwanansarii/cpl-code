@@ -16,11 +16,21 @@
 
     waitForElement(".collection .product-list", () => {
         document.body.classList.add(testInfo.className);
-        const filterText = document.querySelector('div.collection__top-filter');
-        const stickyOptions = document.querySelector('.collection__facets-scroller');
-        if (!document.querySelector('.gmd-custom-filter-text')) {
-            stickyOptions.insertAdjacentHTML('afterbegin', `<div class="gmd-custom-filter-text">${filterText?.cloneNode(true).outerHTML}</div>`)
-        }
+
+        const observer = new MutationObserver(() => {
+            const filterText = document.querySelector('div.collection__top-filter');
+            const stickyOptions = document.querySelector('.collection__facets-scroller');
+            if (!document.querySelector('.gmd-custom-filter-text')) {
+                stickyOptions.insertAdjacentHTML('afterbegin', `<div class="gmd-custom-filter-text"></div>`)
+            }
+            if (document.querySelector('.gmd-custom-filter-text') && !document.querySelector('.gmd-custom-filter-text div.collection__top-filter')) {
+                document.querySelector('.gmd-custom-filter-text').insertAdjacentElement('afterbegin', filterText)
+            }
+        })
+        observer.observe(document.querySelector('.shopify-section--main-collection'), {
+            childList: true,
+            subtree: true
+        });
 
         const subCategory = document.querySelector('.collection__sub');
         // const stickyFacet = document.querySelector('.collection__facets-scroller');
