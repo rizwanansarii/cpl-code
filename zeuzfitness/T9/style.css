@@ -7,9 +7,6 @@
 .gmd-09 #main .collection__facets-scroller {
   margin-top: -75px;
 }
-.gmd-09 #main .collection__top-bar .collection__top-filter {
-  visibility: hidden;
-}
 .gmd-09 #main .collection__sub {
   position: sticky;
   top: 219px;
