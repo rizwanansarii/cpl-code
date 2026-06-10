@@ -11,7 +11,7 @@
   position: sticky;
   top: 219px;
   background: #FFF;
-  z-index: 9;
+  z-index: 8;
 }
 .gmd-09 #main .collection__sub.gmd-is-sticky {
   border-bottom: 1px solid #EDEDED;
