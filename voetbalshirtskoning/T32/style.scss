@@ -1,4 +1,14 @@
 .gmd-32 {
+    &:has(.gmd-personalize-popup.is-open) {
+        overflow: hidden;
+
+        .countdown {
+            p {
+                display: none;
+            }
+        }
+    }
+
     &.gmd-overflow-hidden {
         overflow: hidden;
     }
@@ -22,6 +32,8 @@
         &.is-open {
             display: flex;
             background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
         @media (max-width: 767px) {

@@ -1,3 +1,9 @@
+.gmd-32:has(.gmd-personalize-popup.is-open) {
+  overflow: hidden;
+}
+.gmd-32:has(.gmd-personalize-popup.is-open) .countdown p {
+  display: none;
+}
 .gmd-32.gmd-overflow-hidden {
   overflow: hidden;
 }
@@ -16,6 +22,8 @@
 .gmd-32 .gmd-personalize-overlay.is-open {
   display: flex;
   background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 @media (max-width: 767px) {
   .gmd-32 .gmd-personalize-overlay {
