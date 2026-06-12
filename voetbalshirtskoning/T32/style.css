@@ -34,7 +34,8 @@
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  opacity: 0;
 }
 @media (max-width: 767px) {
   .gmd-32 .gmd-personalize-popup {
@@ -49,6 +50,7 @@
 }
 .gmd-32 .gmd-personalize-popup.is-open {
   transform: translateX(0);
+  opacity: 1;
 }
 @media (max-width: 767px) {
   .gmd-32 .gmd-personalize-popup.is-open {
@@ -69,9 +71,16 @@
   justify-content: flex-end;
   padding: 24px;
 }
+.gmd-32 .gmd-personalize-popup .gmd-personalize-close.gmd-mobile {
+  display: none;
+}
 @media (max-width: 767px) {
   .gmd-32 .gmd-personalize-popup .gmd-personalize-close {
-    padding: 20px 24px;
+    padding: 0;
+    display: none;
+  }
+  .gmd-32 .gmd-personalize-popup .gmd-personalize-close.gmd-mobile {
+    display: block;
   }
 }
 .gmd-32 .gmd-personalize-popup .gmd-personalize-content {
@@ -80,26 +89,19 @@
 }
 @media (max-width: 767px) {
   .gmd-32 .gmd-personalize-popup .gmd-personalize-content {
-    margin-top: -65px;
     padding: 16px 16px 32px;
   }
 }
-.gmd-32 .gmd-personalize-popup .gmd-title {
-  color: #111827;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 32px;
+.gmd-32 .gmd-personalize-popup .gmd-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   position: relative;
   padding-bottom: 13px;
 }
 @media (max-width: 767px) {
-  .gmd-32 .gmd-personalize-popup .gmd-title {
-    padding-bottom: 17px;
-    padding-top: 8px;
-    font-size: 20px;
-    line-height: 20px;
-  }
-  .gmd-32 .gmd-personalize-popup .gmd-title::after {
+  .gmd-32 .gmd-personalize-popup .gmd-popup-header::after {
     content: "";
     display: block;
     position: absolute;
@@ -108,6 +110,22 @@
     bottom: 0;
     width: calc(100% + 32px);
     border-bottom: 1px solid #DFDFDF;
+  }
+  .gmd-32 .gmd-personalize-popup .gmd-popup-header {
+    padding-top: 8px;
+    padding-bottom: 17px;
+  }
+}
+.gmd-32 .gmd-personalize-popup .gmd-title {
+  color: #111827;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 32px;
+}
+@media (max-width: 767px) {
+  .gmd-32 .gmd-personalize-popup .gmd-title {
+    font-size: 20px;
+    line-height: 20px;
   }
 }
 .gmd-32 .gmd-personalize-popup .option-printing label {

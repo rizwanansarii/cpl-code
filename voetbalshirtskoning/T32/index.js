@@ -144,7 +144,13 @@
                                     <path d="M7.07139 19.5L5.67139 18.1L11.2714 12.5L5.67139 6.9L7.07139 5.5L12.6714 11.1L18.2714 5.5L19.6714 6.9L14.0714 12.5L19.6714 18.1L18.2714 19.5L12.6714 13.9L7.07139 19.5Z" fill="#4B5563"/>
                                 </svg></button>
                             <div class="gmd-personalize-content">
-                                <h2 class="gmd-title">Personaliseer je product</h2>
+                                <div class="gmd-popup-header">
+                                    <h2 class="gmd-title">Personaliseer je product</h2>
+                                    <button class="gmd-personalize-close gmd-mobile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                        <path d="M7.07139 19.5L5.67139 18.1L11.2714 12.5L5.67139 6.9L7.07139 5.5L12.6714 11.1L18.2714 5.5L19.6714 6.9L14.0714 12.5L19.6714 18.1L18.2714 19.5L12.6714 13.9L7.07139 19.5Z" fill="#4B5563"/>
+                                    </svg></button>
+                                </div>
                             </div>
                         </div>
                     </div>`
@@ -238,10 +244,18 @@
 
             const overlay = document.querySelector('.gmd-personalize-overlay');
             const popup = document.querySelector('.gmd-personalize-popup');
-            const closeBtn = document.querySelector('.gmd-personalize-close');
+            document.querySelectorAll('.gmd-personalize-close').forEach(btn => {
+                btn.addEventListener('click', closePersonalizePopup);
+            });
+            document.addEventListener('keydown', (e) => {
 
-            closeBtn.addEventListener('click', closePersonalizePopup);
-
+                if (
+                    e.key === 'Escape' &&
+                    document.querySelector('.gmd-personalize-popup')?.classList.contains('is-open')
+                ) {
+                    closePersonalizePopup();
+                }
+            });
             overlay.addEventListener('click', closePersonalizePopup);
 
             popup.addEventListener('click', (e) => {
