@@ -254,6 +254,12 @@
 
 
                 li {
+                    a {
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
                     margin-bottom: 18px;
                     cursor: auto;
 
@@ -692,7 +698,7 @@
     }
 
     .gmd-submenu-footer {
-        padding: 6px 19px;
+        padding: 25px 19px 6px;
         padding-left: 26px;
 
         @media(max-width: 769px) {
