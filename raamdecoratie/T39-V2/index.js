@@ -448,8 +448,7 @@
                         bottomData.buttonText.dispatchEvent(
                             new MouseEvent('click', {
                                 bubbles: true,
-                                cancelable: true,
-                                view: window
+                                cancelable: true
                             })
                         );
                     });

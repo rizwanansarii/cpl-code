@@ -710,6 +710,10 @@
             margin-top: 12px;
             border-radius: 6px;
             background: #F90;
+
+            &:hover {
+                background: #e08700;
+            }
         }
     }
 
