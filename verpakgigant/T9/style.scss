@@ -1,0 +1,84 @@
+.gmd-09 {
+    form.woocommerce-checkout {
+        .required {
+            display: none;
+        }
+    }
+
+    .gmd-error-msg {
+        display: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 25.6px;
+        padding-left: 12px;
+
+        // @media (max-width: 800px) {
+        //     line-height: 120%;
+        //     margin-top: 2px;
+        // }
+
+        &.gmd-invalid {
+            display: block;
+        }
+    }
+
+    .form-row.woocommerce-invalid,
+    .gmd-required-invalid {
+        label {
+            color: #696969;
+        }
+
+        &.validate-required {
+
+            input.input-text,
+            select {
+                border-color: #A00;
+            }
+        }
+    }
+
+    .form-row {
+
+        &.gmd-validate,
+        &.woocommerce-validated.gmd-validate,
+        &.woocommerce-invalid {
+            &.woocommerce-invalid {
+                input.input-text {
+                    border-color: #C60000 !important;
+
+                    &:-webkit-autofill,
+                    &:-webkit-autofill:hover,
+                    &:-webkit-autofill:focus {
+                        background: #FFFFFF !important;
+                        box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+                        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+                        -webkit-text-fill-color: #000000 !important;
+                    }
+                }
+            }
+
+            input.input-text {
+                border-color: #005440 !important;
+
+
+                &:-webkit-autofill,
+                &:-webkit-autofill:hover,
+                &:-webkit-autofill:focus {
+                    background: #FFFFFF !important;
+                    box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+                    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+                    -webkit-text-fill-color: #000000 !important;
+                }
+            }
+
+            .select2-selection {
+                border-color: #005440;
+            }
+        }
+    }
+
+    .checkout-inline-error-message {
+        display: none;
+    }
+}

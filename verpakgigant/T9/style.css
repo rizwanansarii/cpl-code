@@ -1,0 +1,48 @@
+.gmd-09 form.woocommerce-checkout .required {
+  display: none;
+}
+.gmd-09 .gmd-error-msg {
+  display: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25.6px;
+  padding-left: 12px;
+}
+.gmd-09 .gmd-error-msg.gmd-invalid {
+  display: block;
+}
+.gmd-09 .form-row.woocommerce-invalid label,
+.gmd-09 .gmd-required-invalid label {
+  color: #696969;
+}
+.gmd-09 .form-row.woocommerce-invalid.validate-required input.input-text,
+.gmd-09 .form-row.woocommerce-invalid.validate-required select,
+.gmd-09 .gmd-required-invalid.validate-required input.input-text,
+.gmd-09 .gmd-required-invalid.validate-required select {
+  border-color: #A00;
+}
+.gmd-09 .form-row.gmd-validate.woocommerce-invalid input.input-text, .gmd-09 .form-row.woocommerce-validated.gmd-validate.woocommerce-invalid input.input-text, .gmd-09 .form-row.woocommerce-invalid.woocommerce-invalid input.input-text {
+  border-color: #C60000 !important;
+}
+.gmd-09 .form-row.gmd-validate.woocommerce-invalid input.input-text:-webkit-autofill, .gmd-09 .form-row.gmd-validate.woocommerce-invalid input.input-text:-webkit-autofill:hover, .gmd-09 .form-row.gmd-validate.woocommerce-invalid input.input-text:-webkit-autofill:focus, .gmd-09 .form-row.woocommerce-validated.gmd-validate.woocommerce-invalid input.input-text:-webkit-autofill, .gmd-09 .form-row.woocommerce-validated.gmd-validate.woocommerce-invalid input.input-text:-webkit-autofill:hover, .gmd-09 .form-row.woocommerce-validated.gmd-validate.woocommerce-invalid input.input-text:-webkit-autofill:focus, .gmd-09 .form-row.woocommerce-invalid.woocommerce-invalid input.input-text:-webkit-autofill, .gmd-09 .form-row.woocommerce-invalid.woocommerce-invalid input.input-text:-webkit-autofill:hover, .gmd-09 .form-row.woocommerce-invalid.woocommerce-invalid input.input-text:-webkit-autofill:focus {
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+.gmd-09 .form-row.gmd-validate input.input-text, .gmd-09 .form-row.woocommerce-validated.gmd-validate input.input-text, .gmd-09 .form-row.woocommerce-invalid input.input-text {
+  border-color: #005440 !important;
+}
+.gmd-09 .form-row.gmd-validate input.input-text:-webkit-autofill, .gmd-09 .form-row.gmd-validate input.input-text:-webkit-autofill:hover, .gmd-09 .form-row.gmd-validate input.input-text:-webkit-autofill:focus, .gmd-09 .form-row.woocommerce-validated.gmd-validate input.input-text:-webkit-autofill, .gmd-09 .form-row.woocommerce-validated.gmd-validate input.input-text:-webkit-autofill:hover, .gmd-09 .form-row.woocommerce-validated.gmd-validate input.input-text:-webkit-autofill:focus, .gmd-09 .form-row.woocommerce-invalid input.input-text:-webkit-autofill, .gmd-09 .form-row.woocommerce-invalid input.input-text:-webkit-autofill:hover, .gmd-09 .form-row.woocommerce-invalid input.input-text:-webkit-autofill:focus {
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+.gmd-09 .form-row.gmd-validate .select2-selection, .gmd-09 .form-row.woocommerce-validated.gmd-validate .select2-selection, .gmd-09 .form-row.woocommerce-invalid .select2-selection {
+  border-color: #005440;
+}
+.gmd-09 .checkout-inline-error-message {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
