@@ -1,6 +1,105 @@
 .gmd-09 form.woocommerce-checkout .required {
   display: none;
 }
+.gmd-09 .rpgaac_billing_address_not_found {
+  display: none !important;
+}
+.gmd-09 #billing_city_field,
+.gmd-09 #billing_country_field,
+.gmd-09 #billing_address_rpgaac_field,
+.gmd-09 #billing_state_field,
+.gmd-09 #shipping_address_rpgaac_field,
+.gmd-09 #shipping_city_field,
+.gmd-09 #shipping_country_field,
+.gmd-09 #shipping_state_field,
+.gmd-09 #shipping_first_name_field,
+.gmd-09 #shipping_last_name_field,
+.gmd-09 #shipping_company_field,
+.gmd-09 #shipping_phone_field {
+  display: none;
+}
+.gmd-09 #billing_city_field.gmd-show-billing, .gmd-09 #billing_city_field.gmd-show-shipping,
+.gmd-09 #billing_country_field.gmd-show-billing,
+.gmd-09 #billing_country_field.gmd-show-shipping,
+.gmd-09 #billing_address_rpgaac_field.gmd-show-billing,
+.gmd-09 #billing_address_rpgaac_field.gmd-show-shipping,
+.gmd-09 #billing_state_field.gmd-show-billing,
+.gmd-09 #billing_state_field.gmd-show-shipping,
+.gmd-09 #shipping_address_rpgaac_field.gmd-show-billing,
+.gmd-09 #shipping_address_rpgaac_field.gmd-show-shipping,
+.gmd-09 #shipping_city_field.gmd-show-billing,
+.gmd-09 #shipping_city_field.gmd-show-shipping,
+.gmd-09 #shipping_country_field.gmd-show-billing,
+.gmd-09 #shipping_country_field.gmd-show-shipping,
+.gmd-09 #shipping_state_field.gmd-show-billing,
+.gmd-09 #shipping_state_field.gmd-show-shipping,
+.gmd-09 #shipping_first_name_field.gmd-show-billing,
+.gmd-09 #shipping_first_name_field.gmd-show-shipping,
+.gmd-09 #shipping_last_name_field.gmd-show-billing,
+.gmd-09 #shipping_last_name_field.gmd-show-shipping,
+.gmd-09 #shipping_company_field.gmd-show-billing,
+.gmd-09 #shipping_company_field.gmd-show-shipping,
+.gmd-09 #shipping_phone_field.gmd-show-billing,
+.gmd-09 #shipping_phone_field.gmd-show-shipping {
+  display: block;
+}
+.gmd-09 .rpgaac_billing,
+.gmd-09 .rpgaac_shipping {
+  display: none !important;
+}
+.gmd-09 .gmd-heading {
+  color: #111;
+  font-size: 17.6px;
+  font-weight: 300;
+  line-height: 21.12px;
+  margin-bottom: 7px;
+  margin-top: 18px;
+}
+.gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row),
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping),
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping) {
+  border: 1px solid #DDD;
+  margin-bottom: 10px;
+  padding: 24px 16px;
+  flex-direction: row;
+}
+.gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row,
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row {
+  width: 49.5%;
+  margin-right: 0;
+}
+.gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row select,
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row select {
+  margin-bottom: 0;
+}
+.gmd-09 .gmd-expand-billing-address,
+.gmd-09 .gmd-expand-shipping-address {
+  color: #111;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 17.6px;
+  background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+  background-position: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: all 0.2s;
+  padding-bottom: 1px;
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+}
+.gmd-09 .gmd-expand-billing-address:hover,
+.gmd-09 .gmd-expand-shipping-address:hover {
+  background-size: 0 100%;
+}
 .gmd-09 .gmd-error-msg {
   display: none;
   color: #333;
@@ -20,7 +119,7 @@
 .gmd-09 .form-row.woocommerce-invalid.validate-required select,
 .gmd-09 .gmd-required-invalid.validate-required input.input-text,
 .gmd-09 .gmd-required-invalid.validate-required select {
-  border-color: #A00;
+  border-color: #A00 !important;
 }
 .gmd-09 .form-row.gmd-validate.woocommerce-invalid input.input-text, .gmd-09 .form-row.woocommerce-validated.gmd-validate.woocommerce-invalid input.input-text, .gmd-09 .form-row.woocommerce-invalid.woocommerce-invalid input.input-text {
   border-color: #C60000 !important;

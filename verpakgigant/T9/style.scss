@@ -5,6 +5,94 @@
         }
     }
 
+    .rpgaac_billing_address_not_found {
+        display: none !important;
+    }
+
+    #billing_city_field,
+    #billing_country_field,
+    #billing_address_rpgaac_field,
+    #billing_state_field,
+    #shipping_address_rpgaac_field,
+    #shipping_city_field,
+    #shipping_country_field,
+    #shipping_state_field,
+    #shipping_first_name_field,
+    #shipping_last_name_field,
+    #shipping_company_field,
+    #shipping_phone_field {
+        display: none;
+
+        &.gmd-show-billing,
+        &.gmd-show-shipping {
+            display: block;
+        }
+    }
+
+    .rpgaac_billing,
+    .rpgaac_shipping {
+        display: none !important;
+    }
+
+    .gmd-heading {
+        color: #111;
+        font-size: 17.6px;
+        font-weight: 300;
+        line-height: 21.12px;
+        margin-bottom: 7px;
+        margin-top: 18px;
+    }
+
+    .gmd-billing-address-fields-wrapper,
+    .gmd-shipping-address-fields-wrapper {
+        &:has(.form-row) {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            &:has(.gmd-show-billing, .gmd-show-shipping) {
+                border: 1px solid #DDD;
+                margin-bottom: 10px;
+                padding: 24px 16px;
+                flex-direction: row;
+            }
+
+            .form-row {
+                width: 49.5%;
+                margin-right: 0;
+
+                select {
+                    margin-bottom: 0;
+                }
+            }
+
+        }
+    }
+
+    .gmd-expand-billing-address,
+    .gmd-expand-shipping-address {
+        color: #111;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 17.6px;
+        background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+        background-position: 100%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        transition: all .2s;
+        padding-bottom: 1px;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        // margin-top: 10px;
+
+        &:hover {
+            background-size: 0 100%;
+        }
+    }
+
     .gmd-error-msg {
         display: none;
         color: #333;
@@ -33,7 +121,7 @@
 
             input.input-text,
             select {
-                border-color: #A00;
+                border-color: #A00 !important;
             }
         }
     }
