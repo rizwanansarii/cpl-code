@@ -47,14 +47,14 @@
             document.querySelectorAll('.form-row.validate-required input, .form-row.validate-required select').forEach(field => {
                 const placeholder = field.getAttribute('placeholder');
                 if (placeholder && !placeholder.trim().endsWith('*')) {
-                    field.setAttribute('placeholder', `${placeholder} *`);
+                    field.setAttribute('placeholder', `${placeholder}*`);
                 }
             });
-            document.querySelectorAll('.form-row.validate-required label').forEach(field => {
-                const label = field;
-                if (label && !label.childNodes[0].textContent.trim().includes('*')) {
-                    field.childNodes[0].textContent = `${label.childNodes[0].textContent} *`
-                }
+            document.querySelectorAll('.form-row.validate-required label').forEach(label => {
+                const textNode = [...label.childNodes].find(node => node.nodeType === Node.TEXT_NODE);
+                if (!textNode) return;
+                let text = textNode.textContent.replace(/\s*\*+\s*/g, '').trim();
+                textNode.textContent = `${text} * `;
             });
 
             const companyPlaceholder = document.querySelector('#billing_company_field input')?.getAttribute('placeholder');
@@ -152,7 +152,7 @@
 
                 if (!input) return;
 
-                const checkFields = wrapper.querySelectorAll('input.input-text');
+                const checkFields = wrapper.querySelectorAll('input.input-text, select');
 
                 checkFields.forEach(field => {
                     if (field.value) {
@@ -165,7 +165,7 @@
 
             wrapper.addEventListener('change', function (e) {
 
-                const checkFields = wrapper.querySelectorAll('input.input-text');
+                const checkFields = wrapper.querySelectorAll('input.input-text, select');
 
                 const isBilling = wrapper.classList.contains('woocommerce-billing-fields__field-wrapper');
 
@@ -266,7 +266,12 @@
         bindValidationEvents(document.querySelector('.woocommerce-shipping-fields__field-wrapper'));
 
         function validateFilledFieldsOnLoad() {
-            const inputFields = document.querySelectorAll('.woocommerce-billing-fields__field-wrapper input.input-text, .woocommerce-billing-fields__field-wrapper select');
+            const inputFields = document.querySelectorAll(`
+                .woocommerce-billing-fields__field-wrapper .validate-required input.input-text,
+                .woocommerce-billing-fields__field-wrapper .validate-required select,
+                .woocommerce-shipping-fields__field-wrapper .validate-required input.input-text,
+                .woocommerce-shipping-fields__field-wrapper .validate-required select
+            `);
             inputFields.forEach((input) => {
                 const value = input.value.trim();
                 if (value) {
@@ -454,6 +459,7 @@
                 '.gmd-billing-address-fields-wrapper',
                 '.gmd-billing-address-wrapper',
                 [
+                    '#billing_address_rpgaac_field',
                     '#billing_address_1_field',
                     '#billing_city_field',
                     '#billing_postcode_field',
@@ -467,6 +473,7 @@
                 '.gmd-shipping-address-fields-wrapper',
                 '.gmd-shipping-address-wrapper',
                 [
+                    '#shipping_address_rpgaac_field',
                     '#shipping_address_1_field',
                     '#shipping_city_field',
                     '#shipping_postcode_field',
@@ -484,6 +491,19 @@
             bindValidationEvents(document.querySelector('.woocommerce-shipping-fields__field-wrapper'));
             addRequiredPlaceholderAsterisk();
             bindAddressExpand();
+
+            document.querySelectorAll(`
+                .woocommerce-billing-fields__field-wrapper input.input-text,
+                .woocommerce-billing-fields__field-wrapper select,
+                .woocommerce-shipping-fields__field-wrapper input.input-text,
+                .woocommerce-shipping-fields__field-wrapper select
+            `).forEach(field => {
+
+                if (field.value) {
+                    validateField(field);
+                }
+
+            });
         }
 
         function observeAddressFields() {
@@ -507,11 +527,13 @@
                     const isBilling = this.classList.contains('gmd-expand-billing-address');
                     const fields = isBilling
                         ? [
+                            '#billing_address_rpgaac_field',
                             '#billing_city_field',
                             '#billing_country_field',
                             '#billing_state_field'
                         ]
                         : [
+                            '#shipping_address_rpgaac_field',
                             '#shipping_city_field',
                             '#shipping_country_field',
                             '#shipping_state_field'

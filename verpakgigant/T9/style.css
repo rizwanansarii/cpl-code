@@ -4,43 +4,47 @@
 .gmd-09 .rpgaac_billing_address_not_found {
   display: none !important;
 }
-.gmd-09 #billing_city_field,
-.gmd-09 #billing_country_field,
-.gmd-09 #billing_address_rpgaac_field,
-.gmd-09 #billing_state_field,
-.gmd-09 #shipping_address_rpgaac_field,
-.gmd-09 #shipping_city_field,
-.gmd-09 #shipping_country_field,
-.gmd-09 #shipping_state_field,
+.gmd-09 .woocommerce-billing-fields h3:not(#ship-to-different-address) {
+  color: #111;
+  font-size: 17.6px;
+  font-weight: 300;
+  line-height: 21.12px;
+}
 .gmd-09 #shipping_first_name_field,
 .gmd-09 #shipping_last_name_field,
 .gmd-09 #shipping_company_field,
-.gmd-09 #shipping_phone_field {
-  display: none;
+.gmd-09 #shipping_phone_field,
+.gmd-09 #shipping_address_2_field {
+  display: none !important;
+}
+.gmd-09 #billing_city_field,
+.gmd-09 #billing_country_field,
+.gmd-09 #billing_address_rpgaac_field,
+.gmd-09 #shipping_address_rpgaac_field,
+.gmd-09 #shipping_city_field,
+.gmd-09 #shipping_country_field {
+  display: none !important;
 }
 .gmd-09 #billing_city_field.gmd-show-billing, .gmd-09 #billing_city_field.gmd-show-shipping,
 .gmd-09 #billing_country_field.gmd-show-billing,
 .gmd-09 #billing_country_field.gmd-show-shipping,
 .gmd-09 #billing_address_rpgaac_field.gmd-show-billing,
 .gmd-09 #billing_address_rpgaac_field.gmd-show-shipping,
-.gmd-09 #billing_state_field.gmd-show-billing,
-.gmd-09 #billing_state_field.gmd-show-shipping,
 .gmd-09 #shipping_address_rpgaac_field.gmd-show-billing,
 .gmd-09 #shipping_address_rpgaac_field.gmd-show-shipping,
 .gmd-09 #shipping_city_field.gmd-show-billing,
 .gmd-09 #shipping_city_field.gmd-show-shipping,
 .gmd-09 #shipping_country_field.gmd-show-billing,
-.gmd-09 #shipping_country_field.gmd-show-shipping,
+.gmd-09 #shipping_country_field.gmd-show-shipping {
+  display: block !important;
+}
+.gmd-09 #billing_state_field,
+.gmd-09 #shipping_state_field {
+  display: none;
+}
+.gmd-09 #billing_state_field.gmd-show-billing, .gmd-09 #billing_state_field.gmd-show-shipping,
 .gmd-09 #shipping_state_field.gmd-show-billing,
-.gmd-09 #shipping_state_field.gmd-show-shipping,
-.gmd-09 #shipping_first_name_field.gmd-show-billing,
-.gmd-09 #shipping_first_name_field.gmd-show-shipping,
-.gmd-09 #shipping_last_name_field.gmd-show-billing,
-.gmd-09 #shipping_last_name_field.gmd-show-shipping,
-.gmd-09 #shipping_company_field.gmd-show-billing,
-.gmd-09 #shipping_company_field.gmd-show-shipping,
-.gmd-09 #shipping_phone_field.gmd-show-billing,
-.gmd-09 #shipping_phone_field.gmd-show-shipping {
+.gmd-09 #shipping_state_field.gmd-show-shipping {
   display: block;
 }
 .gmd-09 .rpgaac_billing,
@@ -69,6 +73,13 @@
   padding: 24px 16px;
   flex-direction: row;
 }
+.gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#billing_address_rpgaac_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#shipping_address_rpgaac_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#shipping_state_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#billing_state_field,
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#billing_address_rpgaac_field,
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#shipping_address_rpgaac_field,
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#shipping_state_field,
+.gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#billing_state_field {
+  width: 100%;
+}
 .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row,
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row {
   width: 49.5%;
@@ -77,6 +88,9 @@
 .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row select,
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row select {
   margin-bottom: 0;
+}
+.gmd-09 .form-row:has(input.input-text[value]) label {
+  opacity: 1;
 }
 .gmd-09 .gmd-expand-billing-address,
 .gmd-09 .gmd-expand-shipping-address {
@@ -139,8 +153,8 @@
   -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
   -webkit-text-fill-color: #000000 !important;
 }
-.gmd-09 .form-row.gmd-validate .select2-selection, .gmd-09 .form-row.woocommerce-validated.gmd-validate .select2-selection, .gmd-09 .form-row.woocommerce-invalid .select2-selection {
-  border-color: #005440;
+.gmd-09 .form-row.gmd-validate select, .gmd-09 .form-row.woocommerce-validated.gmd-validate select, .gmd-09 .form-row.woocommerce-invalid select {
+  border-color: #005440 !important;
 }
 .gmd-09 .checkout-inline-error-message {
   display: none;

@@ -9,18 +9,39 @@
         display: none !important;
     }
 
-    #billing_city_field,
-    #billing_country_field,
-    #billing_address_rpgaac_field,
-    #billing_state_field,
-    #shipping_address_rpgaac_field,
-    #shipping_city_field,
-    #shipping_country_field,
-    #shipping_state_field,
+    .woocommerce-billing-fields {
+        h3:not(#ship-to-different-address) {
+            color: #111;
+            font-size: 17.6px;
+            font-weight: 300;
+            line-height: 21.12px;
+        }
+    }
+
     #shipping_first_name_field,
     #shipping_last_name_field,
     #shipping_company_field,
-    #shipping_phone_field {
+    #shipping_phone_field,
+    #shipping_address_2_field {
+        display: none !important;
+    }
+
+    #billing_city_field,
+    #billing_country_field,
+    #billing_address_rpgaac_field,
+    #shipping_address_rpgaac_field,
+    #shipping_city_field,
+    #shipping_country_field {
+        display: none !important;
+
+        &.gmd-show-billing,
+        &.gmd-show-shipping {
+            display: block !important;
+        }
+    }
+
+    #billing_state_field,
+    #shipping_state_field {
         display: none;
 
         &.gmd-show-billing,
@@ -59,6 +80,14 @@
             }
 
             .form-row {
+
+                &#billing_address_rpgaac_field,
+                &#shipping_address_rpgaac_field,
+                &#shipping_state_field,
+                &#billing_state_field {
+                    width: 100%;
+                }
+
                 width: 49.5%;
                 margin-right: 0;
 
@@ -67,6 +96,12 @@
                 }
             }
 
+        }
+    }
+
+    .form-row:has(input.input-text[value]) {
+        label {
+            opacity: 1;
         }
     }
 
@@ -160,8 +195,8 @@
                 }
             }
 
-            .select2-selection {
-                border-color: #005440;
+            select {
+                border-color: #005440 !important;
             }
         }
     }
