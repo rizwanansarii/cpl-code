@@ -603,5 +603,13 @@
         window.addEventListener('pageshow', (event) => {
             addClassForLabel();
         });
+
+        const observer = new MutationObserver(() => {
+            addClassForLabel();
+        })
+        observer.observe(document.querySelector('#customer_details'), {
+            attributes: true,
+            attributeFilter: ['class']
+        })
     })
 })();
