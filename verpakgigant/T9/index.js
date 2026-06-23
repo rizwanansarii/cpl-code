@@ -443,7 +443,7 @@
             }
 
             fields.forEach(selector => {
-                const field = parent.querySelector(selector);
+                const field = document.querySelector(selector);
                 if (field) {
                     fieldsWrapper.appendChild(field);
                 }
