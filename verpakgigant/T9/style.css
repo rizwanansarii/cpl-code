@@ -74,6 +74,12 @@
   padding: 24px 16px;
   flex-direction: row;
 }
+@media (max-width: 549px) {
+  .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping),
+  .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping) {
+    padding: 12px 16px;
+  }
+}
 .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#billing_address_rpgaac_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#shipping_address_rpgaac_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#shipping_state_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#billing_state_field,
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#billing_address_rpgaac_field,
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#shipping_address_rpgaac_field,
@@ -85,6 +91,12 @@
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row {
   width: 49.5%;
   margin-right: 0;
+}
+@media (max-width: 549px) {
+  .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row,
+  .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row {
+    width: 100%;
+  }
 }
 .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row select,
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row select {
@@ -107,6 +119,7 @@
   width: -moz-fit-content;
   width: fit-content;
   margin-left: auto;
+  margin-bottom: 8px;
 }
 .gmd-09 .gmd-expand-billing-address:hover,
 .gmd-09 .gmd-expand-shipping-address:hover {

@@ -80,6 +80,10 @@
                 margin-bottom: 10px;
                 padding: 24px 16px;
                 flex-direction: row;
+
+                @media (max-width: 549px) {
+                    padding: 12px 16px;
+                }
             }
 
             .form-row {
@@ -93,6 +97,10 @@
 
                 width: 49.5%;
                 margin-right: 0;
+
+                @media (max-width: 549px) {
+                    width: 100%;
+                }
 
                 select {
                     margin-bottom: 0;
@@ -118,6 +126,7 @@
         display: block;
         width: fit-content;
         margin-left: auto;
+        margin-bottom: 8px;
         // margin-top: 10px;
 
         &:hover {
