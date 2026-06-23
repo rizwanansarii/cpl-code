@@ -1,11 +1,14 @@
 .gmd-09 {
     form.woocommerce-checkout {
-        .required {
-            display: none;
+        label:not(.woocommerce-form__label-for-checkbox) {
+            .required {
+                display: none;
+            }
         }
     }
 
-    .rpgaac_billing_address_not_found {
+    .rpgaac_billing_address_not_found,
+    .rpgaac_shipping_address_not_found {
         display: none !important;
     }
 

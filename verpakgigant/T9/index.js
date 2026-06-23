@@ -59,10 +59,10 @@
 
             const companyPlaceholder = document.querySelector('#billing_company_field input')?.getAttribute('placeholder');
             if (!companyPlaceholder?.includes(`"optioneel"`)) {
-                document.querySelector('#billing_company_field input').setAttribute('placeholder', `${companyPlaceholder} "optioneel"`)
+                document.querySelector('#billing_company_field input')?.setAttribute('placeholder', `${companyPlaceholder} "optioneel"`)
             }
             const companyLabel = document.querySelector('#billing_company_field label')?.textContent;
-            if (!companyLabel?.includes(`"optioneel"`)) {
+            if (companyLabel && !companyLabel?.includes(`"optioneel"`)) {
                 document.querySelector('#billing_company_field label').textContent = `${companyLabel} "optioneel"`;
             }
         }
@@ -484,6 +484,10 @@
         }
 
         function runAfterUpdate() {
+            if (!allAddressFieldsExist()) {
+                setTimeout(runAfterUpdate, 300);
+                return;
+            }
             createAddressWrappers();
             moveAddressFields();
             checkValidations();
@@ -512,6 +516,28 @@
             jQuery(document.body).on('updated_checkout', function () {
                 setTimeout(runAfterUpdate, 500);
             });
+        }
+
+        function allAddressFieldsExist() {
+
+            const required = [
+                '#billing_address_rpgaac_field',
+                '#billing_address_1_field',
+                '#billing_city_field',
+                '#billing_postcode_field',
+                '#billing_country_field',
+                '#billing_state_field',
+                '#shipping_address_rpgaac_field',
+                '#shipping_address_1_field',
+                '#shipping_city_field',
+                '#shipping_postcode_field',
+                '#shipping_country_field',
+                '#shipping_state_field'
+            ];
+
+            return required.every(selector =>
+                document.querySelector(selector)
+            );
         }
 
         createAddressWrappers();
