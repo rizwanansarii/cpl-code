@@ -1,7 +1,7 @@
 .gmd-09 {
     form.woocommerce-checkout {
         label:not(.woocommerce-form__label-for-checkbox) {
-            .required {
+            .required:not(.gmd-abbr-require) {
                 display: none;
             }
         }

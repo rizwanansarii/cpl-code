@@ -1,4 +1,4 @@
-.gmd-09 form.woocommerce-checkout label:not(.woocommerce-form__label-for-checkbox) .required {
+.gmd-09 form.woocommerce-checkout label:not(.woocommerce-form__label-for-checkbox) .required:not(.gmd-abbr-require) {
   display: none;
 }
 .gmd-09 .rpgaac_billing_address_not_found,

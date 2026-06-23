@@ -54,15 +54,19 @@
                 const textNode = [...label.childNodes].find(node => node.nodeType === Node.TEXT_NODE);
                 if (!textNode) return;
                 let text = textNode.textContent.replace(/\s*\*+\s*/g, '').trim();
-                textNode.textContent = `${text} * `;
+                textNode.textContent = text
+                if (!label.querySelector('.gmd-abbr-require')) {
+                    label.insertAdjacentHTML('beforeend', `<abbr class="required gmd-abbr-require" title="required"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">*</font></font></abbr>`)
+                }
+                // textNode.textContent = `${text} * `;
             });
 
             const companyPlaceholder = document.querySelector('#billing_company_field input')?.getAttribute('placeholder');
-            if (!companyPlaceholder?.includes(`"optioneel"`)) {
+            if (!companyPlaceholder?.includes(`"optioneel"`) && !companyPlaceholder?.includes(`"optional"`)) {
                 document.querySelector('#billing_company_field input')?.setAttribute('placeholder', `${companyPlaceholder} "optioneel"`)
             }
             const companyLabel = document.querySelector('#billing_company_field label')?.textContent;
-            if (companyLabel && !companyLabel?.includes(`"optioneel"`)) {
+            if (companyLabel && (!companyLabel?.includes(`"optioneel"`) && !companyLabel?.includes(`"optional"`))) {
                 document.querySelector('#billing_company_field label').textContent = `${companyLabel} "optioneel"`;
             }
         }
@@ -508,6 +512,7 @@
                 }
 
             });
+            addClassForLabel();
         }
 
         function observeAddressFields() {
@@ -586,5 +591,17 @@
             });
 
         }
+
+        function addClassForLabel() {
+            document.querySelectorAll('#customer_details .form-row input.input-text, .form-row select').forEach(input => {
+                if (input.value) {
+                    input.parentElement.classList.add('fl-is-active');
+                }
+            });
+        }
+
+        window.addEventListener('pageshow', (event) => {
+            addClassForLabel();
+        });
     })
 })();
