@@ -50,7 +50,7 @@
                     field.setAttribute('placeholder', `${placeholder}*`);
                 }
             });
-            document.querySelectorAll('.form-row.validate-required label').forEach(label => {
+            document.querySelectorAll('.form-row.validate-required label:not(.woocommerce-form__label-for-checkbox)').forEach(label => {
                 const textNode = [...label.childNodes].find(node => node.nodeType === Node.TEXT_NODE);
                 if (!textNode) return;
                 let text = textNode.textContent.replace(/\s*\*+\s*/g, '').trim();
@@ -515,7 +515,7 @@
         }
 
         createAddressWrappers();
-        moveAddressFields();
+        // moveAddressFields();
         observeAddressFields();
 
         function bindAddressExpand() {
