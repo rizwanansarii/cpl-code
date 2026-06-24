@@ -18,25 +18,31 @@
 .gmd-09 #shipping_address_2_field {
   display: none !important;
 }
+.gmd-09 #billing_address_1_field,
 .gmd-09 #billing_city_field,
 .gmd-09 #billing_country_field,
-.gmd-09 #billing_address_rpgaac_field,
-.gmd-09 #shipping_address_rpgaac_field,
+.gmd-09 #billing_postcode_field,
+.gmd-09 #shipping_address_1_field,
 .gmd-09 #shipping_city_field,
-.gmd-09 #shipping_country_field {
+.gmd-09 #shipping_country_field,
+.gmd-09 #shipping_postcode_field {
   display: none !important;
 }
-.gmd-09 #billing_city_field.gmd-show-billing, .gmd-09 #billing_city_field.gmd-show-shipping,
+.gmd-09 #billing_address_1_field.gmd-show-billing, .gmd-09 #billing_address_1_field.gmd-show-shipping,
+.gmd-09 #billing_city_field.gmd-show-billing,
+.gmd-09 #billing_city_field.gmd-show-shipping,
 .gmd-09 #billing_country_field.gmd-show-billing,
 .gmd-09 #billing_country_field.gmd-show-shipping,
-.gmd-09 #billing_address_rpgaac_field.gmd-show-billing,
-.gmd-09 #billing_address_rpgaac_field.gmd-show-shipping,
-.gmd-09 #shipping_address_rpgaac_field.gmd-show-billing,
-.gmd-09 #shipping_address_rpgaac_field.gmd-show-shipping,
+.gmd-09 #billing_postcode_field.gmd-show-billing,
+.gmd-09 #billing_postcode_field.gmd-show-shipping,
+.gmd-09 #shipping_address_1_field.gmd-show-billing,
+.gmd-09 #shipping_address_1_field.gmd-show-shipping,
 .gmd-09 #shipping_city_field.gmd-show-billing,
 .gmd-09 #shipping_city_field.gmd-show-shipping,
 .gmd-09 #shipping_country_field.gmd-show-billing,
-.gmd-09 #shipping_country_field.gmd-show-shipping {
+.gmd-09 #shipping_country_field.gmd-show-shipping,
+.gmd-09 #shipping_postcode_field.gmd-show-billing,
+.gmd-09 #shipping_postcode_field.gmd-show-shipping {
   display: block !important;
 }
 .gmd-09 #billing_state_field,
@@ -69,16 +75,8 @@
 }
 .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping),
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping) {
-  border: 1px solid #DDD;
   margin-bottom: 10px;
-  padding: 24px 16px;
   flex-direction: row;
-}
-@media (max-width: 549px) {
-  .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping),
-  .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row):has(.gmd-show-billing, .gmd-show-shipping) {
-    padding: 12px 16px;
-  }
 }
 .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#billing_address_rpgaac_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#shipping_address_rpgaac_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#shipping_state_field, .gmd-09 .gmd-billing-address-fields-wrapper:has(.form-row) .form-row#billing_state_field,
 .gmd-09 .gmd-shipping-address-fields-wrapper:has(.form-row) .form-row#billing_address_rpgaac_field,
@@ -145,6 +143,12 @@
 .gmd-09 .gmd-required-invalid.validate-required input.input-text,
 .gmd-09 .gmd-required-invalid.validate-required select {
   border-color: #A00 !important;
+}
+.gmd-09 #customer_details:has(.gmd-show-billing) #billing_address_rpgaac_field {
+  display: none !important;
+}
+.gmd-09 #customer_details:has(.gmd-show-shipping) #shipping_address_rpgaac_field {
+  display: none !important;
 }
 .gmd-09 .form-row:not(:has(label)) select {
   padding: 0 0.75em;

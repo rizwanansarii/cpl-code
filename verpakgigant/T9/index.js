@@ -331,14 +331,13 @@
                         shippingBtn.click();
                     }
                 }
+
+                firstInvalid.focus();
+                // firstInvalid.click();
                 firstInvalid.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center'
                 });
-
-                setTimeout(() => {
-                    firstInvalid.focus();
-                }, 300);
             }
         }, true);
 
@@ -408,7 +407,7 @@
                     <div class="gmd-billing-address-wrapper">
                         <div class="gmd-heading">Factuuradres</div>
                         <div class="gmd-billing-address-fields-wrapper"></div>
-                        <a href="javascript:void(0)" class="gmd-expand-billing-address">Adres automatisch invoeren</a>
+                        <a href="javascript:void(0)" class="gmd-expand-billing-address">Adres handmatig invoeren</a>
                     </div>
                 `);
             }
@@ -418,7 +417,7 @@
                     <div class="gmd-shipping-address-wrapper">
                         <div class="gmd-heading">Afleveradres</div>
                         <div class="gmd-shipping-address-fields-wrapper"></div>
-                        <a href="javascript:void(0)" class="gmd-expand-shipping-address">Adres automatisch invoeren</a>
+                        <a href="javascript:void(0)" class="gmd-expand-shipping-address">Adres handmatig invoeren</a>
                     </div>
                 `);
             }
@@ -512,7 +511,6 @@
                 }
 
             });
-            addClassForLabel();
         }
 
         function observeAddressFields() {
@@ -558,13 +556,17 @@
                     const isBilling = this.classList.contains('gmd-expand-billing-address');
                     const fields = isBilling
                         ? [
-                            '#billing_address_rpgaac_field',
+                            // '#billing_address_rpgaac_field',
+                            '#billing_address_1_field',
+                            '#billing_postcode_field',
                             '#billing_city_field',
                             '#billing_country_field',
                             '#billing_state_field'
                         ]
                         : [
-                            '#shipping_address_rpgaac_field',
+                            // '#shipping_address_rpgaac_field',
+                            '#shipping_address_1_field',
+                            '#shipping_postcode_field',
                             '#shipping_city_field',
                             '#shipping_country_field',
                             '#shipping_state_field'
@@ -584,8 +586,8 @@
                     });
 
                     this.textContent = isOpen
-                        ? 'Adres handmatig invoeren'
-                        : 'Adres automatisch invoeren';
+                        ? 'Adres automatisch invoeren'
+                        : 'Adres handmatig invoeren';
                 });
 
             });
@@ -594,8 +596,8 @@
 
         function addClassForLabel() {
             document.querySelectorAll('#customer_details .form-row input.input-text, .form-row select').forEach(input => {
-                if (input.value) {
-                    input.parentElement.classList.add('fl-is-active');
+                if (input.value && input.closest('.fl-wrap')) {
+                    input.closest('.fl-wrap').classList.add('fl-is-active');
                 }
             });
         }
@@ -604,12 +606,21 @@
             addClassForLabel();
         });
 
-        const observer = new MutationObserver(() => {
-            addClassForLabel();
+        let running = false;
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (running) return;
+                addClassForLabel();
+                setTimeout(function () { addClassForLabel(); }, 500);
+
+                running = true;
+                setTimeout(function () { running = false; }, 100);
+            });
         })
-        observer.observe(document.querySelector('#customer_details'), {
+        observer.observe(document.querySelector('body'), {
             attributes: true,
-            attributeFilter: ['class']
+            attributeFilter: ['class'],
+            childList: true,
         })
     })
 })();
