@@ -171,19 +171,19 @@
         }
     }
 
-    #customer_details {
-        &:has(.gmd-show-billing) {
-            #billing_address_rpgaac_field {
-                display: none !important;
-            }
-        }
+    // #customer_details {
+    //     &:has(.gmd-show-billing) {
+    //         #billing_address_rpgaac_field {
+    //             display: none !important;
+    //         }
+    //     }
 
-        &:has(.gmd-show-shipping) {
-            #shipping_address_rpgaac_field {
-                display: none !important;
-            }
-        }
-    }
+    //     &:has(.gmd-show-shipping) {
+    //         #shipping_address_rpgaac_field {
+    //             display: none !important;
+    //         }
+    //     }
+    // }
 
     .form-row {
 

@@ -144,12 +144,6 @@
 .gmd-09 .gmd-required-invalid.validate-required select {
   border-color: #A00 !important;
 }
-.gmd-09 #customer_details:has(.gmd-show-billing) #billing_address_rpgaac_field {
-  display: none !important;
-}
-.gmd-09 #customer_details:has(.gmd-show-shipping) #shipping_address_rpgaac_field {
-  display: none !important;
-}
 .gmd-09 .form-row:not(:has(label)) select {
   padding: 0 0.75em;
   padding-right: 1.4em;
