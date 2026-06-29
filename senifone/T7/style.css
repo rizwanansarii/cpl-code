@@ -386,6 +386,9 @@
     right: -5px;
   }
 }
+.gmd-07 .section-featured-collection .cc-carousel-button {
+  background: #F83419;
+}
 .gmd-07 .section-featured-collection .inline-image__pad {
   padding-top: 0;
   margin-top: 40px;
