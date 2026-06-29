@@ -24,8 +24,21 @@
                     }
                 });
             }
+
+            const priceMain = document.querySelector('.gmd-07 .cart-summary__top-row span strong');
+            if (priceMain && priceMain.textContent.includes('EUR')) {
+                document.querySelector('.gmd-07 .cart-summary__top-row span strong').textContent = priceMain.textContent.replace(/\s*EUR\b/g, '').trim()
+            }
         }
         removeEUR();
+
+        const observer = new MutationObserver(() => {
+            removeEUR();
+        })
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        })
     });
 
 })();   

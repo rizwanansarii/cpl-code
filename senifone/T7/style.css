@@ -363,6 +363,7 @@
   top: 47% !important;
   bottom: auto;
   justify-content: space-between;
+  z-index: 3;
 }
 @media (max-width: 767px) {
   .gmd-07 .section-featured-collection .cc-carousel-buttons--overlay-top {
