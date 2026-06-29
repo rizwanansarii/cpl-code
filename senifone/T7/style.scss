@@ -395,17 +395,35 @@
         .product-block {
             padding-left: 20px;
 
+            .image-cont {
+                width: 100%;
+                overflow: unset;
+            }
+
             @media (max-width: 767px) {
                 padding-left: 8px;
             }
 
             .product-info {
                 margin: 20px 24px 40px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
 
                 @media (max-width: 767px) {
                     margin: 12px 12px 20px;
                 }
             }
+
+            .product-block__price-row {
+                margin-top: auto;
+            }
+        }
+
+        .block-inner-inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .cart-upsell-add--overlay {
@@ -427,13 +445,18 @@
         }
 
         .inline-image__pad {
-            padding-top: 41.6%;
+            padding-top: 0;
             margin-top: 40px;
+            height: auto;
 
             @media (max-width: 767px) {
-                padding-top: 65.5%;
                 margin-top: 20px;
             }
+        }
+
+        .inline-image__image {
+            position: unset;
+            max-height: 111px;
         }
 
         .product-block__title {
@@ -467,6 +490,10 @@
             line-height: 24px;
             text-decoration-line: line-through;
             opacity: .6;
+            margin: 0;
+        }
+
+        .btn_add_tocart {
             margin: 0;
         }
     }
