@@ -30,30 +30,33 @@
 
         // Only now wait for the gallery to be ready and inject
         waitForElement('#gallery', ([galleryEl]) => {
-            if (typeof Alpine === 'undefined') {
-                if (testInfo.debug) console.warn('[' + testInfo.className + '] Alpine not loaded');
-                return;
-            }
+            setTimeout(() => {
+                if (typeof Alpine === 'undefined') {
+                    if (testInfo.debug) console.warn('[' + testInfo.className + '] Alpine not loaded');
+                    return;
+                }
 
-            const galleryData = Alpine.$data(galleryEl);
-            if (!galleryData || !Array.isArray(galleryData.images)) {
-                if (testInfo.debug) console.warn('[' + testInfo.className + '] Gallery Alpine data not found');
-                return;
-            }
+                const galleryData = Alpine.$data(galleryEl);
+                if (!galleryData || !Array.isArray(galleryData.images)) {
+                    if (testInfo.debug) console.warn('[' + testInfo.className + '] Gallery Alpine data not found');
+                    return;
+                }
 
-            const newImage = {
-                img: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
-                full: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
-                thumb: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_mobile.png",
-                caption: document.querySelector('.page-title').textContent,
-                type: "image"
-            };
+                document.body.classList.add(testInfo.className);
+                const newImage = {
+                    img: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
+                    full: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
+                    thumb: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_mobile.png",
+                    caption: document.querySelector('.page-title').textContent,
+                    type: "image"
+                };
 
-            galleryData.images.push(newImage);
+                galleryData.images.push(newImage);
 
-            if (testInfo.debug) {
-                console.log('[' + testInfo.className + '] Injected image', newImage);
-            }
+                if (testInfo.debug) {
+                    console.log('[' + testInfo.className + '] Injected image', newImage);
+                }
+            })
         });
     });
 })();
