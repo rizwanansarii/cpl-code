@@ -388,7 +388,8 @@
   margin: 0 !important;
   margin-bottom: 5px !important;
 }
-.gmd-14 .rps-product-container .rps-product-stock-badge {
+.gmd-14 .rps-product-container .rps-product-stock-badge,
+.gmd-14 .rps-product-container .rps-product-new-badge-container {
   display: none;
 }
 .gmd-14 .rps-product-container .rps-prices-container::before {
