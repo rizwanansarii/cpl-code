@@ -16,27 +16,29 @@
 
     waitForElement("#gallery", ([galleryEl]) => {
         document.body.classList.add(testInfo.className)
-        // Grab the Alpine component instance bound to #gallery
-        const galleryData = Alpine.$data(galleryEl);
+        setTimeout(() => {
+            // Grab the Alpine component instance bound to #gallery
+            const galleryData = Alpine.$data(galleryEl);
 
-        if (!galleryData || !Array.isArray(galleryData.images)) {
-            console.warn('[' + testInfo.className + '] Gallery Alpine data not found');
-            return;
-        }
+            if (!galleryData || !Array.isArray(galleryData.images)) {
+                console.warn('[' + testInfo.className + '] Gallery Alpine data not found');
+                return;
+            }
 
-        const newImage = {
-            img: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
-            full: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
-            thumb: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_mobile.png",
-            caption: document.querySelector('.page-title').textContent,
-            type: "image"
-        };
+            const newImage = {
+                img: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
+                full: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_desktop.png",
+                thumb: "https://cdn.jsdelivr.net/gh/admin-gmd/gmdassets/TPF/overview_filterklasse_mobile.png",
+                caption: document.querySelector('.page-title').textContent,
+                type: "image"
+            };
 
-        // Push into the reactive array — Alpine re-renders thumb + slide automatically
-        galleryData.images.push(newImage);
+            // Push into the reactive array — Alpine re-renders thumb + slide automatically
+            galleryData.images.push(newImage);
 
-        if (testInfo.debug) {
-            console.log('[' + testInfo.className + '] Injected image into gallery', newImage);
-        }
+            if (testInfo.debug) {
+                console.log('[' + testInfo.className + '] Injected image into gallery', newImage);
+            }
+        }, 500)
     });
 })();
