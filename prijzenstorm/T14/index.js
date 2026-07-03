@@ -122,4 +122,32 @@
             subtree: true
         })
     });
+
+    function swapCardsElementForSearch() {
+        const cards = document.querySelectorAll('.rps-products-container .rps-product-container')
+        cards.forEach((card) => {
+            if (card.querySelector('.rps-product-image-container .rps-badges-container')) {
+                card.querySelector('.rps-product-image-container').insertAdjacentElement('afterend', card.querySelector('.rps-badges-container'));
+                card.querySelector('.rps-badges-container').insertAdjacentHTML('beforeend', `<span class="first-half">Goedkoper</span><span class="second-half">dan elders</span>`)
+                card.querySelector('.rps-badges-container .rps-product-discount-badge-container').textContent = card.querySelector('.rps-badges-container .rps-product-discount-badge-container').textContent.replace(/^-/, '');
+            }
+
+            if (card.querySelector('.rps-badges-container').nextSibling !== card.querySelector('.rps-product-vendor')) {
+                card.querySelector('.rps-badges-container').insertAdjacentElement('afterend', card.querySelector('.rps-product-vendor'))
+            }
+        })
+    }
+
+    waitForElement(".rps-product-container", () => {
+        document.querySelector('body').classList.add(testInfo.className);
+        swapCardsElementForSearch();
+
+        const observer = new MutationObserver(() => {
+            swapCardsElementForSearch();
+        })
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        })
+    });
 })();

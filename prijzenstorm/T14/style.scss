@@ -379,4 +379,103 @@
         margin-left: 0;
     }
 
+    .rps-product-container {
+        gap: 0;
+
+        .rps-badges-container {
+            position: unset !important;
+            display: flex;
+            gap: 0;
+            margin-top: 16px;
+            margin-bottom: 6px;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                background-image: url(https://cdn.shopify.com/s/files/1/0571/5388/0152/files/Prijzenstorm.NL_Supporting_Graphics_RGB_Bolt_Storm.png?v=1746743554);
+                width: 10px;
+                height: 16px;
+                margin-right: 6px;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .rps-product-discount-badge-container {
+            color: #FF14B8;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 14px;
+            font-family: "system_ui", -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+            background-color: unset;
+            padding: 0;
+            flex-wrap: wrap;
+
+            &.\@type\:sold-out {
+                color: #2F3F23;
+            }
+
+
+        }
+
+        .second-half {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 14px;
+            color: #2F3F23;
+            margin-left: 4px;
+
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+
+        .first-half {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 14px;
+            margin-left: 4px;
+            color: #FF14B8;
+            font-weight: 600;
+
+            @media (max-width: 767px) {
+                color: #2F3F23;
+                margin-left: 2px;
+            }
+        }
+
+        .rps-product-vendor {
+            color: #2D1B1B;
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 17.53px;
+            opacity: 0.8;
+        }
+
+        .rps-product-title {
+            margin: 0 !important;
+            margin-bottom: 5px !important;
+        }
+
+        .rps-product-stock-badge {
+            display: none;
+        }
+
+        .rps-prices-container {
+            &::before {
+                content: 'Nu! ';
+                color: #2F3F23;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 100%;
+
+                @media (max-width: 767px) {
+                    font-size: 14px;
+                    line-height: 100%;
+                }
+            }
+        }
+    }
+
+
 }
