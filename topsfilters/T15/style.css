@@ -1,0 +1,21 @@
+.gmd-15 .item-product-bottom {
+  height: auto;
+}
+.gmd-15 .gmd-bullets {
+  color: #002C4B;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 130%;
+  margin-top: 12px;
+}
+@media (max-width: 767px) {
+  .gmd-15 .gmd-bullets {
+    font-size: 11px;
+    line-height: 130%;
+    margin-top: 6px;
+  }
+}
+.gmd-15 .gmd-bullets .gmd-dot {
+  font-weight: 700;
+  padding: 0 8px;
+}/*# sourceMappingURL=style.css.map */
