@@ -7,6 +7,17 @@
         testVersion: 'v1'
     };
 
+    // Explicit allow-list: only these filterclasses get bullets at all
+    const ALLOWED_FILTERCLASSES = new Set([
+        'G2', 'G2+F7',
+        'G3', 'G3+G4', 'G3+M6', 'G3+F7',
+        'G4', 'G4+M5', 'G4+M6', 'G4+F7', 'G4+F9',
+        'M5', 'M5+F7',
+        'M6',
+        'F7', 'F9',
+        'H13'
+    ]);
+
     // Right-hand table: filterclass -> bullet 2
     const FILTERCLASS_MAP = {
         'G2': 'Verwijdert grove stoffen',
@@ -63,6 +74,14 @@
         return match ? match[1].toUpperCase() : null;
     }
 
+    function normalizeBrandText(str) {
+        return str
+            .replace(/[-\u2010-\u2015]/g, ' ')   // hyphens/dashes -> space
+            .replace(/\s+/g, ' ')                // collapse multiple spaces
+            .trim()
+            .toLowerCase();
+    }
+
     function extractBrandBullet(tile) {
         const badge = tile.querySelector('div.bg-blue-prussian');
         if (badge && badge.textContent.trim() === 'Tops filters merk') {
@@ -71,10 +90,13 @@
 
         const titleEl = tile.querySelector('.product-item-link');
         const codeEl = tile.querySelector('.product-item-code');
-        const haystack = ((titleEl ? titleEl.textContent : '') + ' ' + (codeEl ? codeEl.textContent : ''));
+        const haystack = normalizeBrandText(
+            (titleEl ? titleEl.textContent : '') + ' ' + (codeEl ? codeEl.textContent : '')
+        );
 
         for (const brand in BRAND_MAP) {
-            if (haystack.indexOf(brand) !== -1) {
+            const normalizedBrand = normalizeBrandText(brand);
+            if (haystack.indexOf(normalizedBrand) !== -1) {
                 return BRAND_MAP[brand];
             }
         }
@@ -97,18 +119,25 @@
         if (tile.hasAttribute('data-bullets-injected')) return;
 
         const filterclass = extractFilterclass(tile);
-        const brandBullet = extractBrandBullet(tile);
 
-        const bullet1 = filterclass ? `${filterclass} filter` : null;
-        const bullet2 = filterclass ? FILTERCLASS_MAP[filterclass] : null;
-        const bullets = [bullet1, bullet2, brandBullet].filter(Boolean);
-
-        if (!bullets.length) {
+        if (!filterclass || !ALLOWED_FILTERCLASSES.has(filterclass)) {
+            tile.setAttribute('data-bullets-injected', 'true');
+            if (testInfo.debug) console.log('[' + testInfo.className + '] Skipped, filterclass not allowed:', filterclass, tile);
             return;
         }
 
-        // Insert after every stock/availability paragraph in this tile
-        // (there are separate mobile & desktop instances)
+        const brandBullet = extractBrandBullet(tile);
+
+        const bullet1 = `${filterclass} filter`;
+        const bullet2 = FILTERCLASS_MAP[filterclass];
+        const bullets = [bullet1, bullet2, brandBullet].filter(Boolean);
+
+        if (bullets.length < 3) {
+            tile.setAttribute('data-bullets-injected', 'true');
+            if (testInfo.debug) console.warn('[' + testInfo.className + '] Skipped, incomplete bullet set (brand unresolved):', tile);
+            return;
+        }
+
         const stockParagraphs = tile.querySelectorAll('p.stock');
         stockParagraphs.forEach((p) => {
             const wrapper = p.closest('.text-left') || p.parentElement;
