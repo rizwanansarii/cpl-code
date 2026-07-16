@@ -1,0 +1,22 @@
+.gmd-25 .hidden {
+  display: none;
+}
+.gmd-25 #wijcbf_personal_data #wijcbf_summary {
+  max-width: 930px;
+  color: #737373;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 150%;
+}
+@media (max-width: 600px) {
+  .gmd-25 #wijcbf_personal_data #wijcbf_summary {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+.gmd-25 #wijcbf_personal_data #wijcbf_summary b {
+  color: #737373;
+}
+.gmd-25 #wijcbf_personal_data #wijcbf_summary .gmd-bold {
+  font-weight: 700;
+}/*# sourceMappingURL=style.css.map */

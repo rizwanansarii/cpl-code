@@ -1,0 +1,29 @@
+.gmd-25 {
+    .hidden {
+        display: none;
+    }
+
+    #wijcbf_personal_data {
+        #wijcbf_summary {
+            max-width: 930px;
+            color: #737373;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 150%;
+
+            @media (max-width: 600px) {
+                font-size: 15px;
+                line-height: 22px;
+
+            }
+
+            b {
+                color: #737373;
+            }
+
+            .gmd-bold {
+                font-weight: 700;
+            }
+        }
+    }
+}
