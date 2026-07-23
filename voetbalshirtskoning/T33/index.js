@@ -337,7 +337,7 @@
                 if (title) {
                     title.textContent =
                         popupMode === 'printing'
-                            ? `Selecteer eerst een ${sizeabel}`
+                            ? `Selecteer eerst een ${sizeLabel}`
                             : `Kies ${sizeLabel}`;
                 }
 
