@@ -299,6 +299,11 @@
             width: 100%;
             box-shadow: none;
 
+            span,
+            svg {
+                pointer-events: none;
+            }
+
             @media (max-width: 767px) {
                 padding: 11px 9px;
             }

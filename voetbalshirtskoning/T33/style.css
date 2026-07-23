@@ -253,6 +253,10 @@
   width: 100%;
   box-shadow: none;
 }
+.gmd-33 .gmd-personalize-popup .product-addtocart-button span,
+.gmd-33 .gmd-personalize-popup .product-addtocart-button svg {
+  pointer-events: none;
+}
 @media (max-width: 767px) {
   .gmd-33 .gmd-personalize-popup .product-addtocart-button {
     padding: 11px 9px;
