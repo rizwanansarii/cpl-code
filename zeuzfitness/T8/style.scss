@@ -1,4 +1,10 @@
 .gmd-08 {
+    &:has(#facets-drawer[open]) {
+        .gmd-quick-filters {
+            display: none;
+        }
+    }
+
     .gmd-quick-filters {
         position: sticky;
         left: 0;
@@ -156,6 +162,11 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 18px;
+
+        @media (max-width: 767px) {
+            gap: 4px;
+            font-size: 13px;
+        }
     }
 
     .gmd-quick-filters__content {
@@ -183,18 +194,30 @@
         cursor: pointer;
         position: relative;
 
+        @media (max-width: 767px) {
+            width: 16px;
+            height: 16px;
+        }
+
         &:checked {
             background: #2F2F2F;
 
             &::after {
                 content: "";
                 position: absolute;
-                left: 3px;
-                top: 4px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
                 width: 12px;
                 height: 9px;
                 display: block;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M4.07573 8.82324L0.175729 4.90081C-0.0585762 4.66516 -0.0585762 4.28308 0.175729 4.0474L1.02424 3.19399C1.25854 2.95832 1.63846 2.95832 1.87277 3.19399L4.5 5.8363L10.1272 0.176739C10.3615 -0.058913 10.7415 -0.058913 10.9758 0.176739L11.8243 1.03015C12.0586 1.2658 12.0586 1.64789 11.8243 1.88356L4.92426 8.82326C4.68994 9.05892 4.31004 9.05892 4.07573 8.82324Z" fill="white"/></svg>');
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M4.07573 8.82324L0.175729 4.90081C-0.0585762 4.66516 -0.0585762 4.28308 0.175729 4.0474L1.02424 3.19399C1.25854 2.95832 1.63846 2.95832 1.87277 3.19399L4.5 5.8363L10.1272 0.176739C10.3615 -0.058913 10.7415 -0.058913 10.9758 0.176739L11.8243 1.03015C12.0586 1.2658 12.0586 1.64789 11.8243 1.88356L4.92426 8.82326C4.68994 9.05892 4.31004 9.05892 4.07573 8.82324Z" fill="white"/></svg>') no-repeat;
+                background-size: contain;
+
+                @media (max-width: 767px) {
+                    width: 10px;
+                    height: 7px;
+                }
             }
         }
     }
