@@ -749,7 +749,9 @@
 
             }
 
-            createBundleOptions();
+            waitForElement('.product-main-info .form-select, .product-options-mobile:has(>.field.choice)', () => {
+                createBundleOptions();
+            });
 
             function createOptionGroup(title, originalField, type) {
 
@@ -779,7 +781,7 @@
 
                         item.innerHTML = `
                             <div class="gmd-bundle-option-title">${option.text.trim()}</div>
-                            <div class="gmd-bundle-option-price">€39,95</div>
+                            <div class="gmd-bundle-option-price"></div>
                         `;
 
                         if (option.selected) {
@@ -835,7 +837,7 @@
 
                         item.innerHTML = `
                             <div class="gmd-bundle-option-title">${label.textContent.trim()}</div>
-                            <div class="gmd-bundle-option-price">€39,95</div>
+                            <div class="gmd-bundle-option-price"></div>
                         `;
 
                         item.addEventListener('click', () => radio.click());
