@@ -131,7 +131,7 @@
         });
     }
 
-    waitForElement(".product-info-main", ([producPage]) => {
+    waitForElement(".product-info-main .product-options-desktop, .product-info-main .product-options-mobile", ([producPage]) => {
         if (document.querySelector('.product.alert.stock') || document.querySelector('.product-main-info.simple')) {
             return;
         }
@@ -344,6 +344,7 @@
                 document.querySelector('.gmd-personalize-overlay')?.classList.add('is-open');
                 document.querySelector('.gmd-personalize-popup')?.classList.add('is-open');
                 document.body.classList.add('gmd-overflow-hidden');
+                createBundleOptions();
 
             }
 
@@ -750,6 +751,9 @@
             }
 
             waitForElement('.product-main-info .form-select, .product-options-mobile:has(>.field.choice)', () => {
+                if (document.querySelector('.product-info-main .product-options-mobile, .product-info-main .product-options-desktop')) {
+                    document.querySelector('.product-info-main .product-options-mobile, .product-info-main .product-options-desktop')?.closest('div[x-defer="intersect"]')?.classList.add('gmd-hidden')
+                }
                 createBundleOptions();
             });
 

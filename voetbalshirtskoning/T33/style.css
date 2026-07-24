@@ -22,7 +22,7 @@
 .gmd-33 .product-main-info #product-addtocart-button {
   display: none;
 }
-.gmd-33 .product-main-info div[x-defer=intersect] {
+.gmd-33 .product-main-info .gmd-hidden {
   display: none;
 }
 .gmd-33 .gmd-personalize-overlay {
