@@ -516,11 +516,12 @@
 
                             if (!option.value) return;
                             const productPrice = document.querySelector('.final-price .price-wrapper .price')?.textContent.trim()
+                            const optionText = option.textContent.trim();
+
+                            const priceMatch = optionText.match(/([€]?\s?\d+[.,]\d{2})/);
+
                             const price = isSocks
-                                ? (
-                                    option.querySelector('.price-wrapper')?.textContent.trim() ||
-                                    option.querySelector('.price')?.textContent.trim()
-                                )
+                                ? (priceMatch ? priceMatch[1].replace('€', '').trim() : '')
                                 : productPrice;
                             const item = document.createElement('div');
 
