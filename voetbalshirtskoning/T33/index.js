@@ -528,9 +528,13 @@
                             item.className = 'gmd-bundle-option';
                             item.dataset.value = option.value;
 
+                            const title = option.querySelector('.product-name')
+                                ? option.querySelector('.product-name').textContent.trim()
+                                : option.text.replace(/\s*\+\s*\d+[.,]\d{2}.*$/, '').trim();
+
                             item.innerHTML = `
                                 <div class="gmd-bundle-option-title">
-                                    ${option.querySelector('.product-name') ? option.querySelector('.product-name').textContent.trim() : option.text}
+                                    ${title}
                                 </div>
                                 <div class="gmd-bundle-option-price">
                                     € ${price}
