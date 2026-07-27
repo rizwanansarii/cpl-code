@@ -223,7 +223,7 @@
             if (!document.querySelector('.gmd-printing-wrapper')) {
                 usps.insertAdjacentHTML('beforebegin', `
                     <div class="gmd-size-wrapper">
-                        <button class="gmd-size-btn">Kies ${sizeLabel}</button>
+                        <button class="gmd-size-btn">Kies ${sizeLabel?.includes('Kleur') ? `kleur` : `maat`}</button>
                     </div>    
                     ${document.querySelector('#product-options-wrapper') ? `
                         <div class="gmd-printing-wrapper">
@@ -337,8 +337,8 @@
                 if (title) {
                     title.textContent =
                         popupMode === 'printing'
-                            ? `Selecteer eerst een ${sizeLabel}`
-                            : `Kies ${sizeLabel}`;
+                            ? `Selecteer eerst een ${sizeLabel?.includes('Kleur') ? `kleur` : `maat`}`
+                            : `Kies ${sizeLabel?.includes('Kleur') ? `kleur` : `maat`}`;
                 }
 
                 document.querySelector('.gmd-personalize-overlay')?.classList.add('is-open');
