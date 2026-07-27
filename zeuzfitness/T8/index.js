@@ -35,7 +35,7 @@
         }
     };
 
-    const locale = Shopify.locale || "en";
+    const locale = Shopify?.locale || "en";
 
     const text = translations[locale]?.popularFilters || translations.en.popularFilters;
 
