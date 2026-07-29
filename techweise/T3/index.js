@@ -423,25 +423,19 @@
                                     // },
                                     breakpoints: {
                                         0: {
-                                            slidesPerView: 1,
+                                            slidesPerView: 1.25,
+                                            spaceBetween: 10,
                                         },
-                                        600: {
-                                            slidesPerView: 2,
-                                            centeredSlidesBounds: true,
-                                            freeMode: false,
-                                            watchSlidesProgress: true,
+                                        700: {
+                                            slidesPerView: 2.3,
+                                            spaceBetween: 20,
                                         },
-                                        900: {
-                                            slidesPerView: 3,
-                                            centeredSlidesBounds: true,
-                                            freeMode: false,
-                                            watchSlidesProgress: true,
+                                        1000: {
+                                            slidesPerView: 3.3,
+                                            spaceBetween: 30,
                                         },
                                         1200: {
                                             slidesPerView: 4,
-                                            centeredSlidesBounds: true,
-                                            freeMode: false,
-                                            watchSlidesProgress: true,
                                         },
                                     }
                                 });
