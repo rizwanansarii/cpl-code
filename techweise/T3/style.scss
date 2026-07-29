@@ -8,6 +8,10 @@
         width: 100%;
         margin: 0 auto;
         margin-bottom: 60px;
+
+        @media (max-width: 767px) {
+            margin-bottom: 28px;
+        }
     }
 
     .gmd-slider-title {
@@ -19,6 +23,12 @@
         font-weight: 600;
         line-height: 31.2px;
         margin-bottom: 40px;
+
+        @media (max-width: 767px) {
+            font-size: 19.2px;
+            line-height: 23.76px;
+            margin-bottom: 30px;
+        }
     }
 
     .gmd-product-card {

@@ -7,6 +7,11 @@
   margin: 0 auto;
   margin-bottom: 60px;
 }
+@media (max-width: 767px) {
+  .gmd-03 .gmd-product-recommendation {
+    margin-bottom: 28px;
+  }
+}
 .gmd-03 .gmd-slider-title {
   color: #000;
   text-align: center;
@@ -16,6 +21,13 @@
   font-weight: 600;
   line-height: 31.2px;
   margin-bottom: 40px;
+}
+@media (max-width: 767px) {
+  .gmd-03 .gmd-slider-title {
+    font-size: 19.2px;
+    line-height: 23.76px;
+    margin-bottom: 30px;
+  }
 }
 .gmd-03 .gmd-product-card {
   padding: 32px 20px;
