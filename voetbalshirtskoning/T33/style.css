@@ -61,7 +61,7 @@
   .gmd-33 .gmd-personalize-popup {
     max-width: 100%;
     height: auto;
-    max-height: 81vh;
+    max-height: 69vh;
     margin-top: auto;
     transform: translateY(100%);
     border-radius: 8px;
@@ -317,4 +317,9 @@
 }
 .gmd-33 .product-usp-wrapper {
   margin-top: 24px;
+}
+@media (max-width: 767px) {
+  .gmd-33 .gmd-size-options {
+    margin-top: 15px;
+  }
 }/*# sourceMappingURL=style.css.map */

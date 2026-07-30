@@ -130,8 +130,82 @@
             });
         });
     }
+    const targetProductTypes = [
+        'WK 2026',
+        'Voetbaltenues',
+        'Voetbalshirts',
+        'Trainingspakken',
+        'Fanshop',
+        'Sale',
+        'Argentinië',
+        'België',
+        'Brazilië',
+        'Duitsland',
+        'Engeland',
+        'Frankrijk',
+        'Italië',
+        'Nederlands Elftal',
+        'Polen',
+        'Portugal',
+        'Spanje',
+        'Suriname',
+        'Zweden',
+        'Turkije',
+        'Ajax',
+        'Amsterdam',
+        'FC Barcelona',
+        'Barcelona',
+        'Den Haag',
+        'Manchester City',
+        'Manchester United',
+        'PSG',
+        'Real Madrid',
+        'Feyenoord',
+        'Juventus',
+        'Liverpool',
+        'PSV',
+        'Trainingsjacks',
+        'Kids',
+        'Messi',
+        'Ronaldo'
+    ];
 
+    function normalizeText(value) {
+        return (value || '')
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, ' ');
+    }
+
+    function isTargetProductType() {
+        const productTypeElement = document.querySelector(
+            '.catalog-product-view .product-info-detailed #product-attributes td[data-th="Producttype"]'
+        );
+
+        if (!productTypeElement) {
+            console.log('[T33] Producttype not found');
+            return false;
+        }
+
+        const productType = normalizeText(productTypeElement.textContent);
+
+        const isMatch = targetProductTypes.some((item) => {
+            return normalizeText(item) === productType;
+        });
+
+        console.log(
+            isMatch
+                ? '[T33] Producttype matched:'
+                : '[T33] Producttype ignored:',
+            productTypeElement.textContent.trim()
+        );
+
+        return isMatch;
+    }
     waitForElement(".product-info-main .product-options-desktop, .product-info-main .product-options-mobile", ([producPage]) => {
+        if (!isTargetProductType()) {
+            return;
+        }
         if (document.querySelector('.product.alert.stock') || document.querySelector('.product-main-info.simple')) {
             return;
         }
