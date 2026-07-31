@@ -17,13 +17,13 @@
     const isNl = window.Shopify && Shopify.locale === 'nl';
 
     const allowedUrls = [
-        '/products/ts-compact-handstoomreiniger',
-        '/products/ts1-stoomreiniger-met-21-accessoires',
-        '/products/ts2-performance-stoomreiniger',
-        '/products/ts3-edge-stoomreiniger'
+        '/ts-compact-handstoomreiniger',
+        '/ts1-stoomreiniger-met-21-accessoires',
+        '/ts2-performance-stoomreiniger',
+        '/ts3-edge-stoomreiniger'
     ];
 
-    if (!allowedUrls.some(url => location.pathname === url) && !isNl) {
+    if (!allowedUrls.some(url => location.pathname.includes(url)) && !isNl) {
         return;
     }
 
@@ -368,13 +368,17 @@
                         if (window.innerWidth < 700) {
                             // Reorder products based on current PDP
                             const pageOrder = {
-                                '/products/ts-compact-handstoomreiniger': 'TS Compact',
-                                '/products/ts1-stoomreiniger-met-21-accessoires': 'TS1',
-                                '/products/ts2-performance-stoomreiniger': 'TS2',
-                                '/products/ts3-edge-stoomreiniger': 'TS3'
+                                '/ts-compact-handstoomreiniger': 'TS Compact',
+                                '/ts1-stoomreiniger-met-21-accessoires': 'TS1',
+                                '/ts2-performance-stoomreiniger': 'TS2',
+                                '/ts3-edge-stoomreiniger': 'TS3'
                             };
 
-                            const defaultProduct = pageOrder[window.location.pathname];
+                            const currentPath = window.location.pathname;
+
+                            const defaultProduct = Object.entries(pageOrder).find(([path]) =>
+                                currentPath.includes(path)
+                            )?.[1];
 
                             if (defaultProduct) {
                                 products.sort((a, b) => {
