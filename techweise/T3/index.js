@@ -365,22 +365,24 @@
                 if (document.querySelector('.product')) {
                     if (!document.querySelector('.gmd-product-recommendation')) {
                         document.querySelector('.product').insertAdjacentHTML('afterend', sliderEle);
-                        // Reorder products based on current PDP
-                        const pageOrder = {
-                            '/products/ts-compact-handstoomreiniger': 'TS Compact',
-                            '/products/ts1-stoomreiniger-met-21-accessoires': 'TS1',
-                            '/products/ts2-performance-stoomreiniger': 'TS2',
-                            '/products/ts3-edge-stoomreiniger': 'TS3'
-                        };
+                        if (window.innerWidth < 700) {
+                            // Reorder products based on current PDP
+                            const pageOrder = {
+                                '/products/ts-compact-handstoomreiniger': 'TS Compact',
+                                '/products/ts1-stoomreiniger-met-21-accessoires': 'TS1',
+                                '/products/ts2-performance-stoomreiniger': 'TS2',
+                                '/products/ts3-edge-stoomreiniger': 'TS3'
+                            };
 
-                        const defaultProduct = pageOrder[window.location.pathname];
+                            const defaultProduct = pageOrder[window.location.pathname];
 
-                        if (defaultProduct) {
-                            products.sort((a, b) => {
-                                if (a.name.includes(defaultProduct)) return -1;
-                                if (b.name.includes(defaultProduct)) return 1;
-                                return 0;
-                            });
+                            if (defaultProduct) {
+                                products.sort((a, b) => {
+                                    if (a.name.includes(defaultProduct)) return -1;
+                                    if (b.name.includes(defaultProduct)) return 1;
+                                    return 0;
+                                });
+                            }
                         }
                         for (var i = 0; products.length > i; i++) {
                             const specsHtml = products[i].specs.map(spec => `
