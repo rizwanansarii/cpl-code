@@ -421,9 +421,9 @@
                         const checkSlider = setInterval(() => {
                             if (typeof Swiper != 'undefined') {
                                 clearInterval(checkSlider);
-                                new Swiper(".gmd-cross-sell-swiper", {
+                                const swiper = new Swiper(".gmd-cross-sell-swiper", {
                                     direction: "horizontal",
-                                    autoWidth: true,
+                                    // autoWidth: true,
                                     loop: true,
                                     slidesPerView: 4,
                                     spaceBetween: 40,
@@ -451,6 +451,28 @@
                                             slidesPerView: 4,
                                         },
                                     }
+                                });
+
+                                let resizeTimer;
+
+                                window.addEventListener('resize', () => {
+
+                                    clearTimeout(resizeTimer);
+                                    console.log(initialSlide);
+                                    resizeTimer = setTimeout(() => {
+
+                                        const mobile = window.innerWidth < 700;
+
+                                        swiper.update();
+
+                                        swiper.slideToLoop(
+                                            mobile ? initialSlide : 0,
+                                            0,
+                                            false
+                                        );
+
+                                    }, 200);
+
                                 });
                             }
                         }, 500);
