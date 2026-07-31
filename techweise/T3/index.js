@@ -365,29 +365,18 @@
                 if (document.querySelector('.product')) {
                     if (!document.querySelector('.gmd-product-recommendation')) {
                         document.querySelector('.product').insertAdjacentHTML('afterend', sliderEle);
-                        if (window.innerWidth < 700) {
-                            // Reorder products based on current PDP
-                            const pageOrder = {
-                                '/ts-compact-handstoomreiniger': 'TS Compact',
-                                '/ts1-stoomreiniger-met-21-accessoires': 'TS1',
-                                '/ts2-performance-stoomreiniger': 'TS2',
-                                '/ts3-edge-stoomreiniger': 'TS3'
-                            };
+                        const pageSlides = {
+                            '/ts-compact-handstoomreiniger': 0,
+                            '/ts1-stoomreiniger-met-21-accessoires': 1,
+                            '/ts2-performance-stoomreiniger': 2,
+                            '/ts3-edge-stoomreiniger': 3
+                        };
 
-                            const currentPath = window.location.pathname;
+                        const currentPath = window.location.pathname;
 
-                            const defaultProduct = Object.entries(pageOrder).find(([path]) =>
-                                currentPath.includes(path)
-                            )?.[1];
-
-                            if (defaultProduct) {
-                                products.sort((a, b) => {
-                                    if (a.name.includes(defaultProduct)) return -1;
-                                    if (b.name.includes(defaultProduct)) return 1;
-                                    return 0;
-                                });
-                            }
-                        }
+                        const initialSlide = Object.entries(pageSlides).find(([path]) =>
+                            currentPath.includes(path)
+                        )?.[1] ?? 0;
                         for (var i = 0; products.length > i; i++) {
                             const specsHtml = products[i].specs.map(spec => `
                                 <li>
@@ -440,6 +429,7 @@
                                     spaceBetween: 40,
                                     centeredSlides: false,      // keep slides aligned to the left
                                     pagination: false,
+                                    initialSlide: window.innerWidth < 768 ? initialSlide : 0,
                                     // navigation: {
                                     //     nextEl: ".gmd-product-recommendation .gmd-cross-next",
                                     //     prevEl: ".gmd-product-recommendation .gmd-cross-prev",
