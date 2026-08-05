@@ -1,0 +1,108 @@
+.gmd-46 #header_usp {
+  gap: 10px !important;
+}
+.gmd-46 #header_usp a {
+  font-size: 12px;
+  line-height: 24px;
+}
+.gmd-46 #mobileCategoryNav .nav-item[title=Acties], .gmd-46 #mobileCategoryNav .nav-item[title=Kenniscentrum], .gmd-46 #mobileCategoryNav .nav-item[title=Inspiratie], .gmd-46 #mobileCategoryNav .nav-item[title=Showroom], .gmd-46 #mobileCategoryNav .nav-item[title="Maak een afspraak"], .gmd-46 #mobileCategoryNav .nav-item[title=Zakelijk], .gmd-46 #mobileCategoryNav .nav-item[title=Klantenservice] {
+  display: none !important;
+}
+.gmd-46 .gmd-header-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+.gmd-46 .gmd-header-links p {
+  margin: 0 !important;
+}
+.gmd-46 .gmd-header-links a {
+  text-decoration: none;
+}
+.gmd-46 .gmd-header-links a:hover {
+  text-decoration: underline;
+}
+.gmd-46 .container-fluid:has(#header_menu) {
+  position: relative;
+}
+.gmd-46 #header_menu .col-6 .mb-0.d-inline-block.mr-1 {
+  display: none !important;
+}
+.gmd-46 #header_menu .col-6.text-right {
+  display: none;
+}
+.gmd-46 #header_menu .main-container .col-6 {
+  width: 100%;
+  max-width: 100%;
+  flex: unset;
+  padding: 0;
+}
+.gmd-46 .gmd-menu-wrapper {
+  background: #fff;
+  position: absolute;
+  z-index: 999;
+  top: 100%;
+  width: 100%;
+}
+.gmd-46 .gmd-menu-wrapper .gmd-menu-overlay {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: -1;
+}
+.gmd-46 .gmd-menu-wrapper.is-open .gmd-menu-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+.gmd-46 .gmd-menu-wrapper.is-open .gmd-sub-panel-container {
+  display: block;
+}
+.gmd-46 .gmd-sub-panel-container {
+  display: none;
+}
+.gmd-46 .gmd-cat-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px 0;
+  justify-content: space-between;
+  width: 100%;
+}
+.gmd-46 .gmd-cat-row a {
+  margin-right: 0 !important;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 27.2px;
+  padding: 12px 8px;
+}
+.gmd-46 .gmd-cat-row a:hover {
+  background: #FFF;
+}
+@media (max-width: 1500px) {
+  .gmd-46 .gmd-cat-row a {
+    font-size: 15px;
+  }
+}
+@media (max-width: 1299px) {
+  .gmd-46 .gmd-cat-row a {
+    font-size: 13px;
+  }
+}
+.gmd-46 .gmd-sub-panel-container {
+  background: #fff;
+  padding: 20px 0;
+}
+.gmd-46 .gmd-sub-panel-container .category_menu_sub_cat {
+  display: none !important;
+}
+.gmd-46 .gmd-sub-panel-container .category_menu_sub_cat.is-active {
+  display: flex !important;
+}/*# sourceMappingURL=style.css.map */
