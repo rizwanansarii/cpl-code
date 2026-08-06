@@ -95,7 +95,9 @@
             });
 
             if (!hasPanel) {
-                subPanels.forEach(panel => panel.classList.remove('is-active'));
+                flatRow.querySelectorAll('a').forEach(link => {
+                    link.classList.remove('is-active');
+                });
             }
 
             return hasPanel;
@@ -139,14 +141,25 @@
                 originalLink.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
                 originalLink.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
 
-                setTimeout(() => {
+                // setTimeout(() => {
 
-                    const hasPanel = showPanelFor(rootName);
+                const hasPanel = showPanelFor(rootName);
 
-                    menuWrapper.classList.toggle('is-open', hasPanel);
-                    overlay.classList.toggle('is-visible', hasPanel);
+                menuWrapper.classList.toggle('is-open', hasPanel);
+                overlay.classList.toggle('is-visible', hasPanel);
 
-                }, 150);
+                // }, 150);
+
+            });
+
+            link.addEventListener('mouseleave', (e) => {
+
+                // If moving into the submenu, keep it open
+                if (panelContainer.contains(e.relatedTarget)) {
+                    return;
+                }
+
+                closeMenu();
 
             });
 
@@ -175,35 +188,16 @@
             })
         );
 
-        let overMainMenu = false;
-        let overSubMenu = false;
+        panelContainer.addEventListener('mouseleave', (e) => {
 
-        flatRow.addEventListener('mouseenter', () => {
-            overMainMenu = true;
-        });
+            const to = e.relatedTarget;
 
-        flatRow.addEventListener('mouseleave', () => {
-            overMainMenu = false;
+            if (to && menuWrapper.contains(to)) {
+                return;
+            }
 
-            setTimeout(() => {
-                if (!overMainMenu && !overSubMenu) {
-                    closeMenu();
-                }
-            }, 100);
-        });
+            closeMenu();
 
-        panelContainer.addEventListener('mouseenter', () => {
-            overSubMenu = true;
-        });
-
-        panelContainer.addEventListener('mouseleave', () => {
-            overSubMenu = false;
-
-            setTimeout(() => {
-                if (!overMainMenu && !overSubMenu) {
-                    closeMenu();
-                }
-            }, 100);
         });
 
         // Replace old trigger
