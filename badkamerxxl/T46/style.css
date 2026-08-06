@@ -87,16 +87,6 @@
 .gmd-46 .gmd-cat-row a:hover, .gmd-46 .gmd-cat-row a.is-active {
   background: #FFF;
 }
-@media (max-width: 1500px) {
-  .gmd-46 .gmd-cat-row a {
-    font-size: 15px;
-  }
-}
-@media (max-width: 1299px) {
-  .gmd-46 .gmd-cat-row a {
-    font-size: 13px;
-  }
-}
 .gmd-46 #mobileCategoryNav .nav-item img,
 .gmd-46 .extendCategoryNav .nav-item img {
   display: none;
