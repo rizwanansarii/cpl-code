@@ -9,20 +9,20 @@
         }
     }
 
-    #mobileCategoryNav {
-        .nav-item {
+    // #mobileCategoryNav {
+    //     .nav-item {
 
-            &[title="Acties"],
-            &[title="Kenniscentrum"],
-            &[title="Inspiratie"],
-            &[title="Showroom"],
-            &[title="Maak een afspraak"],
-            &[title="Zakelijk"],
-            &[title="Klantenservice"] {
-                display: none !important;
-            }
-        }
-    }
+    //         &[title="Acties"],
+    //         &[title="Kenniscentrum"],
+    //         &[title="Inspiratie"],
+    //         &[title="Showroom"],
+    //         &[title="Maak een afspraak"],
+    //         &[title="Zakelijk"],
+    //         &[title="Klantenservice"] {
+    //             display: none !important;
+    //         }
+    //     }
+    // }
 
     .gmd-header-links {
         display: flex;
@@ -68,12 +68,17 @@
                 padding: 0;
             }
         }
+
+        a[title="Waterontharders"],
+        a[title="Nieuwe producten"] {
+            display: none !important;
+        }
     }
 
     .gmd-menu-wrapper {
         background: #fff;
         position: absolute;
-        z-index: 999;
+        z-index: 2;
         top: 100%;
         width: 100%;
 
@@ -123,7 +128,8 @@
             line-height: 27.2px;
             padding: 12px 8px;
 
-            &:hover {
+            &:hover,
+            &.is-active {
                 background: #FFF;
             }
 
@@ -136,6 +142,16 @@
             }
         }
     }
+
+    #mobileCategoryNav,
+    .extendCategoryNav {
+        .nav-item {
+            img {
+                display: none;
+            }
+        }
+    }
+
 
     .gmd-sub-panel-container {
         background: #fff;
@@ -150,9 +166,4 @@
         }
     }
 
-    // @media (max-width: 1199.98px) {
-    //     .category_menu_cat img {
-    //         display: none !important;
-    //     }
-    // }
 }

@@ -73,62 +73,137 @@
 
             let hasPanel = false;
 
+            // Update submenu
             subPanels.forEach(panel => {
 
                 const active = panel.dataset.root_name === rootName;
 
                 panel.classList.toggle('is-active', active);
 
-                if (active) hasPanel = true;
+                if (active) {
+                    hasPanel = true;
+                }
+
+            });
+
+            // Update top menu active state
+            flatRow.querySelectorAll('a').forEach(link => {
+                link.classList.toggle(
+                    'is-active',
+                    link.dataset.rootName === rootName
+                );
             });
 
             if (!hasPanel) {
-                subPanels.forEach(panel => {
-                    panel.classList.remove('is-active')
-                    menuWrapper.classList.remove('is-open');
-                    overlay.classList.remove('is-visible');
-                });
+                subPanels.forEach(panel => panel.classList.remove('is-active'));
             }
+
+            return hasPanel;
 
         }
 
-        catLinks.forEach(link => {
+        function closeMenu() {
 
-            const rootName = link.dataset.root_name;
+            menuWrapper.classList.remove('is-open');
+            overlay.classList.remove('is-visible');
 
-            const flatLink = document.createElement('a');
+            flatRow.querySelectorAll('a').forEach(link => {
+                link.classList.remove('is-active');
+            });
 
-            flatLink.className = 'd-inline-block text-primary mr-3';
-            flatLink.href = link.href;
-            flatLink.title = link.title || rootName;
-            flatLink.textContent = rootName;
+            subPanels.forEach(panel => {
+                panel.classList.remove('is-active');
+            });
 
-            flatLink.addEventListener('mouseenter', () => {
+        }
 
-                // Preserve original hover behaviour
-                link.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-                link.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        function createMenuLink({ text, href, title = text, rootName = null, originalLink = null }) {
+
+            const link = document.createElement('a');
+
+            link.className = 'd-inline-block text-primary mr-3';
+            link.href = href;
+            link.title = title;
+            link.textContent = text;
+            link.dataset.rootName = rootName || '';
+
+            link.addEventListener('mouseenter', () => {
+
+                // No submenu
+                if (!rootName || !originalLink) {
+                    closeMenu();
+                    return;
+                }
+
+                // Original behaviour
+                originalLink.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+                originalLink.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
 
                 setTimeout(() => {
-                    showPanelFor(rootName);
-                    menuWrapper.classList.add('is-open');
-                    overlay.classList.add('is-visible');
+
+                    const hasPanel = showPanelFor(rootName);
+
+                    menuWrapper.classList.toggle('is-open', hasPanel);
+                    overlay.classList.toggle('is-visible', hasPanel);
+
                 }, 150);
 
             });
 
-            flatRow.appendChild(flatLink);
+            return link;
+        }
+
+        catLinks.forEach(link => {
+
+            flatRow.appendChild(
+                createMenuLink({
+                    text: link.dataset.root_name,
+                    href: link.href,
+                    title: link.title || link.dataset.root_name,
+                    rootName: link.dataset.root_name,
+                    originalLink: link
+                })
+            );
 
         });
 
-        menuWrapper.addEventListener('mouseleave', () => {
-            menuWrapper.classList.remove('is-open');
-            overlay.classList.remove('is-visible');
-        });
+        flatRow.appendChild(
+            createMenuLink({
+                text: 'Acties',
+                href: '/acties',
+                title: 'Acties'
+            })
+        );
+
+        let overMainMenu = false;
+        let overSubMenu = false;
 
         flatRow.addEventListener('mouseenter', () => {
-            menuWrapper.classList.add('is-open');
-            overlay.classList.add('is-visible');
+            overMainMenu = true;
+        });
+
+        flatRow.addEventListener('mouseleave', () => {
+            overMainMenu = false;
+
+            setTimeout(() => {
+                if (!overMainMenu && !overSubMenu) {
+                    closeMenu();
+                }
+            }, 100);
+        });
+
+        panelContainer.addEventListener('mouseenter', () => {
+            overSubMenu = true;
+        });
+
+        panelContainer.addEventListener('mouseleave', () => {
+            overSubMenu = false;
+
+            setTimeout(() => {
+                if (!overMainMenu && !overSubMenu) {
+                    closeMenu();
+                }
+            }, 100);
         });
 
         // Replace old trigger
@@ -143,7 +218,7 @@
         headerMenuEl.insertAdjacentElement('afterend', menuWrapper);
 
         // Show first category
-        showPanelFor(catLinks[0].dataset.root_name);
+        // showPanelFor(catLinks[0].dataset.root_name);
 
         document.body.classList.add(testInfo.className);
 

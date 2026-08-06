@@ -5,9 +5,6 @@
   font-size: 12px;
   line-height: 24px;
 }
-.gmd-46 #mobileCategoryNav .nav-item[title=Acties], .gmd-46 #mobileCategoryNav .nav-item[title=Kenniscentrum], .gmd-46 #mobileCategoryNav .nav-item[title=Inspiratie], .gmd-46 #mobileCategoryNav .nav-item[title=Showroom], .gmd-46 #mobileCategoryNav .nav-item[title="Maak een afspraak"], .gmd-46 #mobileCategoryNav .nav-item[title=Zakelijk], .gmd-46 #mobileCategoryNav .nav-item[title=Klantenservice] {
-  display: none !important;
-}
 .gmd-46 .gmd-header-links {
   display: flex;
   align-items: center;
@@ -38,10 +35,14 @@
   flex: unset;
   padding: 0;
 }
+.gmd-46 #header_menu a[title=Waterontharders],
+.gmd-46 #header_menu a[title="Nieuwe producten"] {
+  display: none !important;
+}
 .gmd-46 .gmd-menu-wrapper {
   background: #fff;
   position: absolute;
-  z-index: 999;
+  z-index: 2;
   top: 100%;
   width: 100%;
 }
@@ -83,7 +84,7 @@
   line-height: 27.2px;
   padding: 12px 8px;
 }
-.gmd-46 .gmd-cat-row a:hover {
+.gmd-46 .gmd-cat-row a:hover, .gmd-46 .gmd-cat-row a.is-active {
   background: #FFF;
 }
 @media (max-width: 1500px) {
@@ -95,6 +96,10 @@
   .gmd-46 .gmd-cat-row a {
     font-size: 13px;
   }
+}
+.gmd-46 #mobileCategoryNav .nav-item img,
+.gmd-46 .extendCategoryNav .nav-item img {
+  display: none;
 }
 .gmd-46 .gmd-sub-panel-container {
   background: #fff;
