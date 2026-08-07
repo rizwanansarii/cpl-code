@@ -1,0 +1,94 @@
+.gmd-24 {
+
+    .gmd-mobile-steps {
+        display: none;
+    }
+
+    @media (max-width: 767px) {
+
+        #wijcbf_step_indicator {
+            display: none !important;
+        }
+
+        .gmd-mobile-steps {
+            display: block;
+            position: relative;
+            margin: 16px 0 22px;
+        }
+
+        .gmd-line-track {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e5e5e5;
+        }
+
+        .gmd-line-fill {
+            height: 100%;
+            background: #45b050;
+            transition: .3s;
+        }
+
+        .gmd-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gmd-step {
+            width: 40px;
+            margin: 0 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gmd-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #d9d9d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.done {
+                background: #45b050;
+            }
+
+            &.active {
+                background: #45b050;
+                box-shadow: 0 0 0 3px rgba(69, 176, 80, 0.30)
+            }
+        }
+
+        .gmd-step-title {
+            margin-top: 6px;
+            color: #464646;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: normal;
+            max-width: 60px;
+        }
+
+        .gmd-num {
+            color: #FFF;
+            text-align: center;
+            font-size: 21px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+    }
+
+    @media (min-width: 768px) {
+
+        &-mobile-steps {
+            display: none !important;
+        }
+    }
+}
