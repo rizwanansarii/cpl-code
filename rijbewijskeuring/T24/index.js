@@ -35,13 +35,11 @@
                 const bar = document.createElement('div');
                 bar.className = 'gmd-mobile-steps';
 
-                const fillPercent = (activeIndex / (steps.length - 1)) * 100;
-
                 bar.innerHTML = `
                     <div class="gmd-line-track">
-                        <div class="gmd-line-fill" style="width:${fillPercent}%;"></div>
+                        <div class="gmd-line-fill"></div>
                     </div>
-    
+
                     <div class="gmd-steps"></div>
                 `;
 
@@ -92,6 +90,12 @@
 
                 // Insert new bar, hide original mobile stepper content (desktop untouched)
                 indicator.insertAdjacentElement('afterend', bar);
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        updateProgress();
+                    });
+                });
                 function updateProgress() {
 
                     const steps = [...indicator.querySelectorAll(':scope > .step')];
@@ -133,21 +137,37 @@
 
                     });
 
-                    const fillPercent = ((activeIndex + 0.5) / steps.length) * 100;
+                    requestAnimationFrame(() => {
 
-                    bar.querySelector('.gmd-line-fill').style.width = fillPercent + '%';
+                        const circles = bar.querySelectorAll('.gmd-circle');
+                        const activeCircle = circles[activeIndex];
+
+                        if (!activeCircle) return;
+
+                        const track = bar.querySelector('.gmd-line-track');
+                        const fill = bar.querySelector('.gmd-line-fill');
+
+                        const trackRect = track.getBoundingClientRect();
+                        const circleRect = activeCircle.getBoundingClientRect();
+
+                        fill.style.width =
+                            `${circleRect.left - trackRect.left + circleRect.width / 2}px`;
+
+                    });
 
                 }
-                updateProgress();
                 const observer = new MutationObserver(() => {
                     updateProgress();
                 });
 
                 observer.observe(indicator, {
+                    childList: true,
                     subtree: true,
                     attributes: true,
-                    attributeFilter: ['class']
+                    attributeFilter: ['class', 'style']
                 });
+
+                window.addEventListener('resize', updateProgress);
             }
         }
     });
