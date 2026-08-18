@@ -1,0 +1,219 @@
+@charset "UTF-8";
+.gmd-47 {
+  /* ---------------------------------------------------------
+     "Bestellen met mijn account" bar
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-account-bar {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border-radius: 60px;
+  border: 1px solid #C3C3C3;
+  color: #343A40;
+  text-align: center;
+  font-size: 19.2px;
+  font-weight: 400;
+  line-height: 28.8px;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Guest copy
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-guest-copy {
+  color: #212529;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 27.2px;
+  margin-bottom: 48px;
+}
+@media (max-width: 767px) {
+  .gmd-47 .gmd-guest-copy {
+    font-size: 14px;
+    line-height: 140%;
+    margin-bottom: 32px;
+  }
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Logged-in row
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-logged-in-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Overlay
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 30, 0.45);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: none;
+}
+.gmd-47 .gmd-overlay.gmd-open {
+  opacity: 1;
+  display: block;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Login slide-in panel
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 440px;
+  max-width: 100vw;
+  background: #fff;
+  z-index: 9999;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.gmd-47 .gmd-panel.gmd-open {
+  transform: translateX(0);
+}
+@media (max-width: 640px) {
+  .gmd-47 .gmd-panel {
+    width: 100vw;
+  }
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Panel header
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.gmd-47 .gmd-panel-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Close button
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-close {
+  border: none;
+  color: #FFF;
+  text-align: center;
+  font-size: 40.6px;
+  font-weight: 400;
+  line-height: 35px;
+  border-radius: 0 0 0 2.8px;
+  background: #223243;
+  padding: 7px 14px;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Panel body
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-panel-body {
+  flex: 1;
+}
+.gmd-47 .gmd-login-message {
+  color: #003062;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+.gmd-47 .gmd-email {
+  color: #212529;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+}
+.gmd-47 .gmd-link {
+  color: #28A745;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Password show / hide
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-input-wrap {
+  position: relative;
+}
+.gmd-47 .gmd-toggle-pw {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Password requirements
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-pw-requirements {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+.gmd-47 .gmd-pw-requirements li {
+  margin-bottom: 2px;
+}
+.gmd-47 .gmd-pw-requirements li::before {
+  content: "• ";
+}
+.gmd-47 .gmd-pw-requirements li.gmd-met::before {
+  content: "✓ ";
+}
+.gmd-47 {
+  /* ---------------------------------------------------------
+     Account password expand animation
+     --------------------------------------------------------- */
+}
+.gmd-47 .gmd-account-pw-wrap {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+.gmd-47 .gmd-account-pw-wrap.gmd-expanded {
+  max-height: 220px;
+  opacity: 1;
+  margin-top: 8px;
+}
+.gmd-47 .gmd-login-iframe {
+  width: 100%;
+  height: 100%;
+}
+.gmd-47 .gmd-login-iframe div:not(#loginCard .card-body) {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
