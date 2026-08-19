@@ -160,7 +160,7 @@
     margin-right: 0;
   }
 }
-.gmd-06 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-price-stock-wrapper .gmd-price .price-container:nth-child(2) {
+.gmd-06 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-price-stock-wrapper .gmd-price .price-container:nth-of-type(2) {
   display: none;
 }
 .gmd-06 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-price-stock-wrapper .gmd-price .basepricecustom,

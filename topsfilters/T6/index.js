@@ -34,7 +34,7 @@
         });
     };
 
-    waitForElement(".catalog-product-view", ([producPage]) => {
+    waitForElement(".catalog-product-view #gallery .invisible", ([producPage]) => {
         document.querySelector('body').classList.add(testInfo.className);
 
         const atsContent = {
