@@ -42,14 +42,14 @@
             productImage: document.querySelector('.product-info-main #gallery .invisible')?.src,
             productAlt: document.querySelector('.product-info-main #gallery .invisible')?.alt,
             addToCartBtn: document.querySelector('.product-info-main #product-addtocart-button').outerHTML,
-            price: document.querySelector('.product-info-main .final-price')?.cloneNode(true)
+            price: document.querySelector('.product-info-main .price-final_price')
         }
 
         function loadTest() {
             if (!document.querySelector('.gmd-sticky-ats-wrapper')) {
                 document.querySelector('body').insertAdjacentHTML('beforeend', `
                         <div class="gmd-sticky-ats-wrapper">
-                            <div class="gmd-ats-container">
+                            <div class="gmd-ats-container columns">
                                 <div class="gmd-ats-content-wrapper">
                                     <div class="gmd-product-wrapper">
                                         <div class="image-wrapper">
@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                         <div class="gmd-price-stock-wrapper">
-                                            <div class="gmd-price">${atsContent.price?.textContent}</div>
+                                            <div class="gmd-price">${atsContent.price.outerHTML}</div>
                                         </div>
                                         <div class="gmd-btn-wrapper">
                                             ${atsContent.addToCartBtn}

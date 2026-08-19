@@ -40,8 +40,9 @@
         }
 
         .gmd-ats-container {
-            padding: 12px 44px;
-            max-width: 1440px;
+            padding: 12px;
+            // max-width: 1440px;
+            row-gap: 0;
             width: 100%;
             margin: 0 auto;
 
@@ -59,6 +60,7 @@
             align-items: center;
             justify-content: space-between;
             margin: 0 auto;
+            width: 100%;
 
             .gmd-product-wrapper {
                 display: flex;
@@ -80,6 +82,10 @@
                     align-items: center;
                     justify-content: center;
 
+                    @media (max-width: 1021px) {
+                        margin-right: 10px;
+                    }
+
                     @media(max-width: 767px) {
                         display: none;
                     }
@@ -94,6 +100,10 @@
                     overflow: hidden;
                     margin-right: 25px;
                     width: 100%;
+
+                    @media (max-width: 1021px) {
+                        margin-right: 12px;
+                    }
 
                     @media(max-width: 767px) {
                         margin-right: 0;
@@ -151,6 +161,33 @@
                         font-weight: 700;
                         line-height: 32px;
                         margin-right: 34px;
+
+                        @media (max-width: 1021px) {
+                            margin-right: 0;
+                        }
+
+                        .price-container:nth-child(2) {
+                            display: none;
+                        }
+
+                        .basepricecustom,
+                        .op-voorraad-desktop,
+                        .per-set {
+                            display: none;
+                        }
+
+                        .price {
+                            display: flex;
+
+                            @media (max-width: 1021px) {
+                                font-size: 25px !important;
+
+                                .line-through {
+                                    padding-left: 10px;
+                                }
+                            }
+                        }
+
 
                         @media (max-width: 991px) {
                             font-size: 20px;
@@ -226,6 +263,14 @@
                 }
             }
 
+        }
+    }
+
+    .page-footer {
+        margin-bottom: 110px;
+
+        @media (max-width: 1021px) {
+            margin-bottom: 120px;
         }
     }
 }
