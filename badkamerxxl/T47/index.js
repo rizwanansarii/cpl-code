@@ -37,6 +37,13 @@
             }, frequency);
     }
 
+    waitForElement('.cart-index', () => {
+        document.querySelector('.cart-totals-row a[href="/checkout"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '/afrekenen';
+        })
+    })
+
     /* -------------------------------------------------------------------------
        0. Redirect legacy /checkout traffic to /afrekenen
        ------------------------------------------------------------------------- */
@@ -294,10 +301,6 @@
 
                     close();
 
-                    if (typeof onLoginSuccess === 'function') {
-                        onLoginSuccess(data.user);
-                    }
-
                     return data.user;
                 }
 
@@ -382,6 +385,21 @@
                 font-weight: 600;
                 line-height: 100%;
             }
+
+            body.gmd-iframe-login #loginDrawerFormAlert {
+                color: #721C24;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                text-align: center;
+            }
+
+            @media (max-width: 767px) {
+                body.gmd-iframe-login #loginDrawerFormAlert {
+                    font-size: 14px;
+                    line-height: 130%;
+                }   
+            }
         `;
 
             doc.head.appendChild(style);
@@ -462,13 +480,12 @@
                                         data.user
                                     );
 
-                                    // buildLoginPanel's callback
-                                    // will handle the UI update
-                                    if (typeof onLoginSuccess === 'function') {
-                                        onLoginSuccess(data.user);
-                                    }
-
+                                    // Close popup
                                     close();
+
+                                    // Refresh the main page
+                                    window.parent.location.reload();
+
                                 }
 
                             } catch (error) {
@@ -492,6 +509,18 @@
                 });
 
             }
+
+            doc.querySelectorAll('a[href="/wachtwoord-vergeten"]').forEach((link) => {
+
+                link.addEventListener('click', (e) => {
+
+                    e.preventDefault();
+
+                    window.parent.location.href = link.href;
+
+                });
+
+            });
 
         });
 
