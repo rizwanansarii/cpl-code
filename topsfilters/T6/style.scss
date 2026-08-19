@@ -178,6 +178,8 @@
 
                         .price {
                             display: flex;
+                            font-size: 26px !important;
+                            line-height: 32px;
 
                             @media (max-width: 1021px) {
                                 font-size: 25px !important;

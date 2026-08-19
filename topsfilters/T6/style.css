@@ -170,6 +170,8 @@
 }
 .gmd-06 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-price-stock-wrapper .gmd-price .price {
   display: flex;
+  font-size: 26px !important;
+  line-height: 32px;
 }
 @media (max-width: 1021px) {
   .gmd-06 .gmd-sticky-ats-wrapper .gmd-ats-content-wrapper .gmd-product-wrapper .gmd-price-stock-wrapper .gmd-price .price {
