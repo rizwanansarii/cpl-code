@@ -90,7 +90,6 @@
         transition: transform .25s ease;
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
 
         &.gmd-open {
             transform: translateX(0);
