@@ -46,10 +46,17 @@
        --------------------------------------------------------- */
 
     .gmd-logged-in-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 24px;
+        display: none;
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        // margin-bottom: 24px;
+    }
+
+    &:not(:has(.gmd-logged-in-row)) {
+        #createAccountWrapper {
+            display: block !important;
+        }
     }
 
 

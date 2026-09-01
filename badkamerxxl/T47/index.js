@@ -22,8 +22,6 @@
         }
     };
 
-    const log = (...args) => testInfo.debug && console.log(`[${testInfo.className}]`, ...args);
-
     function waitForElement(waitFor, callback, minElements = 1, isVariable = false, timer = 10000, frequency = 25) {
         const elements = isVariable ? window[waitFor] : document.querySelectorAll(waitFor);
 
@@ -290,12 +288,8 @@
 
                 const data = await response.json();
 
-                console.log('[gmd-47] Account response:', data);
-
                 // Only consider the user logged in when user exists
                 if (data?.user) {
-
-                    console.log('[gmd-47] User is logged in:', data.user);
 
                     stopLoginCheck();
 
@@ -477,19 +471,9 @@
 
                                 const data = await response.json();
 
-                                console.log(
-                                    '[gmd-47] Login status:',
-                                    data
-                                );
-
                                 if (data?.user) {
 
                                     clearInterval(checkLogin);
-
-                                    console.log(
-                                        '[gmd-47] Login successful:',
-                                        data.user
-                                    );
 
                                     // Close popup
                                     close();
@@ -650,7 +634,6 @@
     function insertAccountCreationCheckbox(container) {
         const submitBtn = container.querySelector(SELECTORS.submitButton);
         if (!submitBtn) {
-            log('Submit button not found — check SELECTORS.submitButton');
             return;
         }
         const submitWrap = submitBtn.closest('.text-right') || submitBtn.parentElement;
@@ -686,15 +669,12 @@
             .find(el => el.textContent.trim() === 'Jouw gegevens');
 
         if (!titleEl) {
-            log('"Jouw gegevens" title not found');
             return;
         }
 
         let barRefs;
 
         const loginPanel = buildLoginPanel((user) => {
-
-            console.log('[gmd-47] Login successful:', user);
 
             if (!barRefs) {
                 return;
@@ -729,17 +709,9 @@
 
                 const data = await response.json();
 
-                console.log('[gmd-47] Existing login:', data);
-
                 if (!data?.user) {
-                    console.log('[gmd-47] User is not logged in');
                     return;
                 }
-
-                console.log(
-                    '[gmd-47] User already logged in:',
-                    data.user
-                );
 
                 renderLoggedInView(
                     data.user,
@@ -758,8 +730,6 @@
             }
         }
         checkExistingLogin();
-
-        log('T47 initialised');
     });
 
 })();

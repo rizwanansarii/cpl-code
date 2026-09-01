@@ -45,10 +45,10 @@
      --------------------------------------------------------- */
 }
 .gmd-47 .gmd-logged-in-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
+  display: none;
+}
+.gmd-47:not(:has(.gmd-logged-in-row)) #createAccountWrapper {
+  display: block !important;
 }
 .gmd-47 {
   /* ---------------------------------------------------------
