@@ -212,6 +212,9 @@
   width: 100%;
   height: 100%;
 }
+.gmd-47 .gmd-loader {
+  display: block;
+}
 .gmd-47 .gmd-login-iframe div:not(#loginCard .card-body) {
   display: none;
 }/*# sourceMappingURL=style.css.map */

@@ -249,11 +249,14 @@
 
         <div class="gmd-panel-body">
             <iframe
-                class="gmd-login-iframe"
+                class="gmd-login-iframe d-none"
                 src="/checkout"
                 title="Inloggen"
                 frameborder="0"
             ></iframe>
+            <div class="loader-logo gmd-loader">
+                <img alt="lazyload-placeholder" title="Lazyloader-placeholder" src="//cdn.projectxxl.nl/layout/images/loading.gif">
+            </div>
         </div>
     `;
 
@@ -331,6 +334,8 @@
             if (!doc) {
                 return;
             }
+            iframe.classList.remove('d-none');
+            document.querySelector('.gmd-loader').classList.add('d-none');
 
             const target = doc.querySelector('#accountCheckoutLogin');
 
@@ -576,8 +581,8 @@
     }
 
     function renderLoggedInView(user, mountPoint, accountBar, guestCopy) {
-        accountBar.remove();
-        guestCopy.remove();
+        accountBar?.remove();
+        guestCopy?.remove();
 
         const row = document.createElement('div');
         row.className = 'gmd-logged-in-row';
@@ -663,10 +668,15 @@
     }
 
     waitForElement(SELECTORS.formContainer, (elements) => {
-        document.body.classList.add(testInfo.className)
+        document.body.classList.add(testInfo.className);
+
         const container = elements[0];
-        const titleEl = Array.from(container.querySelectorAll(SELECTORS.pageTitle))
-            .find(el => el.textContent.trim() === 'Jouw gegevens');
+
+        const titleEl = Array.from(
+            container.querySelectorAll(SELECTORS.pageTitle)
+        ).find(
+            el => el.textContent.trim() === 'Jouw gegevens'
+        );
 
         if (!titleEl) {
             return;
@@ -686,11 +696,7 @@
                 barRefs.bar,
                 barRefs.guestCopy
             );
-
         });
-
-        barRefs = insertAccountBarAndGuestCopy(titleEl, loginPanel);
-        insertAccountCreationCheckbox(container);
 
         async function checkExistingLogin() {
 
@@ -704,21 +710,26 @@
                 );
 
                 if (!response.ok) {
+                    // API failed, treat as guest
+                    barRefs = insertAccountBarAndGuestCopy(titleEl, loginPanel);
                     return;
                 }
 
                 const data = await response.json();
 
-                if (!data?.user) {
+                if (data?.user) {
+
+                    // DO NOT insert guest/account bar
+                    renderLoggedInView(
+                        data.user,
+                        titleEl,
+                        null,
+                        null
+                    );
                     return;
                 }
 
-                renderLoggedInView(
-                    data.user,
-                    titleEl,
-                    barRefs.bar,
-                    barRefs.guestCopy
-                );
+                barRefs = insertAccountBarAndGuestCopy(titleEl, loginPanel);
 
             } catch (error) {
 
@@ -727,6 +738,8 @@
                     error
                 );
 
+                // If API check fails, show guest UI
+                barRefs = insertAccountBarAndGuestCopy(titleEl, loginPanel);
             }
         }
         checkExistingLogin();

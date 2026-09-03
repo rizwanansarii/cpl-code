@@ -246,6 +246,10 @@
         height: 100%;
     }
 
+    .gmd-loader {
+        display: block;
+    }
+
     .gmd-login-iframe {
         div:not(#loginCard .card-body) {
             display: none;
