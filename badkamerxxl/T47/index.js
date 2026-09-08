@@ -260,7 +260,6 @@
                 font-size: 16px;
                 font-weight: 400;
                 line-height: 24px;
-                text-align: center;
                 display: flex;
                 gap: 6px;
                 align-items: center;
