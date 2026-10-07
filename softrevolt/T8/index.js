@@ -89,6 +89,242 @@
         }, frequency);
     }
 
+    const FIT_FINDER_URL = '/pages/fit-finder';
+    const TRIGGER_SELECTOR = '.fit-finder-highlight a[href="/pages/fit-finder"], .fit-finder-link a[href="/pages/fit-finder"], header a[href="/pages/fit-finder"]';
+    const stepOneImage = 'https://images.varify.io/fcff45282c29075916e2eb1cd713a27fce96df1e817f84acad6f91a8dec5745f/step_1_model_img.png';
+    const FIT_FINDER_STORAGE_KEY = 'theme:fit-finder-size';
+
+    let fetchPromise = null;
+    let assetsInjected = false;
+    let popupOpen = false;
+
+    // Mirrors the theme's own DOMContentLoaded badge logic (button--fit-finder /
+    // #fit-finder-size), but callable on demand so both spots refresh live the
+    // instant the pop-up's quiz produces a result, instead of only on next page load.
+    function updateFitFinderBadges(size) {
+
+        const highlightBtn = document.querySelector('.button--fit-finder');
+        if (highlightBtn) highlightBtn.textContent = size ? `Jouw maat: ${size}` : 'Vind je maat';
+
+        applyFitFinderSizeLabel(size);
+        selectRecommendedSize(size);
+    }
+
+    // #fit-finder-size lives inside <variant-selects>'s own markup, so set it
+    // as its own step — selectRecommendedSize()'s input.click() re-fetches and
+    // replaces that markup via Shopify's Section Rendering API, which wipes
+    // this label straight back to "Vind je maat" a moment later. Called again
+    // once that swap happens (see selectRecommendedSize) to make it stick.
+    function applyFitFinderSizeLabel(size) {
+        if (!size) return;
+        const linkSize = document.querySelector('#fit-finder-size');
+        if (!linkSize) return;
+        linkSize.textContent = `Jouw aanbevolen maat: ${size}`;
+        document.querySelector('.fit-finder-highlight')?.classList.add('hidden');
+    }
+
+    // Auto-selects the recommended size's variant option. Uses a real .click()
+    // rather than setting .checked directly, so the theme's variant-selects
+    // component still fires its own change handling (price, stock, add-to-cart url)
+    function selectRecommendedSize(size) {
+        if (!size) return;
+        const input = document.querySelector(`variant-selects input[value="Maat ${size}"], variant-selects input[value="${size}"]`);
+        if (!input || input.checked || input.disabled) return;
+
+        // The click below makes product-info.js re-fetch this section and swap
+        // it in via Shopify's HTMLUpdateUtility.viewTransition (global.js), which
+        // does NOT update <variant-selects> in place: it renames the old node's
+        // ids, inserts the freshly-fetched <variant-selects> as a new SIBLING,
+        // then removes the old one ~500ms later. So watch the parent for that
+        // sibling landing (not the old node itself) and re-apply the label then.
+        const variantSelects = input.closest('variant-selects');
+        const parent = variantSelects?.parentNode;
+        if (parent) {
+            const observer = new MutationObserver((mutations) => {
+                const swapped = mutations.some((m) =>
+                    Array.from(m.addedNodes).some((node) => node.nodeType === 1 && node.matches?.('variant-selects'))
+                );
+                if (swapped) {
+                    observer.disconnect();
+                    applyFitFinderSizeLabel(size);
+                }
+            });
+            observer.observe(parent, { childList: true });
+            setTimeout(() => observer.disconnect(), 5000); // safety cutoff
+        }
+
+        input.click();
+    }
+
+    // The native badge scripts only run once on DOMContentLoaded, so they miss the
+    // Fit Finder quiz result written while the pop-up is open. There's no same-tab
+    // 'storage' event to hook into, so intercept the write itself instead.
+    //
+    // The quiz reaches its result step (and writes this key) before the user has
+    // closed the pop-up or confirmed the email step, so don't apply it live —
+    // wait until the pop-up actually closes (closePopup() re-reads localStorage
+    // and re-runs updateFitFinderBadges then, which also re-selects the variant).
+    function isFitFinderStorageValue() {
+        try {
+            const nativeSetItem = localStorage.setItem.bind(localStorage);
+            localStorage.setItem = function (key, value) {
+                try {
+                    nativeSetItem(key, value);
+                } catch (error) {
+                    // Safari in private mode does not allow setting item, we silently fail
+                }
+                if (key === FIT_FINDER_STORAGE_KEY && !popupOpen) {
+                    updateFitFinderBadges(value);
+                }
+            };
+        } catch (error) {
+            // Safari in private mode does not allow setting item, we silently fail
+        }
+    }
+
+    // Pulls the live Fit Finder section (markup + its CSS/JS deps) straight from
+    // /pages/fit-finder so the pop-up always mirrors that page, incl. future edits.
+    function fetchFitFinderSection() {
+        if (fetchPromise) return fetchPromise;
+        fetchPromise = fetch(FIT_FINDER_URL, { credentials: 'same-origin' })
+            .then((res) => res.text())
+            .then((html) => {
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                const wrapper = doc.querySelector('[id*="fit_finder"]');
+                const fitFinderEl = wrapper && wrapper.querySelector('.fit-finder');
+                if (!wrapper || !fitFinderEl) return null;
+                return {
+                    links: Array.from(wrapper.querySelectorAll('link[rel="stylesheet"][href]')).map((l) => l.getAttribute('href')),
+                    scripts: Array.from(wrapper.querySelectorAll('script[src]')).map((s) => ({ src: s.getAttribute('src'), type: s.type || '' })),
+                    html: fitFinderEl.outerHTML
+                };
+            })
+            .catch(() => null);
+        return fetchPromise;
+    }
+
+    // Load whatever CSS/JS the fit-finder section itself declares, skipping
+    // anything already present on the page (component-card.css, etc. are shared).
+    function injectAssets(links, scripts) {
+        if (assetsInjected) return;
+        assetsInjected = true;
+
+        links.forEach((href) => {
+            const filename = href.split('/').pop().split('?')[0];
+            if (document.querySelector(`link[href*="${filename}"]`)) return;
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            document.head.appendChild(link);
+        });
+
+        scripts.forEach(({ src, type }) => {
+            const filename = src.split('/').pop().split('?')[0];
+            if (document.querySelector(`script[src*="${filename}"]`)) return;
+            const script = document.createElement('script');
+            if (type) script.type = type;
+            script.src = src;
+            document.head.appendChild(script);
+        });
+    }
+
+    function buildOverlay() {
+        if (document.querySelector('#gmdFitFinderOverlay')) return;
+        document.body.insertAdjacentHTML('beforeend', `
+            <div class="gmd-fitfinder-overlay" id="gmdFitFinderOverlay">
+                <div class="gmd-fitfinder-inner">
+                    <div class="gmd-fitfinder-box">
+                        <div class="gmd-fitfinder-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M8 7.95996L24 23.96M8 23.96L24 7.95996" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="gmd-fitfinder-body" id="gmdFitFinderBody">
+                            <div class="gmd-fitfinder-loading">Laden...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
+
+    function openPopup() {
+        buildOverlay();
+        document.querySelector('#gmdFitFinderOverlay')?.classList.add('is-fitfinder-open');
+        document.body.style.overflow = 'hidden';
+        popupOpen = true;
+
+        fetchFitFinderSection().then((data) => {
+            const body = document.querySelector('#gmdFitFinderBody');
+            if (!body) return;
+            if (!data) {
+                body.innerHTML = `<p class="gmd-fitfinder-error">De Fit Finder kon niet worden geladen. <a href="${FIT_FINDER_URL}">Ga naar de Fit Finder</a>.</p>`;
+                return;
+            }
+            injectAssets(data.links, data.scripts);
+            body.innerHTML = data.html;
+            var stepOne = document.querySelector('fit-finder [data-step="1"]'), stepOne = document.querySelector('fit-finder [data-step="1"]'), stepTwo = document.querySelector('fit-finder [data-step="2"]'), stepFour = document.querySelector('fit-finder [data-step="4"]'), stepFive = document.querySelector('fit-finder [data-step="5"]');
+            if (stepOne && !stepOne.querySelector('.gmd-step-image')) {
+                var imgContainer = document.createElement('div');
+                imgContainer.className = 'gmd-step-image';
+                var img = document.createElement('img');
+                img.src = stepOneImage;
+                img.alt = 'Fit Finder Step 1';
+                img.style.cssText = 'max-width: 100%; height: auto; border-radius: 8px;';
+                imgContainer.appendChild(img);
+                stepOne.insertAdjacentElement("afterbegin", imgContainer);
+            }
+            if (stepOne && stepOne.querySelector("h2 + p") && !stepOne.querySelector("p.gmd-paragraph")) {
+                stepOne.querySelector("h2 + p").classList.add("gmd-paragraph");
+                stepOne.querySelector("h2 + p").innerHTML = `Jouw lichaam is uniek, en onze vernieuwde maatvoering is dat ook. <br>Met onze Fit Finder weet je in 3 stappen<br>welke Soft Revolt maat je hebt.`;
+            }
+            if (stepTwo && stepTwo.querySelector("h2 + p") && !stepTwo.querySelector("p.gmd-paragraph")) {
+                stepTwo.querySelector("h2 + p").classList.add("gmd-paragraph");
+                stepTwo.querySelector("h2 + p").innerHTML = `Meet je op met een meetlint, <br class="mob-only">strak onder je borsten.`;
+            }
+            if (stepFour && stepFour.querySelector("h2 + p") && !stepFour.querySelector("p.gmd-paragraph")) {
+                stepFour.querySelector("h2 + p").classList.add("gmd-paragraph");
+                stepFour.querySelector("h2 + p").innerHTML = `Draag je meerdere cupmaten? <br class="mob-only">Kies dan de grootste.`;
+            }
+            if (stepFive && stepFive.querySelector("fit-finder-form p.heading") && !stepFive.querySelector("p.gmd-paragraph")) {
+                stepFive.querySelector("fit-finder-form p.heading").classList.add("gmd-paragraph");
+                stepFive.querySelector("fit-finder-form p.heading").innerHTML = `Je Soft Revolt maat altijd bij de hand? <br class="mob-only">Vul hier je e-mailadres in.`;
+            }
+            watchEmailFormSubmit(body);
+        });
+    }
+
+    // The theme's own <fit-finder-form> posts the email to Klaviyo and, while
+    // the request is in flight, adds a "loading" class to the submit button
+    // (see fit-finder.js's toggleSubmitButton) — there's no success/error class
+    // to hook into otherwise. Close the pop-up once that class is removed again,
+    // i.e. the submission has finished.
+    function watchEmailFormSubmit(body) {
+        const submitButton = body.querySelector('fit-finder-form .button--mail');
+        if (!submitButton) return;
+
+        const observer = new MutationObserver(() => {
+            if (!submitButton.classList.contains('loading')) {
+                observer.disconnect();
+                closePopup();
+            }
+        });
+        observer.observe(submitButton, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    function closePopup() {
+        if (document.querySelector('#gmdFitFinderOverlay fit-finder [data-step="5"]:not(.hidden)')) {
+            updateFitFinderBadges(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
+        }
+        document.querySelector('#gmdFitFinderOverlay')?.classList.remove('is-fitfinder-open');
+        document.body.style.overflow = '';
+        popupOpen = false;
+
+        // Now that the pop-up is closed, apply whatever result the quiz produced
+        // while it was open — shows the recommended-size badges and selects the
+        // matching variant.
+    }
+
     function createSelector(label, options, className) {
         const wrapper = document.createElement('div');
         wrapper.className = `gmd-converter-select ${className}`;
@@ -154,6 +390,15 @@
                 </svg>
             </span>
         `;
+
+        /*
+ * Collapsible state
+ */
+        let isOpen = false;
+
+        const chevron = header.querySelector(
+            '.gmd-chevron'
+        );
 
         const selectRow = document.createElement('div');
 
@@ -271,9 +516,29 @@
             </div>
         `;
 
+        selectRow.style.display = 'none';
+        bottomText.style.display = 'none';
+
         container.appendChild(header);
         container.appendChild(selectRow);
         container.appendChild(bottomText);
+
+        header.addEventListener('click', () => {
+            isOpen = !isOpen;
+
+            selectRow.style.display =
+                isOpen ? 'grid' : 'none';
+
+            bottomText.style.display =
+                isOpen ? 'block' : 'none';
+
+            if (chevron) {
+                chevron.style.transform =
+                    isOpen
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)';
+            }
+        });
 
         const variantSelects = variantField.closest('variant-selects');
 
@@ -329,6 +594,39 @@
 
         waitForElement('.product-form__input.product-form__input--pill', () => {
             initSizeConverter();
+            // Keep the "Jouw maat" / "Jouw aanbevolen maat" badges — and the selected
+            // size itself — in sync with the Fit Finder result: on load, and once the
+            // pop-up closes (see watchFitFinderStorage / closePopup)
+            // isFitFinderStorageValue();
+            // applyFitFinderSizeLabel(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
+            // updateFitFinderBadges(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
+
+            // Prefetch in the background so the pop-up opens instantly on click
+            fetchFitFinderSection();
+
+            document.addEventListener('click', (e) => {
+                const trigger = e.target.closest(TRIGGER_SELECTOR);
+                if (trigger) {
+                    e.preventDefault();
+                    openPopup();
+                    return;
+                }
+                if (document.querySelector(".gmd-fitfinder-overlay.is-fitfinder-open")) {
+                    if (e.target.closest('.gmd-fitfinder-close')) {
+                        closePopup();
+                        return;
+                    }
+                    // Close on overlay background click
+                    if (e.target.id === 'gmdFitFinderOverlay' || (e.target.closest('.gmd-fitfinder-inner') && !e.target.closest('.gmd-fitfinder-box'))) {
+                        closePopup();
+                        return;
+                    }
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closePopup();
+            });
         });
     }
 

@@ -64,7 +64,7 @@
   border: 1px solid #C3C3C3;
   background: #FFF;
   color: #171717;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 19.2px;
   letter-spacing: 0.4px;
@@ -78,6 +78,7 @@
 @media (max-width: 749px) {
   .gmd-08 .gmd-select {
     padding: 0 31px 0 20px;
+    font-size: 12px;
   }
 }
 .gmd-08 .gmd-select:focus {
@@ -118,10 +119,15 @@
   border: 1px dashed #C3C3C3;
   background: #FFF;
   color: #171717;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 19.2px;
   letter-spacing: 0.4px;
+}
+@media (max-width: 749px) {
+  .gmd-08 .gmd-converter-result {
+    font-size: 12px;
+  }
 }
 .gmd-08 .gmd-converter-text {
   font-size: 17px;
@@ -145,4 +151,210 @@
   text-decoration-thickness: auto;
   text-underline-offset: auto;
   text-underline-position: from-font;
+}
+.gmd-08 .gmd-fitfinder-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.6);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
+.gmd-08 .gmd-fitfinder-overlay.is-fitfinder-open {
+  opacity: 1;
+  visibility: visible;
+}
+.gmd-08 .gmd-fitfinder-overlay.is-fitfinder-open .gmd-fitfinder-box {
+  transform: scale(1);
+}
+.gmd-08 .gmd-fitfinder-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 40px 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 767px) {
+  .gmd-08 .gmd-fitfinder-inner {
+    padding: 20px 15px;
+  }
+}
+.gmd-08 .gmd-fitfinder-box {
+  background: #fff;
+  width: 100%;
+  max-width: 780px;
+  height: auto;
+  min-height: unset;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+.gmd-08 .gmd-fitfinder-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  z-index: 2;
+}
+@media (max-width: 767px) {
+  .gmd-08 .gmd-fitfinder-close {
+    top: 10px;
+    right: 10px;
+  }
+}
+.gmd-08 .gmd-fitfinder-body {
+  min-height: 600px;
+}
+.gmd-08 .gmd-fitfinder-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #171717;
+  font-size: 1.6rem;
+}
+.gmd-08 .gmd-fitfinder-error {
+  padding: 60px 20px;
+  text-align: center;
+  color: #171717;
+  font-size: 1.6rem;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder {
+  width: 100%;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid {
+  min-height: 600px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid .grid__item:not(:has(fit-finder)),
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid .grid__item .explainer {
+  display: none !important;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid .gmd-step-image {
+  max-width: 608px;
+  margin: 20px auto 20px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder {
+  padding-bottom: 32px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .h1 {
+  color: #D4311F;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52px;
+  /* 162.5% */
+  margin: 0;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="1"] .h1 {
+  margin: 0 0 10px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .h1 + p {
+  color: #171717;
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+  /* 166.667% */
+  margin: 0 auto;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder p .mob-only {
+  display: none;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .fields {
+  margin-top: 17px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .options {
+  margin-top: 20px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="2"],
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="3"],
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="4"],
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] {
+  margin-top: 40px;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder h1.size {
+  margin: 20px 0;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder fit-finder-form {
+  display: block !important;
+}
+.gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .buttons .button {
+  padding: 10px;
+}
+@media (max-width: 749.98px) {
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder {
+    padding: 60px 0 32px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .gmd-step-image {
+    margin: 0 0 20px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .gmd-step-image img {
+    border-radius: 0 !important;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .h1 {
+    font-size: 24px;
+    line-height: 120%;
+    /* 28.8px */
+    margin: 10px 0 20px !important;
+    padding: 0 12px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .h1 + p {
+    font-size: 15px;
+    line-height: 25px;
+    /* 166.667% */
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder h1.size {
+    margin: 0 0 20px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder p .mob-only {
+    display: block;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .buttons {
+    margin-top: 30px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .fields,
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .buttons,
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder .options {
+    padding: 0 16px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="3"] .options label {
+    height: auto;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="2"],
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="3"],
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="4"],
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] {
+    margin-top: 0;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] {
+    padding: 0 16px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] .fitfinder_advantages > div {
+    padding: 10px 12.5px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] fit-finder-form {
+    width: 100%;
+    padding: 10px 0 0;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] fit-finder-form .fields {
+    padding: 0;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] fit-finder-form .buttons {
+    margin-top: 22px;
+  }
+  .gmd-08 .gmd-fitfinder-body .fit-finder .grid fit-finder [data-step="5"] fit-finder-form .buttons .button {
+    width: 174px;
+  }
 }/*# sourceMappingURL=style.css.map */
