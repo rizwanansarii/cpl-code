@@ -275,7 +275,13 @@
         container.appendChild(selectRow);
         container.appendChild(bottomText);
 
-        variantField.insertAdjacentElement('afterend', container);
+        const variantSelects = variantField.closest('variant-selects');
+
+        if (variantSelects) {
+            variantSelects.insertAdjacentElement('afterend', container);
+        } else {
+            variantField.insertAdjacentElement('afterend', container);
+        }
 
         function updateDisplayedSize() {
 
@@ -298,9 +304,15 @@
             result.textContent = size;
         }
 
-        bandSelector.select.addEventListener('change', updateDisplayedSize);
+        bandSelector.select.addEventListener('change', (event) => {
+            event.stopPropagation();
+            updateDisplayedSize();
+        });
 
-        cupSelector.select.addEventListener('change', updateDisplayedSize);
+        cupSelector.select.addEventListener('change', (event) => {
+            event.stopPropagation();
+            updateDisplayedSize();
+        });
 
         const fitFinderLink = container.querySelector('.gmd-fitfinder-link');
 
