@@ -394,7 +394,7 @@
         /*
  * Collapsible state
  */
-        let isOpen = false;
+        let isOpen = true;
 
         const chevron = header.querySelector(
             '.gmd-chevron'
@@ -516,8 +516,8 @@
             </div>
         `;
 
-        selectRow.style.display = 'none';
-        bottomText.style.display = 'none';
+        selectRow.style.display = 'grid';
+        bottomText.style.display = 'block';
 
         container.appendChild(header);
         container.appendChild(selectRow);
@@ -589,47 +589,42 @@
         }
     }
 
-    function init() {
+    waitForElement('.product-form__input.product-form__input--pill', () => {
         document.body.classList.add(testInfo.className);
+        initSizeConverter();
+        // Keep the "Jouw maat" / "Jouw aanbevolen maat" badges — and the selected
+        // size itself — in sync with the Fit Finder result: on load, and once the
+        // pop-up closes (see watchFitFinderStorage / closePopup)
+        // isFitFinderStorageValue();
+        // applyFitFinderSizeLabel(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
+        // updateFitFinderBadges(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
 
-        waitForElement('.product-form__input.product-form__input--pill', () => {
-            initSizeConverter();
-            // Keep the "Jouw maat" / "Jouw aanbevolen maat" badges — and the selected
-            // size itself — in sync with the Fit Finder result: on load, and once the
-            // pop-up closes (see watchFitFinderStorage / closePopup)
-            // isFitFinderStorageValue();
-            // applyFitFinderSizeLabel(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
-            // updateFitFinderBadges(localStorage.getItem(FIT_FINDER_STORAGE_KEY));
+        // Prefetch in the background so the pop-up opens instantly on click
+        fetchFitFinderSection();
 
-            // Prefetch in the background so the pop-up opens instantly on click
-            fetchFitFinderSection();
-
-            document.addEventListener('click', (e) => {
-                const trigger = e.target.closest(TRIGGER_SELECTOR);
-                if (trigger) {
-                    e.preventDefault();
-                    openPopup();
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest(TRIGGER_SELECTOR);
+            if (trigger) {
+                e.preventDefault();
+                openPopup();
+                return;
+            }
+            if (document.querySelector(".gmd-fitfinder-overlay.is-fitfinder-open")) {
+                if (e.target.closest('.gmd-fitfinder-close')) {
+                    closePopup();
                     return;
                 }
-                if (document.querySelector(".gmd-fitfinder-overlay.is-fitfinder-open")) {
-                    if (e.target.closest('.gmd-fitfinder-close')) {
-                        closePopup();
-                        return;
-                    }
-                    // Close on overlay background click
-                    if (e.target.id === 'gmdFitFinderOverlay' || (e.target.closest('.gmd-fitfinder-inner') && !e.target.closest('.gmd-fitfinder-box'))) {
-                        closePopup();
-                        return;
-                    }
+                // Close on overlay background click
+                if (e.target.id === 'gmdFitFinderOverlay' || (e.target.closest('.gmd-fitfinder-inner') && !e.target.closest('.gmd-fitfinder-box'))) {
+                    closePopup();
+                    return;
                 }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closePopup();
-            });
+            }
         });
-    }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePopup();
+        });
 
-    init();
+    });
 
 })();
