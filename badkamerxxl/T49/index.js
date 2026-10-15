@@ -265,7 +265,11 @@
                 sliderTypes.forEach(
                     ([selector, functionName]) => {
 
-                        const initializer = window[functionName];
+                        const pageWindow = typeof unsafeWindow !== 'undefined'
+                            ? unsafeWindow
+                            : window;
+
+                        const initializer = pageWindow[functionName];
 
                         if (typeof initializer !== 'function') {
                             return;
@@ -536,6 +540,249 @@
         }
 
         toolbar.append(filterRow);
+
+        // Show 2 rows initially and add "Alle filters"
+
+        const allFiltersButton = document.createElement('button');
+
+        allFiltersButton.type = 'button';
+        allFiltersButton.className = 'gmd-all-filters-btn';
+
+        allFiltersButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M0.625 6.875H10.0633C10.2092 7.74768 10.6595 8.54046 11.3344 9.11257C12.0094 9.68467 12.8652 9.99909 13.75 10C14.6345 9.9981 15.4898 9.68332 16.1646 9.11139C16.8393 8.53946 17.2899 7.74725 17.4367 6.875H19.375C19.5408 6.875 19.6997 6.80915 19.8169 6.69194C19.9342 6.57473 20 6.41576 20 6.25C20 6.08424 19.9342 5.92527 19.8169 5.80806C19.6997 5.69085 19.5408 5.625 19.375 5.625H17.4367C17.1383 3.85333 15.6067 2.5 13.75 2.5C11.8933 2.5 10.3617 3.85333 10.0633 5.625H0.625C0.45924 5.625 0.300269 5.69085 0.183058 5.80806C0.065848 5.92527 0 6.08424 0 6.25C0 6.41576 0.065848 6.57473 0.183058 6.69194C0.300269 6.80915 0.45924 6.875 0.625 6.875ZM13.75 3.75C14.413 3.75 15.0489 4.01339 15.5178 4.48223C15.9866 4.95107 16.25 5.58696 16.25 6.25C16.25 6.91304 15.9866 7.54893 15.5178 8.01777C15.0489 8.48661 14.413 8.75 13.75 8.75C13.087 8.75 12.4511 8.48661 11.9822 8.01777C11.5134 7.54893 11.25 6.91304 11.25 6.25C11.25 5.58696 11.5134 4.95107 11.9822 4.48223C12.4511 4.01339 13.087 3.75 13.75 3.75ZM19.375 13.125H9.93667C9.63833 11.3533 8.10667 10 6.25 10C4.39333 10 2.86167 11.3533 2.56333 13.125H0.625C0.45924 13.125 0.300269 13.1908 0.183058 13.3081C0.065848 13.4253 0 13.5842 0 13.75C0 13.9158 0.065848 14.0747 0.183058 14.1919C0.300269 14.3092 0.45924 14.375 0.625 14.375H2.56333C2.70915 15.2477 3.15951 16.0405 3.83445 16.6126C4.50938 17.1847 5.36522 17.4991 6.25 17.5C7.13451 17.4981 7.98983 17.1833 8.66455 16.6114C9.33928 16.0395 9.78991 15.2473 9.93667 14.375H19.375C19.5408 14.375 19.6997 14.3092 19.8169 14.1919C19.9342 14.0747 20 13.9158 20 13.75C20 13.5842 19.9342 13.4253 19.8169 13.3081C19.6997 13.1908 19.5408 13.125 19.375 13.125ZM6.25 16.25C5.58696 16.25 4.95107 15.9866 4.48223 15.5178C4.01339 15.0489 3.75 14.413 3.75 13.75C3.75 13.087 4.01339 12.4511 4.48223 11.9822C4.95107 11.5134 5.58696 11.25 6.25 11.25C6.91304 11.25 7.54893 11.5134 8.01777 11.9822C8.48661 12.4511 8.75 13.087 8.75 13.75C8.75 14.413 8.48661 15.0489 8.01777 15.5178C7.54893 15.9866 6.91304 16.25 6.25 16.25Z" fill="#212529"/>
+            </svg>
+            <span>Alle filters</span>
+        `;
+
+        filterRow.appendChild(allFiltersButton);
+
+
+        filterRow.appendChild(allFiltersButton);
+
+        const visualFilters = Array.from(
+            filterRow.querySelectorAll(':scope > .category-specs-filter')
+        );
+
+        let filtersExpanded = window.__gmd49FiltersExpanded === true;
+
+        function updateFilterRows() {
+            if (
+                filtersExpanded ||
+                window.__gmd49FiltersExpanded === true
+            ) {
+                filtersExpanded = true;
+                allFiltersButton.classList.add('gmd-btn-hidden');
+
+                visualFilters.forEach(filter => {
+                    filter.classList.remove('gmd-filter-hidden');
+                });
+
+                return;
+            }
+
+            allFiltersButton.classList.remove('gmd-btn-hidden');
+            // Reset all filters before measuring.
+            visualFilters.forEach(filter => {
+                filter.classList.remove('gmd-filter-hidden');
+            });
+
+            if (filtersExpanded) {
+                allFiltersButton.style.display = 'none';
+                return;
+            }
+
+            // Measure the natural positions of all filters.
+            const getRows = () => {
+                const rows = new Map();
+
+                visualFilters.forEach(filter => {
+                    const top = Math.round(filter.getBoundingClientRect().top);
+
+                    if (!rows.has(top)) rows.set(top, []);
+                    rows.get(top).push(filter);
+                });
+
+                return [...rows.entries()].sort((a, b) => a[0] - b[0]);
+            };
+
+            let rows = getRows();
+
+            // Hide filters from row 3 onward.
+            if (rows.length > 2) {
+                const thirdRowTop = rows[2][0];
+
+                visualFilters.forEach(filter => {
+                    if (
+                        Math.round(filter.getBoundingClientRect().top) >= thirdRowTop
+                    ) {
+                        filter.classList.add('gmd-filter-hidden');
+                    }
+                });
+            }
+
+
+            // Keep the button at the end of row 2.
+            filterRow.appendChild(allFiltersButton);
+
+            let attempts = 0;
+
+            // Reserve space for Alle filters + Clear filters.
+            const filtersToReserveSpace = 2;
+
+            const currentRows = getRows();
+
+            if (currentRows.length >= 2) {
+                const secondRowTop = currentRows[1][0];
+
+                const secondRowFilters = visualFilters.filter(filter =>
+                    !filter.classList.contains('gmd-filter-hidden') &&
+                    Math.round(filter.getBoundingClientRect().top) === secondRowTop
+                );
+
+                secondRowFilters
+                    .slice(-filtersToReserveSpace)
+                    .forEach(filter => {
+                        filter.classList.add('gmd-filter-hidden');
+                    });
+            }
+
+
+            while (attempts < 20) {
+                const visibleFilters = visualFilters.filter(
+                    filter => !filter.classList.contains('gmd-filter-hidden')
+                );
+
+                const visibleRows = new Map();
+
+                visibleFilters.forEach(filter => {
+                    const top = Math.round(filter.getBoundingClientRect().top);
+
+                    if (!visibleRows.has(top)) visibleRows.set(top, []);
+                    visibleRows.get(top).push(filter);
+                });
+
+                const rowEntries = [...visibleRows.entries()].sort(
+                    (a, b) => a[0] - b[0]
+                );
+
+                if (rowEntries.length < 2) break;
+
+                const secondRowTop = rowEntries[1][0];
+                const secondRowFilters = rowEntries[1][1];
+                const lastFilter = secondRowFilters[secondRowFilters.length - 1];
+
+                filterRow.insertBefore(
+                    allFiltersButton,
+                    lastFilter.nextElementSibling
+                );
+
+                const buttonRect = allFiltersButton.getBoundingClientRect();
+                const lastRect = lastFilter.getBoundingClientRect();
+                const rowRect = filterRow.getBoundingClientRect();
+
+                if (
+                    buttonRect.top >= secondRowTop - 2 &&
+                    buttonRect.top <= lastRect.bottom &&
+                    buttonRect.right <= rowRect.right + 1
+                ) {
+                    break;
+                }
+
+                // Hide only one filter per attempt, from row 2.
+                const filterToHide = secondRowFilters[secondRowFilters.length - 1];
+
+                if (!filterToHide) break;
+
+                filterToHide.classList.add('gmd-filter-hidden');
+                attempts++;
+            }
+
+            allFiltersButton.querySelector('span').textContent = 'Alle filters';
+
+
+        }
+
+        allFiltersButton.addEventListener('click', () => {
+            filtersExpanded = true;
+            window.__gmd49FiltersExpanded = true;
+
+            allFiltersButton.classList.add('gmd-btn-hidden');
+
+            updateFilterRows();
+        });
+
+
+        // Move the clear-filters control into the toolbar.
+
+
+        function moveClearFiltersButton() {
+            const originalClearFilters = document.querySelector(
+                '.remove-filters:not(.gmd-clear-filters-clone)'
+            );
+
+            if (!originalClearFilters) return;
+
+            let clonedClearFilters = filterRow.querySelector(
+                '.gmd-clear-filters-clone'
+            );
+
+            if (!clonedClearFilters) {
+                clonedClearFilters = originalClearFilters.cloneNode(true);
+
+                clonedClearFilters.classList.add('gmd-clear-filters-clone');
+                clonedClearFilters.classList.add('gmd-clear-filters-inline');
+
+                clonedClearFilters.classList.remove('gmd-filter-hidden');
+
+                clonedClearFilters.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    originalClearFilters.click();
+                });
+
+                filterRow.appendChild(clonedClearFilters);
+            } else {
+                // Keep the clone's content in sync with the original.
+                clonedClearFilters.innerHTML = originalClearFilters.innerHTML;
+                clonedClearFilters.className = originalClearFilters.className;
+                clonedClearFilters.classList.add(
+                    'gmd-clear-filters-clone',
+                    'gmd-clear-filters-inline'
+                );
+                clonedClearFilters.classList.remove('gmd-filter-hidden');
+            }
+        }
+
+
+
+        function checkClearFiltersButton() {
+            // Check after the website has updated its filter DOM.
+            window.setTimeout(() => {
+                moveClearFiltersButton();
+            }, 100);
+        }
+
+        document.addEventListener('change', (event) => {
+            if (
+                event.target.matches(
+                    '.gmd-filter-toolbar input, .category-product-filters input'
+                )
+            ) {
+                checkClearFiltersButton();
+            }
+        });
+
+
+
+        requestAnimationFrame(() => {
+            updateFilterRows();
+            moveClearFiltersButton();
+        });
+
+        window.addEventListener('resize', () => {
+            updateFilterRows();
+        });
 
         categoryProducts.parentNode.insertBefore(
             toolbar,

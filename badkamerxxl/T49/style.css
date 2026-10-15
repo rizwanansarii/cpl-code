@@ -34,6 +34,7 @@
   width: 100%;
   overflow: visible;
   padding: 0;
+  max-height: none;
 }
 .gmd-49 .gmd-filter-row .category-specs-filter {
   position: relative;
@@ -79,6 +80,9 @@
   font-weight: 600;
   line-height: 100%;
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gmd-49 .gmd-filter-row .category-product-filter-title > .row > .col-12:first-child u {
+  display: none;
 }
 .gmd-49 .gmd-filter-row {
   /* =========================================================
@@ -217,6 +221,47 @@
 }
 .gmd-49 .gmd-filter-row .category-specs-filter.gmd-filter-open .category-product-filter-title > .row > .col-12:first-child {
   z-index: 999999;
+}
+.gmd-49 .gmd-all-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #212529;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  border: none;
+  background: none;
+  gap: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  outline: none;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+  text-decoration-color: rgba(0, 0, 0, 0);
+  text-decoration-thickness: 1px;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+.gmd-49 .gmd-all-filters-btn.gmd-btn-hidden {
+  display: none;
+}
+.gmd-49 .gmd-clear-filters-inline {
+  color: #00A5E2;
+  list-style-type: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+}
+.gmd-49 .gmd-filter-row > .category-specs-filter.gmd-filter-hidden {
+  display: none !important;
+}
+.gmd-49 .active-filters {
+  display: none !important;
 }
 @media (min-width: 992px) {
   .gmd-49 .catalog-page-view {

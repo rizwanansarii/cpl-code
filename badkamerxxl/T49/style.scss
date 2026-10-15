@@ -37,6 +37,7 @@
         width: 100%;
         overflow: visible;
         padding: 0;
+        max-height: none;
 
         .category-specs-filter {
             position: relative;
@@ -87,6 +88,10 @@
                     border-color .2s ease,
                     background-color .2s ease,
                     box-shadow .2s ease;
+
+                u {
+                    display: none;
+                }
             }
         }
 
@@ -258,6 +263,52 @@
                 z-index: 999999;
             }
         }
+    }
+
+    .gmd-all-filters-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        color: #212529;
+        font-size: 16px;
+        font-weight: 900;
+        line-height: 24px;
+        border: none;
+        background: none;
+        gap: 4px;
+        padding: 4px 8px;
+        cursor: pointer;
+        outline: none;
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        text-decoration-skip-ink: auto;
+        text-decoration-color: rgba(0, 0, 0, 0.00);
+        text-decoration-thickness: 1px;
+        text-underline-offset: auto;
+        text-underline-position: from-font;
+
+        &.gmd-btn-hidden {
+            display: none;
+        }
+    }
+
+    .gmd-clear-filters-inline {
+        color: #00A5E2;
+        list-style-type: none;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        cursor: pointer;
+
+    }
+
+    .gmd-filter-row>.category-specs-filter.gmd-filter-hidden {
+        display: none !important;
+    }
+
+    .active-filters {
+        display: none !important;
     }
 
     @media (min-width: 992px) {
